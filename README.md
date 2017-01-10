@@ -74,7 +74,7 @@ Una vez que se conoce la forma en que se relacionan los componentes, se descompo
    - Modelos polinómicos
    - Filtrado (Médias móviles)(no se recomienda ya que no predice, solo describe)
    - Diferenciación
-- Componente de estacionalidad: se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, etc.). Además, también la componente estacional se puede eliminar directamente de la serie, desestacionalizando así la serie original.
+- Componente de estacionalidad: se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, etc.). Además, también la componente estacional se puede eliminar directamente de la serie, desestacionalizando así la serie original.
    - Médias móviles centradas
    - Diferenciación
 
@@ -86,7 +86,7 @@ I<sub>t</sub> = X<sub>t</sub> − T<sub>t</sub> − E<sub>t</sub>
 
 I<sub>t</sub> = X<sub>t</sub> / (T<sub>t</sub> * E<sub>t</sub>)
 
-En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido, pero no predicciones. Para predecir se realiza un pronóstico de la tendencia, y se le añade la estacionalidad.
+En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido, pero no predicciones. Para predecir se realiza un pronóstico futuro de la tendencia, y se le añade la predicción de la estacionalidad (índice de estacionalidad) correspondiente.
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, aunque como contrapartida responden a preguntas menos ambiciosas. Se pueden emplear para realizar predicciones a corto plazo, pero no a medio o largo plazo.
 

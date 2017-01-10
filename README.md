@@ -30,15 +30,16 @@ Por otro lado, la variable que se observa en una serie temporal puede ser de tip
 - Flujo: variable cuya cantidad es acumulada a lo largo del tiempo, por ejemplo: inversión, ahorro, etc.
 - Stock: variable cuya cantidad se mide en un determinado momento del tiempo, por ejemplo: población, nº parados, etc.
 
+_¿Procesos estocásticos?_
 ________________________________________________________________________
 
 ## Análisis de series temporales
 
 **Enfoque clásico**
 
-El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo consiste en encontrar componentes que se correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria. Se consideran dos modelos para relacionar los valores de la serie con los componentes anteriores:
+El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo consiste en encontrar componentes que se correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria. 
 
-![Texto Alternativo](/ruta/de/imagen.jgp "Título Opcional")
+El primer paso a seguir a la hora de realizar un análisis es determinar cómo se combinan los componentes de la serie. Para ello se consideran dos modelos habituales para relacionar los valores de la serie con los componentes anteriores:
 
 - Modelo aditivo: donde cada componente contribuye al comportamiento de la variable de interés en forma aditiva (unidades).
 - Modelo multiplicativo: donde cada componente contribuye al comportamiento de la variable de interés en forma multiplicativa (porcentaje).
@@ -54,7 +55,7 @@ X<sub>t</sub> = T<sub>t</sub> x E<sub>t</sub> x I<sub>t</sub>
 donde T<sub>t</sub> es la tendencia, E<sub>t</sub> es la componente estacional, que constituyen la señal o parte
 determinística, e I<sub>t</sub> es el ruido o parte aleatoria. 
 
-Para conocer de qué tipo se adapta mejor a la serie, se pueden seguir los siguientes procedimientos:
+Para conocer qué tipo se adapta mejor a la serie, se pueden seguir los siguientes procedimientos:
 
 - De manera visual:
    - La tendencia y la estacionalidad se mantienen relativamente constantes -> modelo aditivo
@@ -66,16 +67,28 @@ Para conocer de qué tipo se adapta mejor a la serie, se pueden seguir los sigui
       - Si CVC < CVD -> modelo multiplicativo
       - Si CVC > CVD -> modelo aditivo
 
+Una vez que se conoce la forma en que se relacionan los componentes, se descompone la serie estimando los componentes de tendencia y estacionalidad:
+
+- Componente de tendencia: la forma de la tendencia se puede modelar mediante los siguientes métodos (es importante reseñar que como la finalidad del análisis no es solo describir la serie sino predecir, hay que tener en cuenta cómo continúa la tendencia estimada para valores futuros):
+   - Modelos lineales
+   - Modelos polinómicos
+   - Filtrado (Médias móviles)(no se recomienda ya que no predice, solo describe)
+   - Diferenciación
+- Componente de estacionalidad: para desestacionalizar la serie se obtienen los índices o coeficientes de estacionalidad
+
+Y se eliminan para poder obtener la componente aleatoria:
+
+I<sub>t</sub> = X<sub>t</sub> − T<sub>t</sub> − E<sub>t</sub>
+
+ó
+
+I<sub>t</sub> = X<sub>t</sub> / (T<sub>t</sub> * I<sub>t</sub>)
+
+
 
 
 TIPOS
 
-métodos de ajuste
-
-
-Se estima Tt y Et y se obtiene It como
-3
-It = Xt − Tt − Et
 
 
 
@@ -83,8 +96,10 @@ It = Xt − Tt − Et
 
 Una vez identificados los componentes anteriores y después de haberlos eliminado, persisten unos valores que son aleatorios. Se pretende estudiar qué tipo de comportamiento aleatorio presentan estos residuos, utilizando algún tipo de modelo probabilístico que los describa.
 
-Como la finalidad no es solo describir sino predecir, hay que tener en cuanta como continua el modelado 
 
+
+
+Los métodos de descomposición estacional separan tendencia, estacionalidad y ruido, pero no predicen. Para predecir es necesario combinarlos con métodos de ajuste de tendencia.
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, aunque como contrapartida responden a pregun-tas menos ambiciosas. Se pueden emplear para realizar predicciones a corto plazo, pero no a medio o largo plazo.
 
@@ -95,7 +110,7 @@ La condición de estacionaridad es un requisito que debe
 cumplirse para poder aplicar modelos paramétricos de análisis y
 predicción de series de datos.
 
-¿Procesos estocásticos?
+
 
 ________________________________________________________________________
 

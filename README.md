@@ -36,20 +36,37 @@ ________________________________________________________________________
 
 **Enfoque clásico**
 
-El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo consiste en encontrar componentes que correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria.
+El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo consiste en encontrar componentes que se correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria. Se consideran dos modelos para relacionar los valores de la serie con los componentes anteriores:
 
-Así pues, una serie temporal se puede descomponer y denotar como:
+![Texto Alternativo](/ruta/de/imagen.jgp "Título Opcional")
+
+- Modelo aditivo: donde cada componente contribuye al comportamiento de la variable de interés en forma aditiva (unidades).
+- Modelo multiplicativo: donde cada componente contribuye al comportamiento de la variable de interés en forma multiplicativa (porcentaje).
+
+Así pues, una serie temporal se puede descomponer y denotar en su manera aditiva como:
 
 X<sub>t</sub> = T<sub>t</sub> + E<sub>t</sub> + I<sub>t</sub>
+
+ó en su forma multiplicativa como:
+
+X<sub>t</sub> = T<sub>t</sub> x E<sub>t</sub> x I<sub>t</sub>
 
 donde T<sub>t</sub> es la tendencia, E<sub>t</sub> es la componente estacional, que constituyen la señal o parte
 determinística, e I<sub>t</sub> es el ruido o parte aleatoria. 
 
+Para conocer de qué tipo se adapta mejor a la serie, se pueden seguir los siguientes procedimientos:
 
-Aditivas
-Multiplicativas
+- De manera visual:
+   - La tendencia y la estacionalidad se mantienen relativamente constantes -> modelo aditivo
+   - La tendencia y la estacionalidad varian creciendo o decreciento -> modelo multiplicativo
+- De forma matemática:
+   - Calcular las series diferencia y cociente, D y C.
+   - Calcular el coeficiente de variación para cada serie, CVD y CVC.
+   - Comparar sendos coeficientes.
+      - Si CVC < CVD -> modelo multiplicativo
+      - Si CVC > CVD -> modelo aditivo
 
-Forma de medirlo
+
 
 TIPOS
 
@@ -68,7 +85,9 @@ Una vez identificados los componentes anteriores y después de haberlos eliminad
 
 Como la finalidad no es solo describir sino predecir, hay que tener en cuanta como continua el modelado 
 
-________________________________________________________________________
+
+Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, aunque como contrapartida responden a pregun-tas menos ambiciosas. Se pueden emplear para realizar predicciones a corto plazo, pero no a medio o largo plazo.
+
 
 **Enfoque Box-Jenkins**
 
@@ -80,19 +99,19 @@ predicción de series de datos.
 
 ________________________________________________________________________
 
-Series temporales con R
+**Series temporales con R**
 
 ________________________________________________________________________
 
 **Bibliografía**
 
-Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescrip/tema7.pdf
-Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf
-Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf
-Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf
+Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescrip/tema7.pdf <br>
+Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf <br>
+Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
+Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
 
-Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E
-Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc
-Series temporales https://www.youtube.com/watch?v=NRtgyq3MjAs
-Prácticas series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg
-Predicción con series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg
+Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
+Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>
+Series temporales https://www.youtube.com/watch?v=NRtgyq3MjAs <br>
+Prácticas series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
+Predicción con series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>

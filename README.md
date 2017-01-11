@@ -216,6 +216,8 @@ Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/Se
 Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
 Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
 Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
+Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
+Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
 
 Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se definen como un caso particular de los procesos estocásticos, por lo que el punto de partida para elaborar un modelo a partir de una serie temporal consiste en considerar dicha serie como una realización particular finita de un proceso estocástico.
+Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se pueden definir como un caso particular de los procesos estocásticos.
 
 Algunos ejemplos de series temporales vienen de campos como la economía (producto interior bruto anual, tasa de inflación, tasa de desempleo, ...),  la demografía (nacimientos anuales, tasa de dependencia, ...), la meteorología (temperaturas máximas, medias o mínimas, precipitaciones diarias, ...), etc.
 
@@ -96,7 +96,43 @@ _SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
 
 **Enfoque Box-Jenkins**
 
+Hasta ahora se han analizado las series temporales desde un punto de vista determinista o clásico. Pero ahora con este nuevo enfoque se analizan desde un punto de vista estocástico, por lo que el punto de partida para elaborar un modelo a partir de una serie temporal consiste en considerar dicha serie como una realización particular finita de un proceso estocástico.
 
+Box y Jenkins desarrollaron modelos estadísticos para series temporales que tienen en cuenta la dependencia existente entre los datos, esto es, cada observación en un momento dado es modelada en función de los valores anteriores. Los modelos se conocen con el nombre genérico de ARIMA (AutoRegresive Integrated Moving Average), que deriva de sus tres componentes: Autoregresivo, Integrado y Medias Móviles (ARIMA para procesos estocásticos no estacionarios y ARMA para procesos estocásticos estacionarios).
+
+_Procesos Autoregresivos AR(p)_<br>
+Los modelos autoregresivos se basan en la idea de que el valor actual de la serie, X<sub>t</sub>, puede explicarse o predecirse en función de _p_ valores pasados X<sub>t-1</sub>, ... X<sub>t-p</sub> más un término de error, donde _p_ determina el número de valores pasados necesarios para pronosticar un valor actual. El orden del modelo expresa el número de observaciones retrasadas de la serie temporal que intervienen en la ecuación, así pues un modelo autoregresivo de orden 1 AR(1), la variable X<sub>t</sub> está determinada únicamente por un valor pasado, esto es X<sub>t-1</sub> y así sucesivamente. Todos los procesos autorregresivos son procesos invertibles. Normalmente, se suele trabajar con modelos autorregresivos de órdenes bajos: AR(1) o
+AR(2), o bien con órdenes coincidentes con la periodicidad de los datos de la serie analizada (si es trimestral AR(4), si es mensual AR(12)....).
+
+_Procesos de Medias Móviles MA(q)_<br>
+Un modelo de medias móviles es aquel que explica el valor de una determinada variable en un período _t_ en función de un término independiente y una sucesión de errores correspondientes a períodos precedentes, ponderados convenientemente. Estos modelos se denotan normalmente con las siglas MA, seguidos, como en el caso de los modelos autorregresivos, del orden
+entre paréntesis. Al igual que en el caso de los modelos autorregresivos, el orden de los modelos de medias móviles suele ser bajo MA(1), MA(2) o corresponderse con la periodicidad de los datos analizados MA(4), para series trimestrales, o MA(12) para series mensuales. Todos los procesos de medias móviles son procesos estacionarios. No todos los procesos de medias móviles son invertibles.
+
+_Proceso Autoregresivo de Medias Móviles ARMA(p,q)_ <br>
+Una extensión natural de los modelos AR(p) y MA(q) es un tipo de modelos que incluyen tanto términos autorregresivos como de medias móviles. Los modelos autorregresivos de medias móviles, ARMA(p,q), son la suma de un proceso autorregresivo de orden _p_ y uno de medias móviles de orden _q_. Es muy probable que una serie de tiempo tenga características de AR y de MA a la vez y, por consiguiente, sea ARMA. Un proceso ARMA(p, q) es estacionario si lo es su componente autorregresiva, y es invertible si lo es su componente de medias móviles.
+
+
+¿QUÉ QUEDA?
+
+I
+
+ARIMA
+
+FASES CONSTRUCCIÓN ARIMA
+
+AUTOCORRELACIÓN
+
+LECTURA CORRELOGRAMAS
+
+DEMOSTRAR ESTACIONARIEDAD
+
+
+
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 La metodología Box-Jenkins para series temporales consiste en estimar los componentes de tendencia y estacionalidad de la serie y eliminarlos de la misma, X'<sub>t</sub> = X<sub>t</sub>-T<sub>t</sub>-E<sub>t</sub> (ya se ha explicado anteriormente cómo se estiman y modelan ambas). Una vez esto hecho se comprueba la estacionariedad, si aún no lo es se diferencia hasta que lo sea, para posteriormente aplicar los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
@@ -140,18 +176,10 @@ En ocasiones en una serie de tiempo acontece, que los valores que toma una varia
 Función de autocorrelación (ACF): la autocorrelación mide la correlación entre dos variables separadas por k periodos.
 Función de autocorrelación parcial (PACF): la autocorrelación parcial mide la correlación entre dos variables separadas por k periodos cuando no se considera la dependencia creada por los retardos intermedios existentes entre ambas.
 
-Procesos Lineales Estacionarios
-Procesos Autoregresivos AR(p)
-Los modelos autoregresivos se basan en la idea de que el valor actual de la serie, Xt, puede explicarse en función de p valores pasados Xt-1,... Xt-p, donde p determina el número de rezagos necesarios para pronosticar un valor actual.
-Así pues un modelo autoregresivo de orden 1 AR(1), la variable está Xt determinada únicamente por el valor pasado, esto es Xt-1. y así sucesivamente
 
-Proceso de Medias Móviles MA(q)
-Modelo “determinados por una fuente externa”. Estos modelos suponen linealidad, el valor actual de la serie, Xt, está influenciado por los valores de la fuente externa.
-Proceso de Media Móvil de orden 1:
-Lo modelos de medias móviles determina el valor de en función de la innovación actual y su primer retardo
 
-Proceso Autoregresivo de Medias Móviles ARMA(p,q)
-Es muy probable que una serie de tiempo, Xt, tenga características de AR y de MA a la vez y, por consiguiente, sea ARMA. Así, Xt sigue un proceso ARMA(p,q), en este proceso habrá p términos autoregresivos y q términos de media móvil.
+
+
 
 
 
@@ -171,7 +199,8 @@ La construcción de los modelos ARIMA(p,d,q) se lleva de manera iterativa median
 El doble
 
 
-Modelo ARIMA
+
+El modelo ARIMA permite describir un valor como una función lineal de datos anteriores y errores debidos al azar, además, puede incluir un componente cíclico o estacional. Es decir, debe contener todos los elementos necesarios para describir el fenómeno. Box y Jenkins recomiendan como mínimo 50 observaciones en la serie temporal.
 
 
 ________________________________________________________________________

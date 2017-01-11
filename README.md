@@ -2,8 +2,9 @@
 
 ## Introducción
 
-Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial en el tiempo (instantes
-de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen.
+Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se definen como un caso particular de los procesos estocásticos.
+
+El punto de partida para elaborar un modelo a partir de una serie temporal consiste en considerar dicha serie como una realización particular finita de un proceso estocástico.
 
 Algunos ejemplos de series temporales vienen de campos como la economía (producto interior bruto anual, tasa de inflación, tasa de desempleo, ...),  la demografía (nacimientos anuales, tasa de dependencia, ...), la meteorología (temperaturas máximas, medias o mínimas, precipitaciones diarias, ...), etc.
 
@@ -23,14 +24,14 @@ Además, las series temporales se pueden dividir en:
 - Estacionarias: es aquella en la que las propiedades estadísticas de la serie son estables, no varían con el tiempo, más en concreto su media y varianza se mantienen constantes a lo lardo del tiempo.
 - No estacionarias: son aquellas en las que las propiedades estadísticas de la serie sí varían con el tiempo. Esta series pueden mostrar cambio de varianza, tendencia o efectos estacionales a lo largo del tiempo.
 
-La importancia de esta división reside en que la estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Ya que con series estacionarias podemos obtener predicciones fácilmente, debido a que como la media es constante se puede estimar con todos los datos y utilizar este valor para predecir una nueva observación. Y también permite obtener intervalos de confianza para las predicciones.
+La importancia de esta división reside en que la estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Ya que con series estacionarias podemos obtener predicciones fácilmente, debido a que como la media es constante se puede estimar con todos los datos y utilizar este valor para predecir una nueva observación. Y también permite obtener intervalos de confianza para las predicciones. Un tipo especial de serie estacionaria es la serie denominada ruido blanco. Un ruido blanco es una serie estacionaria tal que ninguna observación influye sobre las siguientes, es decir, donde los valores son independientes e idénticamente distribuidos a lo largo del tiempo con media y covarianza cero e igual varianza.
 
 Por otro lado, la variable que se observa en una serie temporal puede ser de tipo:
 
 - Flujo: variable cuya cantidad es acumulada a lo largo del tiempo, por ejemplo: inversión, ahorro, etc.
 - Stock: variable cuya cantidad se mide en un determinado momento del tiempo, por ejemplo: población, nº parados, etc.
 
-_¿PROCESOS ESTOCÁSTICOS?_ y ruido blanco en manual - ruido blanco series temporales 12
+Otra característica de las series es su variabilidad. Decimos que una serie es homocedástica, si su variabilidad se mantiene constante a lo largo de la serie. Cuando la variabilidad de la serie aumenta o disminuye a lo largo del tiempo, decimos que la serie es heterocedástica.
 ________________________________________________________________________
 
 ## Análisis de series temporales
@@ -74,7 +75,7 @@ Una vez que se conoce la forma en que se relacionan los componentes, se descompo
    - Modelos polinómicos
    - Filtrado (Médias móviles)(no se recomienda ya que no predice, solo describe)
    - Diferenciación
-- Componente de estacionalidad: para estimar el efecto estacional se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, etc.). Además, la serie original se puede desestacionalizar también mediante una diferenciación estacional de la serie.
+- Componente de estacionalidad: para estimar el efecto estacional se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, esto es, el periodo de la serie). Además, la serie original se puede desestacionalizar también mediante una diferenciación estacional de la serie.
    - Médias móviles centradas
    - Diferenciación
 
@@ -86,11 +87,11 @@ I<sub>t</sub> = X<sub>t</sub> − T<sub>t</sub> − E<sub>t</sub>
 
 I<sub>t</sub> = X<sub>t</sub> / (T<sub>t</sub> * E<sub>t</sub>)
 
-En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido. Estos componentes obtenidos de la serie la describen, pero no la predicen. Las predicciones de valores futuros se consiguen usando las componentes T<sub>t</sub> y E<sub>t</sub> con valores de tiempo t+1, t+2, etc. Para ello se realiza un pronóstico futuro de la tendencia, y se le añade la predicción de la estacionalidad (índice de estacionalidad) correspondiente a cada periodo (la componente irregular o aleatorio no es predecible).
+En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido. Estos componentes obtenidos de la serie la describen, pero no la predicen. Las predicciones de valores futuros se consiguen usando las componentes T<sub>t</sub> y E<sub>t</sub> con valores de tiempo t+1, t+2, etc. Para ello se realiza un pronóstico futuro de la tendencia, y se le añade la predicción de la estacionalidad (índice de estacionalidad) correspondiente a cada periodo (la componente irregular o aleatorio no es predecible y por lo tanto no se considera).
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, aunque como contrapartida responden a preguntas menos ambiciosas. Se pueden emplear para realizar predicciones a corto plazo, pero no a medio o largo plazo.
 
-_TIPOS_ en   - y en seriestemporales 49
+_TIPOS_ en seriestemporalñes-  - y en seriestemporales 49
 
 **Enfoque Box-Jenkins (ARIMA)**
 
@@ -99,6 +100,7 @@ cumplirse para poder aplicar modelos paramétricos de análisis y
 predicción de series de datos.
 
 autoorrelacion en manual
+
 
 ________________________________________________________________________
 

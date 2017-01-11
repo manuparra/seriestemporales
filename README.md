@@ -94,60 +94,86 @@ _SERIES SIN TENDENCIA NI ESTACIONALIDAD?_ _naibe?_
 _SERIES CON TENDENCIA SIN ESTACIONALIDAD?_ _holt?_
 _SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
 
-**Enfoque Box-Jenkins (ARIMA)**
-
-La metodología Box-Jenkins para series temporales consiste en dividir la serie en componentes estimando la tendencia y la  estacionalidad y eliminandolas de la serie. 
-
-Una vez esto hecho se comprueba la estacionariedad y se aplican los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
-
-- Gráficamente: Observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF).
-- Test estadísticos: Dickey-Fuller Ampliado (Test ADF)
-
-
-Una vez eliminadas tendencia y estacionalidad, tenemos:
-E(t)= X(t)-T(t)-S(t)
-E(t) debe ser estacionaria.
-Para saber si una serie es estacionaria, podemos fijarnos en el ACF.
-Si el ACF tiende “rápidamente” a 0, entonces es estacionaria.
-Además, el test aumentado de Dickey-Fuller comprueba
-estacionaridad.
-En caso contrario, se debe diferenciar la serie:
-E’(t) = E(t)-E(t-d)
-d= instantes de tiempo de diferenciación
-
-
-
-La metodología que seguiremos para modelar series debe seguir los
-siguientes pasos:
-1. Análisis de tendencia. ¿Tiene tendencia la serie? Modelarla
-y eliminarla.
-2. Análisis de estacionalidad. ¿Sufre la serie de
-estacionalidad? Modelarla y eliminarla.
-3. Estacionaridad. ¿Es estacionaria la serie? En caso
-contrario, hacerla estacionaria.
-4. Aplicar modelos paramétricos. En nuestro caso, modelos
-autorregresivos y de medias móviles.
-5. Predicción. Predecir en base a todas las componentes
-modeladas.
-
-Una vez eliminada la tendencia y esatcionalidad, si no es estacionaria se diferencia hasta que lo sea.
-
-Una vez elegidos parámeetros, modelo arima
-
-autocorrelacion -> manual
-
-procesos estacionarios -> manual
-procesos no estacionarios -> manual
-
-identificacion modelos -> manual 
-
-modelos arima -> series temporales-
+**Enfoque Box-Jenkins**
 
 
 
 
+La metodología Box-Jenkins para series temporales consiste en estimar los componentes de tendencia y estacionalidad de la serie y eliminarlos de la misma, X'<sub>t</sub> = X<sub>t</sub>-T<sub>t</sub>-E<sub>t</sub> (ya se ha explicado anteriormente cómo se estiman y modelan ambas). Una vez esto hecho se comprueba la estacionariedad, si aún no lo es se diferencia hasta que lo sea, para posteriormente aplicar los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
 
-autoorrelacion en manual
+- Gráficamente: Observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Si el ACF tiende “rápidamente” a 0 entonces es estacionaria, en caso contrario, no es esatacionaria
+- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, pvalue, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95%
+
+Una vez que tenemos que la serie es estacionaria, ¿cómo saber si el modelo que tenemos que elegir? ¿AR o MA? ¿ARMA? ¿ARIMA? ¿Y el orden?
+
+
+Como norma general:
+
+- Los modelos AR tienen un ACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “p” (AR(p)) es tantos valores “distintos de 0 como haya en el PACF”.
+
+- Los modelos MA tiene un PACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “q” (MA(q)) es tantos “valores distintos de 0” como haya en el ACF.
+
+Un valor se considera “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie.
+
+Como norma general:
+
+Cuando la serie no es estacionaria, el ACF decrece lentamente a 0.
+
+La parte integrada es necesaria normalmente para corregir la estacionaridad en la varianza.
+
+Si la serie presenta tendencia lineal, normalmente con d=1 es suficiente. Si la tendencia es no lineal, puede ser necesario usar
+d>1. 
+Si la serie presenta estacionalidad, puede ser necesario un d=periodo de estacionalidad.
+
+
+Por lo tanto la metodología a seguir para modelar series con un enfoque Box-Jenkins debe seguir los siguientes pasos:
+
+1. Análisis de tendencia. ¿Tiene tendencia la serie? Modelarla y eliminarla
+2. Análisis de estacionalidad. ¿Sufre la serie de estacionalidad? Modelarla y eliminarla
+3. Estacionaridad. ¿Es estacionaria la serie? En caso contrario, hacerla estacionaria
+4. Aplicar modelos paramétricos. ARIMA (modelos autorregresivos y de medias móviles)
+5. Predicción. Predecir en base a todas las componentes modeladas
+
+
+Autocorrelación
+En ocasiones en una serie de tiempo acontece, que los valores que toma una variable en el tiempo no son independientes entre sí, sino que un valor determinado depende de los valores anteriores, existen dos formas de medir esta dependencia de las variables.
+Función de autocorrelación (ACF): la autocorrelación mide la correlación entre dos variables separadas por k periodos.
+Función de autocorrelación parcial (PACF): la autocorrelación parcial mide la correlación entre dos variables separadas por k periodos cuando no se considera la dependencia creada por los retardos intermedios existentes entre ambas.
+
+Procesos Lineales Estacionarios
+Procesos Autoregresivos AR(p)
+Los modelos autoregresivos se basan en la idea de que el valor actual de la serie, Xt, puede explicarse en función de p valores pasados Xt-1,... Xt-p, donde p determina el número de rezagos necesarios para pronosticar un valor actual.
+Así pues un modelo autoregresivo de orden 1 AR(1), la variable está Xt determinada únicamente por el valor pasado, esto es Xt-1. y así sucesivamente
+
+Proceso de Medias Móviles MA(q)
+Modelo “determinados por una fuente externa”. Estos modelos suponen linealidad, el valor actual de la serie, Xt, está influenciado por los valores de la fuente externa.
+Proceso de Media Móvil de orden 1:
+Lo modelos de medias móviles determina el valor de en función de la innovación actual y su primer retardo
+
+Proceso Autoregresivo de Medias Móviles ARMA(p,q)
+Es muy probable que una serie de tiempo, Xt, tenga características de AR y de MA a la vez y, por consiguiente, sea ARMA. Así, Xt sigue un proceso ARMA(p,q), en este proceso habrá p términos autoregresivos y q términos de media móvil.
+
+
+
+Procesos Lineales no Estacionarios
+
+Proceso Autoregresivo Integrado y de Media Móvil ARIMA (p,d,q)
+
+Los modelos de series de tiempo analizados hasta ahora se basan en el supuesto de estacionariedad, esto es, la media y la varianza para una serie de tiempo son constantes en el tiempo y la covarianza es invariante en el tiempo. Pero se sabe que muchas series de tiempo y en especial las series económicas no son estacionarias, porque pueden ir cambiando de nivel en el tiempo o sencillamente la varianza no es constante en el tiempo, a este tipo de proceso se les considera procesos integrados. Por consiguiente, se debe diferencias una serie de tiempo d veces para hacerla estacionaria y luego aplicarla a esta serie diferenciada un modelo ARMA(p,q) se dice que la serie original es ARIMA(p,d,q), es decir, una serie de tiempo autoregresiva integrada de media móvil. Donde denota p el número de términos autoregresivos, d el número de veces que la serie debe ser diferenciada para hacerla estacionaria y q el número de términos de la media móvil invertible.
+
+
+La construcción de los modelos ARIMA(p,d,q) se lleva de manera iterativa mediante un proceso en el que se puede distinguir cuatro etapas:
+-Identificación. Utilizando los datos ordenados cronológicamente se intentara sugerir un modelo que merezca la pena ser investigada. El objetivo es determinar los valores que sean apropiados para reproducir la serie de tiempo. En esta etapa es posible identificar más de un modelo candidato que pueda describir la serie.
+- Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
+- Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
+- Predicción. Una vez seleccionado el mejor modelo candidato se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
+
+El doble
+
+
+Modelo ARIMA
+
+
 ________________________________________________________________________
 
 **Series temporales con R**

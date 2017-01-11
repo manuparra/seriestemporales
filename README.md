@@ -111,20 +111,21 @@ entre paréntesis. Al igual que en el caso de los modelos autorregresivos, el or
 _Proceso Autoregresivo de Medias Móviles ARMA(p,q)_ <br>
 Una extensión natural de los modelos AR(p) y MA(q) es un tipo de modelos que incluyen tanto términos autorregresivos como de medias móviles. Los modelos autorregresivos de medias móviles, ARMA(p,q), son la suma de un proceso autorregresivo de orden _p_ y uno de medias móviles de orden _q_. Es muy probable que una serie de tiempo tenga características de AR y de MA a la vez y, por consiguiente, sea ARMA. Un proceso ARMA(p, q) es estacionario si lo es su componente autorregresiva, y es invertible si lo es su componente de medias móviles.
 
+_Integrado I(d)_
+
+_Proceso Autoregresivo Integrado y de Media Móvil ARIMA (p,d,q)_
 
 ¿QUÉ QUEDA?
 
-I
-
-ARIMA
+TERMINAR ARIMA
 
 FASES CONSTRUCCIÓN ARIMA
 
-AUTOCORRELACIÓN
+   AUTOCORRELACIÓN
 
-LECTURA CORRELOGRAMAS
+   LECTURA CORRELOGRAMAS
 
-DEMOSTRAR ESTACIONARIEDAD
+   DEMOSTRAR ESTACIONARIEDAD
 
 
 
@@ -202,6 +203,7 @@ El doble
 
 El modelo ARIMA permite describir un valor como una función lineal de datos anteriores y errores debidos al azar, además, puede incluir un componente cíclico o estacional. Es decir, debe contener todos los elementos necesarios para describir el fenómeno. Box y Jenkins recomiendan como mínimo 50 observaciones en la serie temporal.
 
+¿transformación logaritmica?
 
 ________________________________________________________________________
 

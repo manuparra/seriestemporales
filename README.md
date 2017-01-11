@@ -73,7 +73,7 @@ Una vez que se conoce la forma en que se relacionan los componentes, se descompo
    - Modelos polinómicos
    - Filtrado (Médias móviles)(no se recomienda ya que no predice, solo describe)
    - Diferenciación
-- Componente de estacionalidad: para estimar el efecto estacional se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, esto es, el periodo de la serie). Además, la serie original se puede desestacionalizar también mediante una diferenciación estacional de la serie.
+- Componente de estacionalidad: para estimar el efecto estacional se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, esto es, el periodo de la serie)(la suma de los índices estacionales debe de ser igual al número de periodos). Además, la serie original se puede desestacionalizar también mediante una diferenciación estacional de la serie.
    - Médias móviles centradas
    - Diferenciación
 
@@ -96,13 +96,58 @@ _SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
 
 **Enfoque Box-Jenkins (ARIMA)**
 
-La condición de estacionaridad es un requisito que debe
-cumplirse para poder aplicar modelos paramétricos de análisis y
-predicción de series de datos.
+La metodología Box-Jenkins para series temporales consiste en dividir la serie en componentes estimando la tendencia y la  estacionalidad y eliminandolas de la serie. 
+
+Una vez esto hecho se comprueba la estacionariedad y se aplican los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
+
+- Gráficamente: Observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF).
+- Test estadísticos: Dickey-Fuller Ampliado (Test ADF)
+
+
+Una vez eliminadas tendencia y estacionalidad, tenemos:
+E(t)= X(t)-T(t)-S(t)
+E(t) debe ser estacionaria.
+Para saber si una serie es estacionaria, podemos fijarnos en el ACF.
+Si el ACF tiende “rápidamente” a 0, entonces es estacionaria.
+Además, el test aumentado de Dickey-Fuller comprueba
+estacionaridad.
+En caso contrario, se debe diferenciar la serie:
+E’(t) = E(t)-E(t-d)
+d= instantes de tiempo de diferenciación
+
+
+
+La metodología que seguiremos para modelar series debe seguir los
+siguientes pasos:
+1. Análisis de tendencia. ¿Tiene tendencia la serie? Modelarla
+y eliminarla.
+2. Análisis de estacionalidad. ¿Sufre la serie de
+estacionalidad? Modelarla y eliminarla.
+3. Estacionaridad. ¿Es estacionaria la serie? En caso
+contrario, hacerla estacionaria.
+4. Aplicar modelos paramétricos. En nuestro caso, modelos
+autorregresivos y de medias móviles.
+5. Predicción. Predecir en base a todas las componentes
+modeladas.
+
+Una vez eliminada la tendencia y esatcionalidad, si no es estacionaria se diferencia hasta que lo sea.
+
+Una vez elegidos parámeetros, modelo arima
+
+autocorrelacion -> manual
+
+procesos estacionarios -> manual
+procesos no estacionarios -> manual
+
+identificacion modelos -> manual 
+
+modelos arima -> series temporales-
+
+
+
+
 
 autoorrelacion en manual
-
-
 ________________________________________________________________________
 
 **Series temporales con R**

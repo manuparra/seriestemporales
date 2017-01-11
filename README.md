@@ -20,7 +20,7 @@ Los componentes que forman una serie temporal son los siguientes:
 
 Además, las series temporales se pueden dividir en:
 
-- Estacionarias: es aquella en la que las propiedades estadísticas de la serie no varían con el tiempo, más en concreto su media y varianza se mantienen constantes a lo lardo del tiempo.
+- Estacionarias: es aquella en la que las propiedades estadísticas de la serie son estables, no varían con el tiempo, más en concreto su media y varianza se mantienen constantes a lo lardo del tiempo.
 - No estacionarias: son aquellas en las que las propiedades estadísticas de la serie sí varían con el tiempo. Esta series pueden mostrar cambio de varianza, tendencia o efectos estacionales a lo largo del tiempo.
 
 La importancia de esta división reside en que la estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Ya que con series estacionarias podemos obtener predicciones fácilmente, debido a que como la media es constante se puede estimar con todos los datos y utilizar este valor para predecir una nueva observación. Y también permite obtener intervalos de confianza para las predicciones.
@@ -30,7 +30,7 @@ Por otro lado, la variable que se observa en una serie temporal puede ser de tip
 - Flujo: variable cuya cantidad es acumulada a lo largo del tiempo, por ejemplo: inversión, ahorro, etc.
 - Stock: variable cuya cantidad se mide en un determinado momento del tiempo, por ejemplo: población, nº parados, etc.
 
-_¿PROCESOS ESTOCÁSTICOS?_
+_¿PROCESOS ESTOCÁSTICOS?_ y ruido blanco en manual - ruido blanco series temporales 12
 ________________________________________________________________________
 
 ## Análisis de series temporales
@@ -74,11 +74,11 @@ Una vez que se conoce la forma en que se relacionan los componentes, se descompo
    - Modelos polinómicos
    - Filtrado (Médias móviles)(no se recomienda ya que no predice, solo describe)
    - Diferenciación
-- Componente de estacionalidad: se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, etc.). Además, también la componente estacional se puede eliminar directamente de la serie, desestacionalizando así la serie original.
+- Componente de estacionalidad: para estimar el efecto estacional se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, etc.). Además, la serie original se puede desestacionalizar también mediante una diferenciación estacional de la serie.
    - Médias móviles centradas
    - Diferenciación
 
-Y se eliminan para poder obtener la componente aleatoria:
+Y estos se pueden eliminar para obtener la componente aleatoria:
 
 I<sub>t</sub> = X<sub>t</sub> − T<sub>t</sub> − E<sub>t</sub>
 
@@ -86,17 +86,19 @@ I<sub>t</sub> = X<sub>t</sub> − T<sub>t</sub> − E<sub>t</sub>
 
 I<sub>t</sub> = X<sub>t</sub> / (T<sub>t</sub> * E<sub>t</sub>)
 
-En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido, pero no predicciones. Para predecir se realiza un pronóstico futuro de la tendencia, y se le añade la predicción de la estacionalidad (índice de estacionalidad) correspondiente.
+En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido. Estos componentes obtenidos de la serie la describen, pero no la predicen. Las predicciones de valores futuros se consiguen usando las componentes T<sub>t</sub> y E<sub>t</sub> con valores de tiempo t+1, t+2, etc. Para ello se realiza un pronóstico futuro de la tendencia, y se le añade la predicción de la estacionalidad (índice de estacionalidad) correspondiente a cada periodo (la componente irregular o aleatorio no es predecible).
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, aunque como contrapartida responden a preguntas menos ambiciosas. Se pueden emplear para realizar predicciones a corto plazo, pero no a medio o largo plazo.
 
-_TIPOS_
+_TIPOS_ en   - y en seriestemporales 49
 
-**Enfoque Box-Jenkins**
+**Enfoque Box-Jenkins (ARIMA)**
 
 La condición de estacionaridad es un requisito que debe
 cumplirse para poder aplicar modelos paramétricos de análisis y
 predicción de series de datos.
+
+autoorrelacion en manual
 
 ________________________________________________________________________
 
@@ -110,6 +112,7 @@ Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescr
 Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf <br>
 Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
 Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
+Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
 
 Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

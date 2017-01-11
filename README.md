@@ -2,9 +2,7 @@
 
 ## Introducción
 
-Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se definen como un caso particular de los procesos estocásticos.
-
-El punto de partida para elaborar un modelo a partir de una serie temporal consiste en considerar dicha serie como una realización particular finita de un proceso estocástico.
+Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se definen como un caso particular de los procesos estocásticos, por lo que el punto de partida para elaborar un modelo a partir de una serie temporal consiste en considerar dicha serie como una realización particular finita de un proceso estocástico.
 
 Algunos ejemplos de series temporales vienen de campos como la economía (producto interior bruto anual, tasa de inflación, tasa de desempleo, ...),  la demografía (nacimientos anuales, tasa de dependencia, ...), la meteorología (temperaturas máximas, medias o mínimas, precipitaciones diarias, ...), etc.
 
@@ -31,7 +29,7 @@ Por otro lado, la variable que se observa en una serie temporal puede ser de tip
 - Flujo: variable cuya cantidad es acumulada a lo largo del tiempo, por ejemplo: inversión, ahorro, etc.
 - Stock: variable cuya cantidad se mide en un determinado momento del tiempo, por ejemplo: población, nº parados, etc.
 
-Otra característica de las series es su variabilidad. Decimos que una serie es homocedástica, si su variabilidad se mantiene constante a lo largo de la serie. Cuando la variabilidad de la serie aumenta o disminuye a lo largo del tiempo, decimos que la serie es heterocedástica.
+Otra característica de las series es su variabilidad. Decimos que una serie es homocedástica si su variabilidad se mantiene constante a lo largo de la serie. Cuando la variabilidad de la serie aumenta o disminuye a lo largo del tiempo, decimos que la serie es heterocedástica.
 ________________________________________________________________________
 
 ## Análisis de series temporales
@@ -91,7 +89,10 @@ En este punto se tiene una descomposición de la serie en componentes que separa
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, aunque como contrapartida responden a preguntas menos ambiciosas. Se pueden emplear para realizar predicciones a corto plazo, pero no a medio o largo plazo.
 
-_TIPOS_ en seriestemporalñes-  - y en seriestemporales 49
+_METODOS DE SUAVIZADO?_
+_SERIES SIN TENDENCIA NI ESTACIONALIDAD?_ _naibe?_
+_SERIES CON TENDENCIA SIN ESTACIONALIDAD?_ _holt?_
+_SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
 
 **Enfoque Box-Jenkins (ARIMA)**
 

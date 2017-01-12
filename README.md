@@ -130,6 +130,12 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
       - Determinar un modelo ARMA para la serie estacionaria, es decir, los órdenes p y q de su estructura autorregresiva y de media móvil.
 
 
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
 Representar gráficamente la serie, además de su función de autocorrelación simple (ACF) y función de autocorrelación parcial (PACF). La gráfica de la serie nos indica si la serie es estacionaria o no. Según los motivos por los que la serie no es estacionaria, tendremos que aplicar los siguientes procedimientos hasta hacerla estacionaria.
 - Si tiene tendencia: Tomaremos diferencias regulares hasta que desaparezca. Normalmente el orden de la diferencia es 1, y raramente será mayor a 3.
 - Si la serie tiene estacionalidad: Tomaremos diferencias estacionales hasta que desaparezca el patrón estacional. En la práctica es muy raro tener que aplicar más de una diferencia estacional.
@@ -157,34 +163,6 @@ Un valor se considera casi cero cuando su módulo es inferior a 2/ T . Los progr
 constituyen la franja (−2/ T , 2/ T ) y detectan los valores de la ACFP que caen fuera de ella.
 
 
-
-Modelo arima y manual
-
-
-- Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
-- Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
-- Predicción. Una vez seleccionado el mejor modelo candidato ARIMA(p,d,q) se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
-
-
-
-
-
-¿QUÉ QUEDA?
-
-
-
-
-   LECTURA CORRELOGRAMAS
-
-   DEMOSTRAR ESTACIONARIEDAD
-
-¿estacionaria en varianze, media...?
-
-
-
-
-
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 La metodología Box-Jenkins para series temporales consiste en estimar los componentes de tendencia y estacionalidad de la serie y eliminarlos de la misma, X'<sub>t</sub> = X<sub>t</sub>-T<sub>t</sub>-E<sub>t</sub> (ya se ha explicado anteriormente cómo se estiman y modelan ambas). Una vez esto hecho se comprueba la estacionariedad, si aún no lo es se diferencia hasta que lo sea, para posteriormente aplicar los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. 
@@ -219,7 +197,27 @@ Si la serie presenta estacionalidad, puede ser necesario un d=periodo de estacio
 
 
 
+Modelo arima y manual
 
+
+- Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
+- Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
+- Predicción. Una vez seleccionado el mejor modelo candidato ARIMA(p,d,q) se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
+
+
+
+
+
+¿QUÉ QUEDA?
+
+
+
+
+   LECTURA CORRELOGRAMAS
+
+   DEMOSTRAR ESTACIONARIEDAD
+
+¿estacionaria en varianze, media...?
 
 
 
@@ -236,6 +234,45 @@ ________________________________________________________________________
 
 **Series temporales con R**
 
+Para que R trate a un conjunto de datos como serie temporal:
+
+	ts(data, start, end, frequency)
+
+		- data: vector o matrix con las observaciones
+		- start: tiempo de la primera observación
+		- end: tiempo de la última observación
+		- frequency: número de observaciones por unidad de tiempo
+
+Representación gráfica de la serie:
+
+	plot(serie temporal)
+
+Representación numérica de la serie:
+
+	print(serie temporal)
+   
+Unidad de tiempo a la que pertenece cada observación de la serie:
+
+	cycle(serie temporal)
+   
+Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuos:
+
+	decompose(serie temporal, type)
+
+		- type: tipo de serie, aditiva o multiplicativa
+		
+	stl(serie temporal)
+		
+Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
+
+	acf(serie temporal)
+
+	pacf(serie temporal)
+
+Test de Dickey-Fuller Ampliado (Test ADF):
+
+adf.test(serie temporal)
+
 ________________________________________________________________________
 
 **Bibliografía**
@@ -247,6 +284,9 @@ Introducción al análisis de series temporales https://www.ucm.es/data/cont/doc
 Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
 Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
 Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
+
+Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf
+Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas
 
 Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

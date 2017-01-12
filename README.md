@@ -112,9 +112,6 @@ Pero para poder efectuar inferencias sobre los parámetros de un proceso estocá
 
 Las funciones de autocorrelación simple y parcial, constituyen uno de los instrumentos clave para ajustar el modelo que genera una serie temporal. Así pues, un proceso es ergódico cuando conforme k se hace más grande, a autocorrelación se hace más pequeña. Es decir, que la dependencia entre variables tiene menos importancia pasado más tiempo.
 
-
-
-
 Box y Jenkins desarrollaron modelos estadísticos para series temporales que tienen en cuenta la dependencia existente entre los datos, esto es, cada observación en un momento dado es modelada en función de los valores anteriores. Los modelos se conocen con el nombre genérico de ARIMA (AutoRegresive Integrated Moving Average)(ARIMA para procesos estocásticos no estacionarios y ARMA para procesos estocásticos estacionarios), que deriva de sus tres componentes Autoregresivo, Integrado y Medias Móviles:
 
 - _Procesos Autoregresivos AR(p)_<br> Los modelos autoregresivos se basan en la idea de que el valor actual de la serie, X<sub>t</sub>, puede explicarse o predecirse en función de _p_ valores pasados X<sub>t-1</sub>, ... X<sub>t-p</sub> más un término de error, donde _p_ determina el número de valores pasados necesarios para pronosticar un valor actual. El orden del modelo expresa el número de observaciones retrasadas de la serie temporal que intervienen en la ecuación, así pues, un modelo autoregresivo de orden 1 AR(1), la variable X<sub>t</sub> está determinada únicamente por un valor pasado, esto es X<sub>t-1</sub> y así sucesivamente. Todos los procesos autorregresivos son procesos invertibles. 
@@ -136,13 +133,12 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 FASES CONSTRUCCIÓN ARIMA
 
-   AUTOCORRELACIÓN
 
    LECTURA CORRELOGRAMAS
 
    DEMOSTRAR ESTACIONARIEDAD
 
-
+¿estacionaria en varianze, media...?
 
 
 

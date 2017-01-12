@@ -263,7 +263,7 @@ Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuo
 		
 	stl(serie temporal, s.windows)
                 
-                - s.windows: parámetro a establecer o con "periodic" o con el periodo para la extracción de la estacionalidad
+        - s.windows: parámetro a establecer o con "periodic" o con el periodo para la extracción de la estacionalidad
 		
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
@@ -274,6 +274,14 @@ Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelac
 Cálculo del test de Dickey-Fuller Ampliado (Test ADF):
 
 	adf.test(serie temporal)
+
+Cálculo de la tendencia para modelos lineales y polinómicos:
+
+    lm(formula)
+
+        - formula: 
+            - Para modelos lineales: serie temporal ~ tiempo  
+            - Para modelos polinómicos: serie temporal ~ tiempo + I(tiempo^2) + ... 
 
 Paquetes R:
 

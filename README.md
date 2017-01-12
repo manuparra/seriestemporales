@@ -263,7 +263,7 @@ Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuo
 		
 	stl(serie temporal, s.windows)
                 
-        - s.windows: parámetro a establecer o con "periodic" o con el periodo para la extracción de la estacionalidad
+        - s.windows: establecido con "periodic" o con el periodo para la extracción de la estacionalidad
 		
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
@@ -300,8 +300,8 @@ Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkCl
 Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
 Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
 
-Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf
-Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas
+Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
+Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
 
 Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

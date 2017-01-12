@@ -110,7 +110,7 @@ Pero para poder efectuar inferencias sobre los parámetros de un proceso estocá
 - Función de autocorrelación (ACF): esta función mide la correlación entre dos variables separadas por k periodos.
 - Función de autocorrelación parcial (PACF): esta función mide la correlación entre dos variables separadas por k periodos cuando no se considera la dependencia creada por los retardos intermedios existentes entre ambas.
 
-Las funciones de autocorrelación simple y parcial, constituyen uno de los instrumentos clave para ajustar el modelo que genera una serie temporal. Así pues, un proceso es ergódico cuando conforme k se hace más grande, a autocorrelación se hace más pequeña. Es decir, que la dependencia entre variables tiene menos importancia pasado más tiempo.
+Las funciones de autocorrelación simple y parcial constituyen uno de los instrumentos clave para ajustar el modelo que genera una serie temporal. Así pues, un proceso es ergódico cuando conforme k se hace más grande, a autocorrelación se hace más pequeña. Es decir, que la dependencia entre variables tiene menos importancia pasado más tiempo.
 
 Box y Jenkins desarrollaron modelos estadísticos para series temporales que tienen en cuenta la dependencia existente entre los datos, esto es, cada observación en un momento dado es modelada en función de los valores anteriores. Los modelos se conocen con el nombre genérico de ARIMA (AutoRegresive Integrated Moving Average)(ARIMA para procesos estocásticos no estacionarios y ARMA para procesos estocásticos estacionarios), que deriva de sus tres componentes Autoregresivo, Integrado y Medias Móviles:
 
@@ -122,7 +122,51 @@ Box y Jenkins desarrollaron modelos estadísticos para series temporales que tie
 
 - _Proceso Integrado I(d)_ <br> No todas las series temporales son estacionarias, algunas presentan cambios de nivel en el tiempo o la varianza no es constante, por lo que la serie se diferencia _d_ veces para hacerla estacionaria. A este tipo de procesos se les considera procesos integrados, y se puede aplicar a esta serie diferenciada un modelo ARMA(p,q) para dar lugar a un modelo ARIMA(p,d,q).
 
-Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es una serie de tiempo autoregresiva integrada de media móvil. Donde denota _p_ el número de términos autoregresivos, _d_ el número de veces que la serie debe ser diferenciada para hacerla estacionaria y _q_ el número de términos de la media móvil invertible.
+Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es una serie de tiempo autoregresiva integrada de media móvil. Donde denota _p_ el número de términos autoregresivos, _d_ el número de veces que la serie debe ser diferenciada para hacerla estacionaria y _q_ el número de términos de la media móvil invertible. La metodología Box-Jenkins para la construcción de los modelos ARIMA(p,d,q) se realiza de manera iterativa mediante un proceso en el que se puede distinguir cuatro etapas:
+
+- Identificación. Utilizando los datos ordenados cronológicamente se intentara sugerir un modelo ARIMA(p,d,q) que merezca la pena ser investigada. El objetivo es determinar los valores p, d y q que sean apropiados para reproducir la serie de tiempo. En esta etapa es posible identificar más de un modelo candidato que pueda describir la serie.
+
+La primera fase consiste en identificar el posible modelo ARIMA que sigue la serie, lo que requiere:
+􀂃 Decidir qué transformaciones aplicar para convertir la serie observada en una serie estacionaria.
+􀂃 Determinar un modelo ARMA para la serie estacionaria, es decir, los órdenes p y q de su
+estructura autorregresiva y de media móvil.
+
+
+Representar gráficamente la serie, además de su función de autocorrelación simple (ACF) y función de autocorrelación parcial (PACF). La gráfica de la serie nos indica si la serie es estacionaria o no. Según los motivos por los que la serie no es estacionaria, tendremos que aplicar los siguientes procedimientos hasta hacerla estacionaria.
+- Si tiene tendencia: Tomaremos diferencias regulares hasta que desaparezca. Normalmente el orden de la diferencia es 1, y raramente será mayor a 3.
+- Si la serie tiene estacionalidad: Tomaremos diferencias estacionales hasta que desaparezca el patrón estacional. En la práctica es muy raro tener que aplicar más de una diferencia estacional.
+- Si es heterocedástica, es decir, no tiene varianza constante, habrá que transformar la serie. Con tomar el logaritmo en muchos casos es suficiente, aunque existen algunas transformaciones más sofisticadas, como las de Box-Cox.
+Una vez que el gráfico de la nueva serie (transformación de la original) indica que es estacionaria, podemos intentar deducir la estructura de la serie (¡no la de la serie original!) observando su ACF y PACF.
+
+
+
+Identificar un modelo significa utilizar los datos recogidos, así como cualquier información de cómo se
+general la serie temporal objeto de estudio, para sugerir un conjunto reducido de posibles modelos, que
+tengan muchas posibilidades de ajustarse a los datos. Ante una serie temporal empírica, se deben
+encontrar los valores (p, d, q) más apropiados.
+􀂃 Si la serie temporal presenta una tendencia, lo primero que debe de hacerse es convertirla en
+estacionaria mediante una diferenciación de orden d. Una vez diferenciada la serie, una buena
+estrategia consiste en comparar los correlogramas de la función de autocorrelación (ACF) y la función
+de autocorrelación parcial (ACFP), proceso que suele ofrecer una orientación para la formulación del
+modelo orientativo.
+♣ Los procesos autorregresivos presentan función de autocorrelación parcial (ACFP) con un número
+finito de valores distinto de cero. Un proceso AR(p) tiene los primeros p términos de la función de
+autocorrelación parcial distintos de cero y los demás son nulos.
+Esta afirmación es muy fuerte, y en la práctica se considera que una muestra dada proviene de un
+proceso autorregresivo de orden p si los términos de la función de autocorrelación parcial son casi
+cero a partir del que ocupa el lugar p.
+Un valor se considera casi cero cuando su módulo es inferior a 2/ T . Los programas de ordenador
+constituyen la franja (−2/ T , 2/ T ) y detectan los valores de la ACFP que caen fuera de ella.
+
+
+
+
+
+
+- Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
+- Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
+- Predicción. Una vez seleccionado el mejor modelo candidato ARIMA(p,d,q) se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
+
 
 
 
@@ -130,8 +174,6 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 ¿QUÉ QUEDA?
 
 
-
-FASES CONSTRUCCIÓN ARIMA
 
 
    LECTURA CORRELOGRAMAS
@@ -194,17 +236,13 @@ Por lo tanto la metodología a seguir para modelar series con un enfoque Box-Jen
 
 
 
-La construcción de los modelos ARIMA(p,d,q) se lleva de manera iterativa mediante un proceso en el que se puede distinguir cuatro etapas:
--Identificación. Utilizando los datos ordenados cronológicamente se intentara sugerir un modelo que merezca la pena ser investigada. El objetivo es determinar los valores que sean apropiados para reproducir la serie de tiempo. En esta etapa es posible identificar más de un modelo candidato que pueda describir la serie.
-- Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
-- Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
-- Predicción. Una vez seleccionado el mejor modelo candidato se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
 
-El doble
+
+El doble -> de manual
 
 
 
-
+¿no es estacionaria en varianza -> transformación logaritmica?
 
 ¿transformación logaritmica?
 

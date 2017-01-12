@@ -124,12 +124,10 @@ Box y Jenkins desarrollaron modelos estadísticos para series temporales que tie
 
 Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es una serie de tiempo autoregresiva integrada de media móvil. Donde denota _p_ el número de términos autoregresivos, _d_ el número de veces que la serie debe ser diferenciada para hacerla estacionaria y _q_ el número de términos de la media móvil invertible. La metodología Box-Jenkins para la construcción de los modelos ARIMA(p,d,q) se realiza de manera iterativa mediante un proceso en el que se puede distinguir cuatro etapas:
 
-- Identificación. Utilizando los datos ordenados cronológicamente se intentara sugerir un modelo ARIMA(p,d,q) que merezca la pena ser investigada. El objetivo es determinar los valores p, d y q que sean apropiados para reproducir la serie de tiempo. En esta etapa es posible identificar más de un modelo candidato que pueda describir la serie.
+- Identificación: esta primera fase consiste en identificar el posible modelo ARIMA(p,d,q) que sigue la serie (es posible identificar más de un modelo candidato que pueda describir la serie), lo que requiere:
 
-La primera fase consiste en identificar el posible modelo ARIMA que sigue la serie, lo que requiere:
-􀂃 Decidir qué transformaciones aplicar para convertir la serie observada en una serie estacionaria.
-􀂃 Determinar un modelo ARMA para la serie estacionaria, es decir, los órdenes p y q de su
-estructura autorregresiva y de media móvil.
+      - Decidir qué transformaciones aplicar para convertir la serie observada en una serie estacionaria.
+      - Determinar un modelo ARMA para la serie estacionaria, es decir, los órdenes p y q de su estructura autorregresiva y de media móvil.
 
 
 Representar gráficamente la serie, además de su función de autocorrelación simple (ACF) y función de autocorrelación parcial (PACF). La gráfica de la serie nos indica si la serie es estacionaria o no. Según los motivos por los que la serie no es estacionaria, tendremos que aplicar los siguientes procedimientos hasta hacerla estacionaria.
@@ -160,7 +158,7 @@ constituyen la franja (−2/ T , 2/ T ) y detectan los valores de la ACFP que ca
 
 
 
-
+Modelo arima y manual
 
 
 - Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
@@ -189,7 +187,9 @@ constituyen la franja (−2/ T , 2/ T ) y detectan los valores de la ACFP que ca
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-La metodología Box-Jenkins para series temporales consiste en estimar los componentes de tendencia y estacionalidad de la serie y eliminarlos de la misma, X'<sub>t</sub> = X<sub>t</sub>-T<sub>t</sub>-E<sub>t</sub> (ya se ha explicado anteriormente cómo se estiman y modelan ambas). Una vez esto hecho se comprueba la estacionariedad, si aún no lo es se diferencia hasta que lo sea, para posteriormente aplicar los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
+La metodología Box-Jenkins para series temporales consiste en estimar los componentes de tendencia y estacionalidad de la serie y eliminarlos de la misma, X'<sub>t</sub> = X<sub>t</sub>-T<sub>t</sub>-E<sub>t</sub> (ya se ha explicado anteriormente cómo se estiman y modelan ambas). Una vez esto hecho se comprueba la estacionariedad, si aún no lo es se diferencia hasta que lo sea, para posteriormente aplicar los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. 
+
+Pero ¿cómo saber si una serie es estacionaria?
 
 - Gráficamente: Observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Si el ACF tiende “rápidamente” a 0 entonces es estacionaria, en caso contrario, no es esatacionaria
 - Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, pvalue, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95%
@@ -214,20 +214,6 @@ La parte integrada es necesaria normalmente para corregir la estacionaridad en l
 Si la serie presenta tendencia lineal, normalmente con d=1 es suficiente. Si la tendencia es no lineal, puede ser necesario usar
 d>1. 
 Si la serie presenta estacionalidad, puede ser necesario un d=periodo de estacionalidad.
-
-
-Por lo tanto la metodología a seguir para modelar series con un enfoque Box-Jenkins debe seguir los siguientes pasos:
-
-1. Análisis de tendencia. ¿Tiene tendencia la serie? Modelarla y eliminarla
-2. Análisis de estacionalidad. ¿Sufre la serie de estacionalidad? Modelarla y eliminarla
-3. Estacionaridad. ¿Es estacionaria la serie? En caso contrario, hacerla estacionaria
-4. Aplicar modelos paramétricos. ARIMA (modelos autorregresivos y de medias móviles)
-5. Predicción. Predecir en base a todas las componentes modeladas
-
-
-
-
-
 
 
 

@@ -261,7 +261,9 @@ Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuo
 
 		- type: tipo de serie, aditiva o multiplicativa
 		
-	stl(serie temporal)
+	stl(serie temporal, s.windows)
+                
+                - s.windows: parámetro a establecer o con "periodic" o con el periodo para la extracción de la estacionalidad
 		
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
@@ -269,9 +271,14 @@ Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelac
 
 	pacf(serie temporal)
 
-Test de Dickey-Fuller Ampliado (Test ADF):
+Cálculo del test de Dickey-Fuller Ampliado (Test ADF):
 
-adf.test(serie temporal)
+	adf.test(serie temporal)
+
+Paquetes R:
+
+- stats
+- tseries
 
 ________________________________________________________________________
 

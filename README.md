@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se pueden definir como un caso particular de los procesos estocásticos.
+Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se pueden definir como un caso particular de los procesos estocásticos, ya que un proceso estocástico es una secuencia de variables aleatorias, ordenadas y equidistantes cronológicamente referidas a una característica observable en diferentes momentos.
 
 Algunos ejemplos de series temporales vienen de campos como la economía (producto interior bruto anual, tasa de inflación, tasa de desempleo, ...),  la demografía (nacimientos anuales, tasa de dependencia, ...), la meteorología (temperaturas máximas, medias o mínimas, precipitaciones diarias, ...), etc.
 
@@ -24,12 +24,19 @@ Además, las series temporales se pueden dividir en:
 
 La importancia de esta división reside en que la estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Ya que con series estacionarias podemos obtener predicciones fácilmente, debido a que como la media es constante se puede estimar con todos los datos y utilizar este valor para predecir una nueva observación. Y también permite obtener intervalos de confianza para las predicciones. Un tipo especial de serie estacionaria es la serie denominada ruido blanco. Un ruido blanco es una serie estacionaria tal que ninguna observación influye sobre las siguientes, es decir, donde los valores son independientes e idénticamente distribuidos a lo largo del tiempo con media y covarianza cero e igual varianza.
 
+Las series temporales también se pueden dividir según cuántas variables se observan o según su variabilidad:
+
+- Univariante: la serie temporal es un conjunto de observaciones sobre una única caracteristica o variable.
+- Multivariante: (o vectorial): la serie temporal es un conjunto de observaciones de varias variables. <br>
+<br>
+- Homocedástica: una serie es homocedástica si su variabilidad se mantiene constante a lo largo de la serie.
+- Heterocedástica: una serie es heterocedástica cuando la variabilidad de la serie aumenta o disminuye a lo largo del tiempo.
+
 Por otro lado, la variable que se observa en una serie temporal puede ser de tipo:
 
 - Flujo: variable cuya cantidad es acumulada a lo largo del tiempo, por ejemplo: inversión, ahorro, etc.
 - Stock: variable cuya cantidad se mide en un determinado momento del tiempo, por ejemplo: población, nº parados, etc.
 
-Otra característica de las series es su variabilidad. Decimos que una serie es homocedástica si su variabilidad se mantiene constante a lo largo de la serie. Cuando la variabilidad de la serie aumenta o disminuye a lo largo del tiempo, decimos que la serie es heterocedástica.
 ________________________________________________________________________
 
 ## Análisis de series temporales

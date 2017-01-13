@@ -275,7 +275,7 @@ Cálculo del test de Dickey-Fuller Ampliado (Test ADF):
 
 	adf.test(serie temporal)
 
-Cálculo de la tendencia para modelos lineales y polinómicos:
+Cálculo de la tendencia mediante modelos lineales y polinómicos:
 
     lm(formula)
 
@@ -283,9 +283,30 @@ Cálculo de la tendencia para modelos lineales y polinómicos:
             - Para modelos lineales: serie temporal ~ tiempo  
             - Para modelos polinómicos: serie temporal ~ tiempo + I(tiempo^2) + ... 
 
+Cálculo de la tendencia mediante filtrado (medias móviles):
+
+    filter(serie temporal, filter, method, sides)
+    
+    	- filter: vector de coeficientes del filtro
+	- method: "convolution" para usar medias móviles
+	- sides: "2" para centrados
+	
+    decompose(sertie temporal)$trend
+
+Eliminación de la tendencia mediante diferenciación:
+
+    diff(serie temporal)
+
+Eliminación de la estacionalidad mediante diferenciación del orden del periodo:
+
+    diff(serie temporal, lag)
+    
+       - lag: retardo a emplear
+
 Paquetes R:
 
 - stats
+- base
 - tseries
 
 ________________________________________________________________________

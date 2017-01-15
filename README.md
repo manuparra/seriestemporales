@@ -126,8 +126,18 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 - Identificación: esta primera fase consiste en identificar el posible modelo ARIMA(p,d,q) que sigue la serie (es posible identificar más de un modelo candidato que pueda describir la serie), lo que requiere:
 
-      - Decidir qué transformaciones aplicar para convertir la serie observada en una serie estacionaria.
-      - Determinar un modelo ARMA para la serie estacionaria, es decir, los órdenes p y q de su estructura autorregresiva y de media móvil.
+      - Generalmente en primer lugar se debe de representar gráficamente la serie y se comienza modelando y eliminando tanto la tendencia como la estacionalidad (sobre todo si son muy pronunciadas y se ve claramente que existen)(ya se ha explicado anteriormente cómo se estiman y modelan ambas).   
+      - Una vez esto hecho se comprueba la estacionariedad. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
+		- Gráficamente: Representando y observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Si el ACF tiende “rápidamente” a 0 entonces es estacionaria, en caso contrario, no es estacionaria
+		- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, p-value, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95%
+      
+      Si encontramos que la serie no es estacionaria ni habiendo eliminado la tendencia y la estacionalidad, se debe de diferenciar hasta conseguir que lo sea. Normalmente los ordenes 
+      
+      de la diferencia es 1, y raramente será mayor a 3.
+- Si la serie tiene estacionalidad: Tomaremos diferencias estacionales hasta que desaparezca el patrón estacional. En la práctica es muy raro tener que aplicar más de una diferencia estacional.
+      
+      - Por último determinar un modelo ARIMA (o ARMA en caso de que no haga falta diferenciar) para la serie estacionaria, es decir, los órdenes p, d y q de su estructura autorregresiva, integrado y de media móvil. El modelo se puede determinar leyendo los correlogramas de la serie, es decir, las funciones de autocorrelación y autocorelación parcial:
+
 
 
 
@@ -135,10 +145,8 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+Según los motivos por los que la serie no es estacionaria, tendremos que aplicar los siguientes procedimientos hasta hacerla estacionaria.
 
-Representar gráficamente la serie, además de su función de autocorrelación simple (ACF) y función de autocorrelación parcial (PACF). La gráfica de la serie nos indica si la serie es estacionaria o no. Según los motivos por los que la serie no es estacionaria, tendremos que aplicar los siguientes procedimientos hasta hacerla estacionaria.
-- Si tiene tendencia: Tomaremos diferencias regulares hasta que desaparezca. Normalmente el orden de la diferencia es 1, y raramente será mayor a 3.
-- Si la serie tiene estacionalidad: Tomaremos diferencias estacionales hasta que desaparezca el patrón estacional. En la práctica es muy raro tener que aplicar más de una diferencia estacional.
 - Si es heterocedástica, es decir, no tiene varianza constante, habrá que transformar la serie. Con tomar el logaritmo en muchos casos es suficiente, aunque existen algunas transformaciones más sofisticadas, como las de Box-Cox.
 Una vez que el gráfico de la nueva serie (transformación de la original) indica que es estacionaria, podemos intentar deducir la estructura de la serie (¡no la de la serie original!) observando su ACF y PACF.
 
@@ -165,14 +173,6 @@ constituyen la franja (−2/ T , 2/ T ) y detectan los valores de la ACFP que ca
 
 
 
-La metodología Box-Jenkins para series temporales consiste en estimar los componentes de tendencia y estacionalidad de la serie y eliminarlos de la misma, X'<sub>t</sub> = X<sub>t</sub>-T<sub>t</sub>-E<sub>t</sub> (ya se ha explicado anteriormente cómo se estiman y modelan ambas). Una vez esto hecho se comprueba la estacionariedad, si aún no lo es se diferencia hasta que lo sea, para posteriormente aplicar los métodos paramétricos. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. 
-
-Pero ¿cómo saber si una serie es estacionaria?
-
-- Gráficamente: Observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Si el ACF tiende “rápidamente” a 0 entonces es estacionaria, en caso contrario, no es esatacionaria
-- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, pvalue, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95%
-
-Una vez que tenemos que la serie es estacionaria, ¿cómo saber si el modelo que tenemos que elegir? ¿AR o MA? ¿ARMA? ¿ARIMA? ¿Y el orden?
 
 
 Como norma general:
@@ -180,6 +180,7 @@ Como norma general:
 - Los modelos AR tienen un ACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “p” (AR(p)) es tantos valores “distintos de 0 como haya en el PACF”.
 
 - Los modelos MA tiene un PACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “q” (MA(q)) es tantos “valores distintos de 0” como haya en el ACF.
+
 
 Un valor se considera “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie.
 

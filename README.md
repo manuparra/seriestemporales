@@ -128,73 +128,22 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
       - Generalmente en primer lugar se debe de representar gráficamente la serie y se comienza modelando y eliminando tanto la tendencia como la estacionalidad (sobre todo si son muy pronunciadas y se ve claramente que existen)(ya se ha explicado anteriormente cómo se estiman y modelan ambas).   
       - Una vez esto hecho se comprueba la estacionariedad. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
-		- Gráficamente: Representando y observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Si el ACF tiende “rápidamente” a 0 entonces es estacionaria, en caso contrario, no es estacionaria
+		- Gráficamente: Representando y observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Como norma general si el ACF tiende “rápidamente” a 0 entonces es estacionaria, cuando la serie no es estacionaria, el ACF decrece lentamente a 0.	
 		- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, p-value, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95%
       
-      Si encontramos que la serie no es estacionaria ni habiendo eliminado la tendencia y la estacionalidad, se debe de diferenciar hasta conseguir que lo sea. Normalmente los ordenes 
-      
-      de la diferencia es 1, y raramente será mayor a 3.
-- Si la serie tiene estacionalidad: Tomaremos diferencias estacionales hasta que desaparezca el patrón estacional. En la práctica es muy raro tener que aplicar más de una diferencia estacional.
-      
-      - Por último determinar un modelo ARIMA (o ARMA en caso de que no haga falta diferenciar) para la serie estacionaria, es decir, los órdenes p, d y q de su estructura autorregresiva, integrado y de media móvil. El modelo se puede determinar leyendo los correlogramas de la serie, es decir, las funciones de autocorrelación y autocorelación parcial:
+      Si encontramos que la serie no es estacionaria ni habiendo eliminado la tendencia y la estacionalidad, se debe de diferenciar hasta conseguir que lo sea. La parte integrada suele ser necesaria para corregir la estacionaridad en la varianza. Normalmente los ordenes de diferenciación para que desaparezcan la tendencia o estacionalidad que quede no suelen ser elevados.      
+      - Por último, una vez que la serie sea estacionaria, se determina un modelo ARIMA (o ARMA en caso de que no haga falta diferenciar) para la serie estacionaria, es decir, los órdenes p, d y q de su estructura autorregresiva, integrado y de media móvil. El modelo se puede determinar leyendo los correlogramas de la serie, es decir, las funciones de autocorrelación y autocorelación parcial (de la serie transformada, no de la original), ya que por norma general:
 
+		- Los modelos AR tienen un ACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “p” (AR(p)) es tantos valores “distintos de 0 como haya en el PACF”.
+		- Los modelos MA tiene un PACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “q” (MA(q)) es tantos “valores distintos de 0” como haya en el ACF.
+		
+		Considerando un valor “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie.
 
 
 
 
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-Según los motivos por los que la serie no es estacionaria, tendremos que aplicar los siguientes procedimientos hasta hacerla estacionaria.
-
-- Si es heterocedástica, es decir, no tiene varianza constante, habrá que transformar la serie. Con tomar el logaritmo en muchos casos es suficiente, aunque existen algunas transformaciones más sofisticadas, como las de Box-Cox.
-Una vez que el gráfico de la nueva serie (transformación de la original) indica que es estacionaria, podemos intentar deducir la estructura de la serie (¡no la de la serie original!) observando su ACF y PACF.
-
-
-
-Identificar un modelo significa utilizar los datos recogidos, así como cualquier información de cómo se
-general la serie temporal objeto de estudio, para sugerir un conjunto reducido de posibles modelos, que
-tengan muchas posibilidades de ajustarse a los datos. Ante una serie temporal empírica, se deben
-encontrar los valores (p, d, q) más apropiados.
-􀂃 Si la serie temporal presenta una tendencia, lo primero que debe de hacerse es convertirla en
-estacionaria mediante una diferenciación de orden d. Una vez diferenciada la serie, una buena
-estrategia consiste en comparar los correlogramas de la función de autocorrelación (ACF) y la función
-de autocorrelación parcial (ACFP), proceso que suele ofrecer una orientación para la formulación del
-modelo orientativo.
-♣ Los procesos autorregresivos presentan función de autocorrelación parcial (ACFP) con un número
-finito de valores distinto de cero. Un proceso AR(p) tiene los primeros p términos de la función de
-autocorrelación parcial distintos de cero y los demás son nulos.
-Esta afirmación es muy fuerte, y en la práctica se considera que una muestra dada proviene de un
-proceso autorregresivo de orden p si los términos de la función de autocorrelación parcial son casi
-cero a partir del que ocupa el lugar p.
-Un valor se considera casi cero cuando su módulo es inferior a 2/ T . Los programas de ordenador
-constituyen la franja (−2/ T , 2/ T ) y detectan los valores de la ACFP que caen fuera de ella.
-
-
-
-
-
-
-Como norma general:
-
-- Los modelos AR tienen un ACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “p” (AR(p)) es tantos valores “distintos de 0 como haya en el PACF”.
-
-- Los modelos MA tiene un PACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “q” (MA(q)) es tantos “valores distintos de 0” como haya en el ACF.
-
-
-Un valor se considera “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie.
-
-Como norma general:
-
-Cuando la serie no es estacionaria, el ACF decrece lentamente a 0.
-
-La parte integrada es necesaria normalmente para corregir la estacionaridad en la varianza.
-
-Si la serie presenta tendencia lineal, normalmente con d=1 es suficiente. Si la tendencia es no lineal, puede ser necesario usar
-d>1. 
-Si la serie presenta estacionalidad, puede ser necesario un d=periodo de estacionalidad.
-
-
 
 
 
@@ -205,18 +154,6 @@ Modelo arima y manual
 - Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
 - Predicción. Una vez seleccionado el mejor modelo candidato ARIMA(p,d,q) se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
 
-
-
-
-
-¿QUÉ QUEDA?
-
-
-
-
-   LECTURA CORRELOGRAMAS
-
-   DEMOSTRAR ESTACIONARIEDAD
 
 ¿estacionaria en varianze, media...?
 
@@ -230,6 +167,7 @@ El doble -> de manual
 ¿no es estacionaria en varianza -> transformación logaritmica?
 
 ¿transformación logaritmica?
+Si es heterocedástica, es decir, no tiene varianza constante, habrá que transformar la serie. Con tomar el logaritmo en muchos casos es suficiente, aunque existen algunas transformaciones más sofisticadas, como las de Box-Cox.
 
 ________________________________________________________________________
 

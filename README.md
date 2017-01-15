@@ -137,36 +137,35 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 		- Los modelos AR tienen un ACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “p” (AR(p)) es tantos valores “distintos de 0 como haya en el PACF”.
 		- Los modelos MA tiene un PACF que decrece a 0 (con diferentes posibles formas: regulares, sinusoidales, anternando +/-). El número del orden “q” (MA(q)) es tantos “valores distintos de 0” como haya en el ACF.
 		
-		Considerando un valor “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie (banda de significancia, suelen ser del 95%). Hay situaciones que no son muy claras, en estos casos puede tratarse de un modelo con las dos partes, la AR y la MA. Estos son modelos ARMA(p,q) o ARIMA(p,0,q). Sus funciones FAS y FAP son combinaciones de las de ambas partes, por lo que son más difíciles de identificar a simple vista. La ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas.
+		Considerando un valor “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie (banda de significancia, suelen ser del 95%). Hay situaciones que no son muy claras, en estos casos puede tratarse de un modelo con las dos partes, la AR y la MA. Estos son modelos ARMA(p,q) o ARIMA(p,0,q). Sus funciones FAS y FAP son combinaciones de las de ambas partes, por lo que son más difíciles de identificar a simple vista. Debido a que en la práctica es difícil identificar con exactitud el orden p y q del modelo ARMA, se pueden plantear dos o más modelos plausibles, que luego de ser estimados son útiles para la elección del más apropiado. Por otro lado, la ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas.
+
+- Estimación: una vez seleccionado provisionalmente un modelo para la serie estacionaria, se pasa a la segunda etapa, donde se estiman los coeficientes/parámetros de los términos autorregresivos (AR) y de media móvil (MA) del modelo (siempre el modelo estacionario, no el original). 
+
+
+Los parámetros se suelen obtener por máxima verosimilitud minimizando el sumatorio de los errores al cuadrado, obteniendo errores estándar y los residuos del modelo.
+
+Algunas veces la estimación se efectúa por mínimos cuadrados lineales, pero en otras se recurre a la
+estimación no lineal de los parámetros. Este último procedimiento utiliza un algoritmo para minimizar la suma de los cuadrados de los residuos, comenzando con algún valor inicial de los parámetros del modelo. En general el algoritmo busca si otro vector de parámetros mejora el valor de la función objetivo, produciendo iteraciones sucesivas hasta alcanzar la convergencia. 
+
+
+Procederemos a su estimación y, si analizamos los correlogramas de los residuos obtenidos en la estimación, serán "ruido blanco". Si ésto no es así, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo
+teórico que podamos intuir con la comparación con los modelos teóricos. Para saber cuando estamos ante un "ruido blanco", se pueden hacer las siguientes comprobaciones: Media nula, Varianza constante y Incorrelación
 
 
 
+Para comprobar analíticamente (no visualmente) un modelo frecuentemente se ajusta varios modelos candidatos ARIMA(p,d,q) y escogeremos como un buen modelo aquel que tenga los residuales semejantes al de un ruido blanco, además que tenga los valores del AIC (Criterio de Información de Akaike) y BIC (Criterio de Información Bayesiana) menores con relación al resto de los modelos candidatos.
 
 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+arimaunlocked
+arimararo
+ARIMA box-jenkins
+Manual
 
 
-
-Modelo arima y manual
-
-
-- Estimación. Considerando el modelo apropiado para la serie de tiempo se realiza inferencia sobre los parámetros.
-- Validación. Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
-- Predicción. Una vez seleccionado el mejor modelo candidato ARIMA(p,d,q) se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
-
-
-¿estacionaria en varianze, media...?
-
-
-
-
-El doble -> de manual
-
-
-¿PRUEBA DE Ljung-Box?
-¿PRUEBA DE Box-Pierce?
-¿no es estacionaria en varianza (heterocedástica) -> transformación logaritmica, box-cox?
-¿sarima(p,d,q)
+_¿PRUEBA DE LJUNG-BOX?_
+_¿PRUEBA DE BOX-PIERCE?_
+_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_
+_¿SARIMA(p,d,q)?_
 
 ________________________________________________________________________
 

@@ -1,5 +1,25 @@
 # Series Temporales
 
+
+
+Table of Contents
+=================
+
+   * [Series Temporales](#series-temporales)
+      * [Introducción](#introducción)
+      * [Análisis de series temporales](#análisis-de-series-temporales)
+      * [Enfoques](#enfoques)
+         * [Enfoque clásico](#enfoque-clásico)
+         * [Enfoque Box-Jenkins](#enfoque-box-jenkins)
+      * [Series temporales con R](#series-temporales-con-r)
+         * [Ejemplos](#ejemplos)
+   * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
+   * [Bibliografía](#bibliografía)
+
+
+
+
+
 ## Introducción
 
 Una serie temporal es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespaciados). Las series pueden tener una periodicidad anual, semestral, trimestral, mensual, etc., según los periodos de tiempo en los que están recogidos los datos que la componen. Las series temporales se pueden definir como un caso particular de los procesos estocásticos, ya que un proceso estocástico es una secuencia de variables aleatorias, ordenadas y equidistantes cronológicamente referidas a una característica observable en diferentes momentos.
@@ -41,7 +61,31 @@ ________________________________________________________________________
 
 ## Análisis de series temporales
 
-**Enfoque clásico**
+
+La tarea de predicción y análisis de series temporales por lo general consta de cinco pasos básicos (sólo como referencia):
+
+- Definición del problema. A menudo, esta es la parte más difícil de la predicción. 
+En la definición del problema se necesita que se comprenda la forma en que se utilizarán las predicciones. Hay que dedicar tiempo para hablar con todas las entidades que van a participar en la recogida de datos, el mantenimiento de bases de datos, y el uso de las predicciones.
+
+- Recopilación de información.
+Hay al menos dos tipos de información necesaria:
+   1. los datos estadísticos
+   2. la experiencia acumulada de las personas (expertos) en los datos y que hacen las predicciones. 
+Será difícil obtener suficientes datos históricos para ser capaz de encajar un buen modelo estadístico. Sin embargo, datos historicos antiguos serán menos útiles para la predicción.
+
+- Análisis Preliminar (exploratorio)
+Primero, es necesario hacer una representación gráfica de los datos. Y hacerse las siguientes preguntas:
+   - ¿Existen patrones? ¿Hay una/alguna tendencia que destaque? ¿Es importante la estacionalidad? ¿Hay presencia los ciclos? ¿Hay algunas anomalías en los datos que puedan ser explicados por expertos (conocimiento experto)? ¿Qué relación tienen las variables que se estudian? 
+
+- Elección y ajuste de modelos.
+El mejor modelo a utilizar depende (en la mayoría de los casos) de la disponibilidad de datos históricos, la fuerza de las relaciones entre la variable de predicción y las variables explicativas. Cada modelo es una construcción artificial que se basa en un conjunto de supuestos (explícitos e implícitos) y por lo general consiste en uno o más parámetros que deben ser "equipados" utilizando los datos históricos conocidos. Pra ello: modelos de regresión , los métodos de suavización exponencial, los modelos de Box-Jenkins ARIMA, los modelos dinámicos de regresión, redes neuronales, y vectores autorregresivos, deeplearning, ...
+
+- Uso y evaluación de un modelo de predicción.
+Una vez que el modelo ha sido seleccionado y sus parámetros estimados, el modelo se utiliza para hacer predicciones. El rendimiento del modelo sólo puede ser evaluado correctamente después de que los datos para el período de predicción estén disponibles.
+
+## Enfoques
+
+### Enfoque clásico
 
 El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo consiste en encontrar componentes que se correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria. 
 
@@ -101,7 +145,7 @@ _SERIES SIN TENDENCIA NI ESTACIONALIDAD?_ _naibe?_
 _SERIES CON TENDENCIA SIN ESTACIONALIDAD?_ _holt?_
 _SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
 
-**Enfoque Box-Jenkins**
+### Enfoque Box-Jenkins
 
 Hasta ahora se han analizado las series temporales desde un punto de vista determinista o clásico, sin tener en cuenta cuál es el mecanismo que genera la serie. Pero ahora con este nuevo enfoque se analizan desde un punto de vista estocástico, por lo que el punto de partida para elaborar un modelo a partir de una serie temporal consiste en considerar que dicha serie está generada y es una realización particular de un proceso estocástico.
 
@@ -175,7 +219,7 @@ _¿SARIMA(p,d,q)?_
 
 ________________________________________________________________________
 
-**Series temporales con R**
+## Series temporales con R
 
 Para que R trate a un conjunto de datos como serie temporal:
 
@@ -246,30 +290,42 @@ Eliminación de la estacionalidad mediante diferenciación del orden del periodo
     
        - lag: retardo a emplear
 
-Paquetes R:
+### Ejemplos
+
+- Caso ejemplo Análisis y modelado Series temporales simple 01: [Ver](./estudio_01_simple/)
+- Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./estudio_02_simple/)
+- Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./estudio_03_completo/)
+- Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./estudio_04_completo/)
+
+
+# Paquetes R para el análisis y tratamiento de Series Temporales:
 
 - stats
 - base
 - tseries
+- forecast
+
+#
+
 
 ________________________________________________________________________
 
-**Bibliografía**
+# Bibliografía
 
-Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescrip/tema7.pdf <br>
-Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf <br>
-Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
-Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
-Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
-Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
-Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
+- Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescrip/tema7.pdf <br>
+- Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf <br>
+- Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
+- Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
+- Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
+- Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
+- Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
 
-Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
-Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
+- Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
+- Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
 
-Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
-Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>
-Series temporales https://www.youtube.com/watch?v=NRtgyq3MjAs <br>
-Prácticas series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
-Predicción con series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
-Lectura de correlogramas https://www.youtube.com/watch?v=zpFyhbcNWIU <br>
+- Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
+- Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>
+- Series temporales https://www.youtube.com/watch?v=NRtgyq3MjAs <br>
+- Prácticas series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
+- Predicción con series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
+- Lectura de correlogramas https://www.youtube.com/watch?v=zpFyhbcNWIU <br>

@@ -139,16 +139,100 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 		
 		Considerando un valor “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie (banda de significancia, suelen ser del 95%). Hay situaciones que no son muy claras, en estos casos puede tratarse de un modelo con las dos partes, la AR y la MA. Estos son modelos ARMA(p,q) o ARIMA(p,0,q). Sus funciones FAS y FAP son combinaciones de las de ambas partes, por lo que son más difíciles de identificar a simple vista. Debido a que en la práctica es difícil identificar con exactitud el orden p y q del modelo ARMA, se pueden plantear dos o más modelos plausibles, que luego de ser estimados son útiles para la elección del más apropiado. Por otro lado, la ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas.
 
-- Estimación: una vez seleccionado provisionalmente un modelo para la serie estacionaria, se pasa a la segunda etapa, donde se estiman los coeficientes/parámetros de los términos autorregresivos (AR) y de media móvil (MA) del modelo (siempre el modelo estacionario, no el original). Los parámetros se suelen obtener por mínimos cuadrados lineales, pero en otras se recurre a la estimación no lineal de los parámetros, el objetivo en ambos casos es minimizar el sumatorio de los errores al cuadrado (o dicho de otra forma, minimizar la suma de los cuadrados de los residuos).  
+- Estimación: una vez seleccionado provisionalmente un modelo para la serie estacionaria, se pasa a la segunda etapa, donde se estiman los coeficientes/parámetros de los términos autorregresivos (AR) y de media móvil (MA) del modelo (siempre el modelo estacionario, no el original). Los parámetros se suelen obtener por mínimos cuadrados lineales, pero en otras ocasiones se recurre a la estimación no lineal de los parámetros, el objetivo en ambos casos es encontrar los valores de los parametros que minimizen el sumatorio de los errores al cuadrado (o dicho de otra forma, minimizar la suma de los cuadrados de los residuos).  
 
-- Validación:
+- Validación: en esta etapa se busca evaluar si el modelo (o los modelos) estimado(s) se ajusta(n) razonablemente bien a los datos (y si se estimaron varios modelos para conocer cuál es mejor) antes de hacer uso del modelo para la predicción. La validación o verificación incluye:
+
+  	- El análisis de los coeficientes o parámetros del modelo: se desea que el modelo estimado cumpla con las condiciones de estacionariedad e invertibilidad y que exista significancia estadística en los rezagos incorporados.
+	- La evaluación de la bondad de ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste.
+		- AIC (Akaike Information Criterion) también llamado BIC (Bayesian Information Criterion)
+	- El análisis de los residuos: debe verificarse el supuesto de que los errores del modelo son un proceso puramente aleatorio (media cero, varianza constante y no correlación serial).
+		- Gráfico de los residuos
+		- Correlograma de los residuos (se evalúa con el correlograma que los errores del modelo son ruido blanco) y el estadístico Ljung – Box (test de aleatoriedad).
+		- El histograma de frecuencias para probar que los errores del modelo siguen distribución normal. La prueba de normalidad se efectúa con el estadístico Jarque Bera (test de normalidad).
+
+Manual
+
+Se realizan contraste de diagnostico para validar si el modelo seleccionado se ajusta a los datos, so no es así, escoger el próximo modelo candidato y repetir los pasos anteriores.
+
+Para comprobar analíticamente (no visualmente) un modelo frecuentemente se ajusta varios modelos candidatos ARIMA(p,d,q) y  escogeremos como un buen modelo aquel que tenga los residuales semejantes al de un ruido blanco, además que tenga los valores del AIC (Criterio de Información de Akaike) y BIC (Criterio de Información Bayesiana) menores con relación al resto de los modelos candidatos.
+
+Arimaboxjenkins
+
+Arimararo
+
+
+
+
+
+
+Arima unlocked
+
+La tercera fase es el diagnostico, donde se comprueba que los residuos no tienen estructura de
+dependencia y siguen un proceso de ruido blanco. Si los residuos muestran estructura se modifica el
+modelo para incorporarla y se repiten las etapas anteriores hasta obtener un modelo adecuado.
+
+Contraste de validez del modelo: Se utilizan distintos procedimientos para valorar el modelo o
+modelos inicialmente seleccionados: contraste de significación de parámetros, covarianzas entre
+estimadores, coeficiente de correlación, suma de cuadrados de errores, etc.
+
+Box y Jenkins sugirieron un número considerable de tests para verificar si el modelo elegido se ajusta
+correctamente al conjunto de datos dado. Uno de ellos, conocido como sobreparametrización, consiste
+en ajustar un modelo de orden superior al elegido y comprobar si los parámetros son significativamente
+distintos de cero.
+􀂃 De otro lado, si el modelo se aproxima satisfactoriamente a la serie observada, los residuos deben
+tender a comportarse como ruido blanco, lo que se comprobaría mediante las funciones de
+autocorrelación de los residuos (ACF, ACFP). Dichas funciones de autocorrelación deben de ser nulas
+en todo su recorrido, excepto en el cero.
+􀂃 Si el modelo no se aproxima satisfactoriamente a la serie observada, los residuos se comportarían
+como un ruido autocorrelado. Por ello, deben emplearse contrastes como el de Durbin‐Watson (para
+la autocorrelación de primer orden) o el de Wallis (para la de cuarto orden).
+
+Otros tests aplicados a los residuos van encaminados a comprobar si los residuos obtenidos son
+consistentes con el supuesto de ruido blanco (aleatorios):
+♦ Box y Pierce proponen el estadístico Σ=
+=
+m
+k 1
+2
+Q rk donde
+Σ
+Σ
+=
+= +
+−
+= n
+t 1
+2t
+n
+t k 1
+t t k
+k
+a
+a a
+r , siendo ≡ at residuos
+estimados y n el número de observaciones. Bajo el supuesto de que m es suficientemente grande,
+Box y Pierce demuestran que el estadístico Q se distribuye como una Chi‐cuadrado con (m−p − q)
+grados de libertad. Rechazándose la hipótesis de que los residuos son un ruido blanco para valores
+de Q muy altos. Más concretamente, se halla la región crítica para un nivel de significación α ,
+calculando un valor I que cumpla P(Q > I) = α . Cuando el valor de Q cae dentro de la región crítica se
+rechaza la hipótesis nula de que los residuos son un ruido blanco. Si cae fuera de la región crítica se
+acepta la hipótesis nula. El valor de m es arbitrario, aunque conviene tomarlo lo más elevado posible.
+
+Un diagnóstico completo surge de la inspección del gráfico de los residuos. Si los residuos provienen
+de un proceso de ruido blanco, deben de ser incorrelacionados entre sí, lo que les hará alternar en
+signo, sin ningún criterio obvio. Por el contrario, rachas de residuos consecutivos de un mismo signo
+son, en general, un indicativo de mala especificación del modelo, bien por ser una indicación de
+autocorrelación de los residuos o por indicar no estacionariedad en los mismos. Si el gráfico
+(t, at ) tiene una tendencia conocida, puede haber heteroscedasticidad de los residuos.
+
 
 
 Procederemos a su estimación y, si analizamos los correlogramas de los residuos obtenidos en la estimación, serán "ruido blanco". Si ésto no es así, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo
 teórico que podamos intuir con la comparación con los modelos teóricos. Para saber cuando estamos ante un "ruido blanco", se pueden hacer las siguientes comprobaciones: Media nula, Varianza constante y Incorrelación
 
 
-Para comprobar analíticamente (no visualmente) un modelo frecuentemente se ajusta varios modelos candidatos ARIMA(p,d,q) y  escogeremos como un buen modelo aquel que tenga los residuales semejantes al de un ruido blanco, además que tenga los valores del AIC (Criterio de Información de Akaike) y BIC (Criterio de Información Bayesiana) menores con relación al resto de los modelos candidatos.
+
 
 
 
@@ -159,7 +243,9 @@ ARIMA box-jenkins
 Manual
 
 
+_¿PROFUNDIZAR EN LAS FUNCIONES AR y MA?_
 _¿PROFUNDIZAR EN MÉTODOS DE ESTIMACIÓN?_
+_¿PROFUNDIZAR EN AIC?_
 _¿PRUEBA DE LJUNG-BOX?_
 _¿PRUEBA DE BOX-PIERCE?_
 _NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_

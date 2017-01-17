@@ -147,13 +147,56 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 	- La evaluación de la bondad del ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste.
 		- AIC (Akaike Information Criterion) también llamado BIC (Bayesian Information Criterion)
 	- El análisis de los residuos: debe verificarse el supuesto de que los errores del modelo son un proceso puramente aleatorio (media cero, varianza constante y no correlación serial), es decir, no tienen estructura de dependencia y siguen un proceso de ruido blanco.
-		- Gráfico de los residuos
-		- Correlograma de los residuos (se evalúa con el correlograma que los errores del modelo son ruido blanco) y los estadísticos Ljung–Box y Box-Pierce (test de aleatoriedad).
-		- El histograma de frecuencias para probar que los errores del modelo siguen distribución normal. La prueba de normalidad se efectúa con el estadístico Jarque Bera (test de normalidad).
+		- Gráfico de los residuos.
+		- Correlograma de los residuos (se evalúa con el correlograma que los errores del modelo son ruido blanco) y los estadísticos Ljung–Box y Box-Pierce (test de aleatoriedad)(p-value pequeño = no son aleatorios).
+		- El histograma de frecuencias para probar que los errores del modelo siguen distribución normal. La prueba de normalidad se efectúa con los estadísticos Jarque Bera y Shapiro-Wilk (test de normalidad)(p-value pequeño = no son de distribución normal).
 
 Para que un modelo sea válido, los diferentes análisis sobre los residuos obtenidos en la estimación serán "ruido blanco". Si ésto no es así y los residuos muestran estructura, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo teórico que podamos intuir y se repiten las etapas anteriores hasta obtener un modelo adecuado.
 
+- Predicción:
 
+manual
+
+Una de las razones de la popularidad del proceso de construcción de modelos es su éxito en la predicción. Los modelos son buenos para realizar predicciones a corto plazo.
+
+Predicción. Una vez seleccionado el mejor modelo candidato se pueden hacer pronósticos en términos probabilísticos de los valores futuros.
+Fig.
+
+arimaboxjenkins
+
+Una vez identificado y estimado el modelo ARIMA, se plantea su utilización para conseguir la
+mejor predicción de los valores a futuro de una serie a partir de su propia historia . El primer
+interrogante que surge se referirá a la determinación del PREDICTOR ÓPTIMO para este fin.
+Intuitivamente, el mejor predictor posible será "el que menos se equivoca" o, en términos
+estadísticos, aquel que minimiza el error cuadrático medio respecto a otro potencial predictor
+alternativo.
+
+Para hacer predicción hay que tener en cuenta dos supuestos inciales:
+1.- Los parámetros de las funciones presentadas son conocidos.
+2.- Las perturbaciones aleatorias se conocen en el período muestral y tiene carácter de
+ruido blanco para los períodos de predicción.
+Teniendo en cuenta ambos supuestos, se puede especificar un modelo ARIMA para definir el
+valor de predicción en función de la serie en "p" períodos anteriores (por la parte autorregresiva) y de
+los "q" errores cometidos al estimar la serie en los "q" períodos previos (por la parte de las medias
+móviles).
+
+arimararo
+
+Para pronosticar un periodo futuro a partir del modelo seleccionado; es decir aquel que es “el
+mejor” resultante de las etapas anteriores, es importante considerar si la variable original fue
+diferenciada.
+
+unlocked
+
+Los modelos ARIMA proporcionan, además de una predicción puntual, la distribución de probabilidad
+completa para los futuros valores de la serie.
+Considerando como predicción óptima la que tiene un error cuadrático medio de predicción mínimo, se
+trata de elegir una predicción a horizonte l, Zt (l) , tal que [ ] [ ]2
+t 1 t
+2t
+E e (I) = E X + − Z (l) fuese mínimo.
+
+manezu
 
 
 arimaunlocked

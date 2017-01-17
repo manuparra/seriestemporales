@@ -292,7 +292,7 @@ Eliminación de la estacionalidad mediante diferenciación del orden del periodo
     
        - lag: retardo a emplear
 
-### Ejemplos
+### Ejemplos de análisis completos de Series temporales
 
 - Caso ejemplo Análisis y modelado Series temporales simple 01: [Ver](./estudio_01_simple/)
 - Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./estudio_02_simple/)
@@ -303,11 +303,11 @@ Eliminación de la estacionalidad mediante diferenciación del orden del periodo
 # Paquetes R para el análisis y tratamiento de Series Temporales:
 
 - stats
-- base
-- tseries
-- forecast
+- base: 
+- tseries: https://cran.r-project.org/web/packages/tseries/index.html
+- forecast: https://cran.r-project.org/web/packages/forecast/index.html
 
-#
+
 
 
 ________________________________________________________________________

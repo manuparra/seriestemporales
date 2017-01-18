@@ -12,8 +12,9 @@ Table of Contents
          * [Enfoque clásico](#enfoque-clásico)
          * [Enfoque Box-Jenkins](#enfoque-box-jenkins)
       * [Series temporales con R](#series-temporales-con-r)
-         * [Ejemplos](#ejemplos)
-	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
+      	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
+      * [Ejemplos](#ejemplos)
+
    * [Bibliografía](#bibliografía)
 
 
@@ -298,7 +299,7 @@ Cálculo del número de diferenciaciones necesarias para hacer la serie estacion
 
 		- test: tipo de test con el que se realiza el cálculo; "adf" (Augmented Dickey-Fuller), "kpss", "pp" (Phillips-Perron)
 
-Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos:
+Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos (usarlo simplemente como una primera aproximación): 
 
 	auto.arima(serie temporal)
 	
@@ -316,13 +317,6 @@ Predecir una serie temporal:
 		- object: modelo de serie temporal
 		- h: número de periodos a predecir
 
-### Ejemplos de análisis completos de Series temporales
-
-- Caso ejemplo Análisis y modelado Series temporales simple 01: [Ver](./estudio_01_simple/)
-- Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./estudio_02_simple/)
-- Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./estudio_03_completo/)
-- Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./estudio_04_completo/)
-
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
@@ -330,6 +324,15 @@ Predecir una serie temporal:
 - base: 
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
+
+## Ejemplos de análisis completos de Series temporales
+
+- Caso ejemplo Análisis y modelado Series temporales simple 01: [Ver](./estudio_01_simple/)
+- Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./estudio_02_simple/)
+- Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./estudio_03_completo/)
+- Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./estudio_04_completo/)
+
+
 
 
 

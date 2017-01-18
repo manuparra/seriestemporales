@@ -217,7 +217,10 @@ _¿PROFUNDIZAR EN PREDICCIÓN?_
 _¿PROFUNDIZAR EN AIC?_
 _¿PRUEBA DE LJUNG-BOX?_
 _¿PRUEBA DE BOX-PIERCE?_
-_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_
+_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_ 
+
+En caso de heterocedasticidad y es recomendable una transformación logarítmica en la serie original.
+
 _¿SARIMA(p,d,q)?_
 
 ________________________________________________________________________
@@ -317,6 +320,10 @@ Predecir una serie temporal:
 		- object: modelo de serie temporal
 		- h: número de periodos a predecir
 
+	predict(object, n.ahead)
+
+		- object: modelo de serie temporal
+		- n.ahead: número de periodos a predecir
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
@@ -348,7 +355,6 @@ ________________________________________________________________________
 - Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
 - Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
 - Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
-
 - Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
 - Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
 
@@ -359,3 +365,4 @@ ________________________________________________________________________
 - Predicción con series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
 - Lectura de correlogramas https://www.youtube.com/watch?v=zpFyhbcNWIU <br>
 - Modelo autorregresivo en R https://www.youtube.com/watch?v=a5QQp9peaZ4 <br>
+- Introduction to ARIMA modeling in R https://www.youtube.com/watch?v=zFo7QixEKvg <br>

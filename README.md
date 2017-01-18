@@ -188,7 +188,7 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 - Estimación: una vez seleccionado provisionalmente un modelo para la serie estacionaria, se pasa a la segunda etapa, donde se estiman los coeficientes/parámetros de los términos autorregresivos (AR) y de media móvil (MA) del modelo (siempre el modelo estacionario, no el original). Los parámetros se suelen obtener por máxima verosimilitud o por mínimos cuadrados lineales, pero en otras ocasiones se recurre a la estimación no lineal de los parámetros, el objetivo en ambos casos es encontrar los valores de los parametros que minimizen el sumatorio de los errores al cuadrado (o dicho de otra forma, minimizar la suma de los cuadrados de los residuos).  
 
-- Validación: en esta etapa se busca evaluar si el modelo (o los modelos) estimado(s) se ajusta(n) razonablemente bien a los datos (y si se estimaron varios modelos para conocer cuál es mejor) antes de hacer uso del modelo para la predicción. La validación o verificación incluye:
+- Validación: en esta etapa se busca evaluar si el modelo (o los modelos) estimado(s) se ajusta(n) razonablemente bien a los datos (y si se estimaron varios modelos para conocer cuál es mejor) antes de hacer uso del modelo para la predicción. También se debe de comprobar la estacionariedad, que los residuos sean independientes los unos de los otros, y que la media y la varianza sea constante a lo largo del tiempo. Así pues la validación o verificación incluye:
 
   	- El análisis de los coeficientes o parámetros del modelo: se desea que el modelo estimado cumpla con las condiciones de estacionariedad e invertibilidad y que exista significancia estadística en los rezagos incorporados.
 	- La evaluación de la bondad del ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste (un valor más pequeño del AIC o BIC denota un mejor ajuste).
@@ -236,6 +236,13 @@ Para que R trate a un conjunto de datos como serie temporal:
 		- end: tiempo de la última observación
 		- frequency: número de observaciones por unidad de tiempo
 
+Obtener un subconjunto de la serie teporal:
+
+	window(serie temporal, start, end)
+
+		- start: tiempo de la primera observación
+		- end: tiempo de la última observación
+
 Representación gráfica de la serie:
 
 	plot(serie temporal)
@@ -256,13 +263,15 @@ Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuo
 		
 	stl(serie temporal, s.windows)
                 
-        - s.windows: establecido con "periodic" o con el periodo para la extracción de la estacionalidad
+        	- s.windows: establecido con "periodic" o con el periodo para la extracción de la estacionalidad
 		
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
 	acf(serie temporal)
-
+	Acf(serie temporal)
+	
 	pacf(serie temporal)
+	Pacf(serie temporal)	
 
 Cálculo del test de Dickey-Fuller Ampliado (Test ADF):
 
@@ -379,6 +388,7 @@ ________________________________________________________________________
 - Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
 - Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
 - Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
+- Quick-R: Time Series http://www.statmethods.net/advstats/timeseries.html <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

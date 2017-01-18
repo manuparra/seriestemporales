@@ -13,7 +13,7 @@ Table of Contents
          * [Enfoque Box-Jenkins](#enfoque-box-jenkins)
       * [Series temporales con R](#series-temporales-con-r)
          * [Ejemplos](#ejemplos)
-   * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
+	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
    * [Bibliografía](#bibliografía)
 
 
@@ -185,7 +185,7 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 		
 		Considerando un valor “distinto de cero” si no está en el rango (-2/sqrt(N), 2/sqrt(N)), con N=longitud de la serie (banda de significancia, suelen ser del 95%). Hay situaciones que no son muy claras, en estos casos puede tratarse de un modelo con las dos partes, la AR y la MA. Estos son modelos ARMA(p,q) o ARIMA(p,0,q). Sus funciones FAS y FAP son combinaciones de las de ambas partes, por lo que son más difíciles de identificar a simple vista. Debido a que en la práctica es difícil identificar con exactitud el orden p y q del modelo ARMA, se pueden plantear dos o más modelos plausibles, que luego de ser estimados son útiles para la elección del más apropiado. Por otro lado, la ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas.
 
-- Estimación: una vez seleccionado provisionalmente un modelo para la serie estacionaria, se pasa a la segunda etapa, donde se estiman los coeficientes/parámetros de los términos autorregresivos (AR) y de media móvil (MA) del modelo (siempre el modelo estacionario, no el original). Los parámetros se suelen obtener por mínimos cuadrados lineales, pero en otras ocasiones se recurre a la estimación no lineal de los parámetros, el objetivo en ambos casos es encontrar los valores de los parametros que minimizen el sumatorio de los errores al cuadrado (o dicho de otra forma, minimizar la suma de los cuadrados de los residuos).  
+- Estimación: una vez seleccionado provisionalmente un modelo para la serie estacionaria, se pasa a la segunda etapa, donde se estiman los coeficientes/parámetros de los términos autorregresivos (AR) y de media móvil (MA) del modelo (siempre el modelo estacionario, no el original). Los parámetros se suelen obtener por máxima verosimilitud o por mínimos cuadrados lineales, pero en otras ocasiones se recurre a la estimación no lineal de los parámetros, el objetivo en ambos casos es encontrar los valores de los parametros que minimizen el sumatorio de los errores al cuadrado (o dicho de otra forma, minimizar la suma de los cuadrados de los residuos).  
 
 - Validación: en esta etapa se busca evaluar si el modelo (o los modelos) estimado(s) se ajusta(n) razonablemente bien a los datos (y si se estimaron varios modelos para conocer cuál es mejor) antes de hacer uso del modelo para la predicción. La validación o verificación incluye:
 
@@ -277,8 +277,8 @@ Cálculo de la tendencia mediante filtrado (medias móviles):
     filter(serie temporal, filter, method, sides)
     
     	- filter: vector de coeficientes del filtro
-	- method: "convolution" para usar medias móviles
-	- sides: "2" para centrados
+		- method: "convolution" para usar medias móviles
+		- sides: "2" para centrados
 	
     decompose(sertie temporal)$trend
 
@@ -291,6 +291,30 @@ Eliminación de la estacionalidad mediante diferenciación del orden del periodo
     diff(serie temporal, lag)
     
        - lag: retardo a emplear
+       
+Cálculo del número de diferenciaciones necesarias para hacer la serie estacionaria:
+
+    ndiffs(serie temporal, test)
+
+		- test: tipo de test con el que se realiza el cálculo; "adf" (Augmented Dickey-Fuller), "kpss", "pp" (Phillips-Perron)
+
+Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos:
+
+	auto.arima(serie temporal)
+	
+Ajuste del modelo ARIMA sobre una serie temporal:
+
+	arima(serie temporal, order)
+	Arima(serie temporal, order)  *permite una componente de tendencia*
+
+		- order: especificación de los tres componentes del modelo en forma de vector
+		
+Predecir una serie temporal:
+
+	forecast(object, h)
+
+		- object: modelo de serie temporal
+		- h: número de periodos a predecir
 
 ### Ejemplos de análisis completos de Series temporales
 
@@ -300,9 +324,9 @@ Eliminación de la estacionalidad mediante diferenciación del orden del periodo
 - Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./estudio_04_completo/)
 
 
-# Paquetes R para el análisis y tratamiento de Series Temporales:
+### Paquetes R para el análisis y tratamiento de Series Temporales:
 
-- stats
+- stats:
 - base: 
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
@@ -331,3 +355,4 @@ ________________________________________________________________________
 - Prácticas series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
 - Predicción con series temporales https://www.youtube.com/watch?v=XXu2Mbg5-Lg <br>
 - Lectura de correlogramas https://www.youtube.com/watch?v=zpFyhbcNWIU <br>
+- Modelo autorregresivo en R https://www.youtube.com/watch?v=a5QQp9peaZ4 <br>

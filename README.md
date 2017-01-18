@@ -191,8 +191,8 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 - Validación: en esta etapa se busca evaluar si el modelo (o los modelos) estimado(s) se ajusta(n) razonablemente bien a los datos (y si se estimaron varios modelos para conocer cuál es mejor) antes de hacer uso del modelo para la predicción. La validación o verificación incluye:
 
   	- El análisis de los coeficientes o parámetros del modelo: se desea que el modelo estimado cumpla con las condiciones de estacionariedad e invertibilidad y que exista significancia estadística en los rezagos incorporados.
-	- La evaluación de la bondad del ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste.
-		- AIC (Akaike Information Criterion) también llamado BIC (Bayesian Information Criterion)
+	- La evaluación de la bondad del ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste (un valor más pequeño del AIC o BIC denota un mejor ajuste).
+		- AIC (Akaike Information Criterion) o BIC (Bayesian Information Criterion)
 	- El análisis de los residuos: debe verificarse el supuesto de que los errores del modelo son un proceso puramente aleatorio (media cero, varianza constante y no correlación serial), es decir, no tienen estructura de dependencia y siguen un proceso de ruido blanco.
 		- Gráfico de los residuos.
 		- Correlograma de los residuos (se evalúa con el correlograma que los errores del modelo son ruido blanco) y los estadísticos Ljung–Box y Box-Pierce (test de aleatoriedad)(p-value pequeño = no son aleatorios).
@@ -296,6 +296,12 @@ Eliminación de la estacionalidad mediante diferenciación del orden del periodo
     
        - lag: retardo a emplear
        
+La diferenciación se puede deshacer con:
+
+    diffinv(serie temporal, lag)
+
+       - lag: retardo empleado
+       
 Cálculo del número de diferenciaciones necesarias para hacer la serie estacionaria:
 
     ndiffs(serie temporal, test)
@@ -312,7 +318,23 @@ Ajuste del modelo ARIMA sobre una serie temporal:
 	Arima(serie temporal, order)  *permite una componente de tendencia*
 
 		- order: especificación de los tres componentes del modelo en forma de vector
-		
+
+Evaluación de la bondad del ajuste de varios modelos mediante el criterio AIC (Akaike Information Criterion) o BIC (Bayesian Information Criterion):
+
+	AIC(object, object, ...)
+	BIC(object, object, ...)
+
+		- object: modelos de serie temporal que se quieren comparar
+
+Test de Ljung-Box para la hipótesis de independencia: 
+
+	Box.test(serie temporal)
+
+Test de normalidad con los estadísticos Jarque Bera y Shapiro-Wilk:
+
+	jarque.bera.test(serie temporal)
+	shapiro.test(serie temporal)
+
 Predecir una serie temporal:
 
 	forecast(object, h)

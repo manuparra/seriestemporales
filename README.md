@@ -217,11 +217,9 @@ _¿PROFUNDIZAR EN PREDICCIÓN?_
 _¿PROFUNDIZAR EN AIC?_
 _¿PRUEBA DE LJUNG-BOX?_
 _¿PRUEBA DE BOX-PIERCE?_
-_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_ 
-
-En caso de heterocedasticidad y es recomendable una transformación logarítmica en la serie original.
-
+_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_  En caso de heterocedasticidad y es recomendable una transformación logarítmica en la serie original.
 _¿SARIMA(p,d,q)?_
+_¿PERIODOGRAMA?_
 
 ________________________________________________________________________
 
@@ -327,6 +325,10 @@ Ajuste del modelo ARIMA sobre una serie temporal:
 	Arima(serie temporal, order)  *permite una componente de tendencia*
 
 		- order: especificación de los tres componentes del modelo en forma de vector
+		
+Ajuste de un modelo autorregresivo AR sobre una serie temporal:
+
+	ar(serie temporal)
 
 Evaluación de la bondad del ajuste de varios modelos mediante el criterio AIC (Akaike Information Criterion) o BIC (Bayesian Information Criterion):
 
@@ -358,8 +360,8 @@ Predecir una serie temporal:
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
-- stats:
-- base: 
+- stats: incorporado en R
+- base: incorporado en R
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 

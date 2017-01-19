@@ -149,6 +149,7 @@ _METODOS DE SUAVIZADO?_
 _SERIES SIN TENDENCIA NI ESTACIONALIDAD?_ _naibe?_
 _SERIES CON TENDENCIA SIN ESTACIONALIDAD?_ _holt?_
 _SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
+_VARIANZA PARA VER EL MEJOR AJUSTE?_
 
 ### Enfoque Box-Jenkins
 
@@ -178,7 +179,7 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
       - Generalmente en primer lugar se debe de representar gráficamente la serie y se comienza modelando y eliminando tanto la tendencia como la estacionalidad (sobre todo si son muy pronunciadas y se ve claramente que existen)(ya se ha explicado anteriormente cómo se estiman y modelan ambas).   
       - Una vez esto hecho se comprueba la estacionariedad. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
 		- Gráficamente: Representando y observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Como norma general si el ACF tiende “rápidamente” a 0 entonces es estacionaria, cuando la serie no es estacionaria, el ACF decrece lentamente a 0.	
-		- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, p-value, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95%
+		- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, p-value, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95% (se utiliza con series previamente desestacionalizadas)
       
       Si encontramos que la serie no es estacionaria ni habiendo eliminado la tendencia y la estacionalidad, se debe de diferenciar hasta conseguir que lo sea. La parte integrada suele ser necesaria para corregir la estacionaridad en la varianza. Normalmente los ordenes de diferenciación para que desaparezcan la tendencia o estacionalidad que quede no suelen ser elevados.      
       - Por último, una vez que la serie sea estacionaria, se determina un modelo ARIMA (o ARMA en caso de que no haga falta diferenciar) para la serie estacionaria, es decir, los órdenes p, d y q de su estructura autorregresiva, integrado y de media móvil. El modelo se puede deducir leyendo los correlogramas de la serie, es decir, las funciones de autocorrelación y autocorelación parcial (de la serie transformada, no de la original), ya que por norma general:
@@ -200,7 +201,8 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 		- Correlograma de los residuos (se evalúa con el correlograma que los errores del modelo son ruido blanco) y los estadísticos Ljung–Box y Box-Pierce (test de aleatoriedad)(p-value pequeño = no son aleatorios).
 		- El histograma de frecuencias para probar que los errores del modelo siguen distribución normal. La prueba de normalidad se efectúa con los estadísticos Jarque Bera y Shapiro-Wilk (test de normalidad)(p-value pequeño = no son de distribución normal).
 
-Para que un modelo sea válido, los diferentes análisis sobre los residuos obtenidos en la estimación serán "ruido blanco". Si ésto no es así y los residuos muestran estructura, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo teórico que podamos intuir y se repiten las etapas anteriores hasta obtener un modelo adecuado.
+Para que un modelo sea válido, los diferentes análisis sobre los residuos obtenidos en la estimación serán "ruido blanco". Un
+ruido blanco es una serie estacionaria en la que ninguna observación depende de las otras y, por tanto, todos los valores de la ACF y la PACF son nulos. El correlograma y el correlograma parcial deben ser muy similares y los valores no son significativamente distintos de cero. Si ésto no es así y los residuos muestran estructura, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo teórico que podamos intuir y se repiten las etapas anteriores hasta obtener un modelo adecuado.
 
 - Predicción: una vez seleccionado el mejor modelo, éste se puede utilizar para conseguir la mejor predicción de los valores a futuro de la serie a partir de su propia historia. ¿Pero cuál es el mejor predictor que se puede aplicar a los datos? El mejor predictor posible será "el que menos se equivoca" o, en términos estadísticos, aquel que minimiza el error cuadrático medio respecto a otro potencial predictor alternativo. 
 
@@ -223,6 +225,7 @@ _NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, 
 _¿SARIMA(p,d,q)?_
 _¿PERIODOGRAMA?_
 _¿irregular en media, varianza?_
+_¿correlogramas se miran con la original, antes de eliminar tendencia y estacionalidad?_
 
 ________________________________________________________________________
 
@@ -394,6 +397,7 @@ ________________________________________________________________________
 - Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
 - Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
 - Quick-R: Time Series http://www.statmethods.net/advstats/timeseries.html <br>
+- Series temporales en R https://dl.orangedox.com/9fzOYs2ZoimR4izLVE/7-Series%20temporales%20en%20R.pdf <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

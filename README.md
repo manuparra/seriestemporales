@@ -226,7 +226,6 @@ _¿SARIMA(p,d,q)?_
 _¿PERIODOGRAMA?_
 _¿irregular en media, varianza?_
 _¿correlogramas se miran con la original, antes de eliminar tendencia y estacionalidad?_
-
 ________________________________________________________________________
 
 ## Series temporales con R
@@ -270,7 +269,14 @@ Representación numérica de la serie:
 Unidad de tiempo a la que pertenece cada observación de la serie:
 
 	cycle(serie temporal)
-   
+
+Agregación de los datos de la serie temporal:
+
+	aggregate(serie temporal, FUN, nfrequency)
+	
+		-FUN: función con la que se computa la agregación (mean)
+		-nfrequency: nuevo número de observaciones por unidad de tiempo (12->mensual, 4->trimestral, 1->anual...)
+
 Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuos:
 
 	decompose(serie temporal, type) *mediante medias móviles*
@@ -376,6 +382,10 @@ Predecir una serie temporal:
 		- object: modelo de serie temporal
 		- n.ahead: número de periodos a predecir
 
+
+_boxplot?_
+_arima.sim_
+
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
 - stats: incorporado en R
@@ -410,6 +420,7 @@ ________________________________________________________________________
 - Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
 - Quick-R: Time Series http://www.statmethods.net/advstats/timeseries.html <br>
 - Series temporales en R https://dl.orangedox.com/9fzOYs2ZoimR4izLVE/7-Series%20temporales%20en%20R.pdf <br>
+- A Complete Tutorial on Time Series Modeling in R https://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/<br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

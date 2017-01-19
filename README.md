@@ -126,12 +126,14 @@ Una vez que se conoce la forma en que se relacionan los componentes, se descompo
    - Modelos lineales
    - Modelos polinómicos
    - Filtrado (Médias móviles)(no se recomienda ya que no predice, solo describe)
-   - Diferenciación
+   - Diferenciación 
 - Componente de estacionalidad: para estimar el efecto estacional se pueden obtener los índices o coeficientes de estacionalidad que representan el valor promedio para cada elemento de la estación (si es anual para cada mes, si es trimestral cada trimestre, esto es, el periodo de la serie)(la suma de los índices estacionales debe de ser igual al número de periodos). Además, la serie original se puede desestacionalizar también mediante una diferenciación estacional de la serie.
    - Médias móviles centradas
    - Diferenciación
 
-Y estos se pueden eliminar para obtener la componente aleatoria:
+*Se puede diferenciar la parte regular (lag=1) para la tendencia y se puede diferenciar la parte estacional para la estacionalidad (lag=periodo), o ambas. Se seleccionaría aquella diferenciación que minimice la varianza, ya que en una serie sobrediferenciada la varianza aumenta.*
+
+Y por lo tanto, la tendencia y la estacionalidad una vez modelados se pueden eliminar para obtener la componente aleatoria:
 
 I<sub>t</sub> = X<sub>t</sub> − T<sub>t</sub> − E<sub>t</sub>
 
@@ -217,9 +219,10 @@ _¿PROFUNDIZAR EN PREDICCIÓN?_
 _¿PROFUNDIZAR EN AIC?_
 _¿PRUEBA DE LJUNG-BOX?_
 _¿PRUEBA DE BOX-PIERCE?_
-_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_  En caso de heterocedasticidad y es recomendable una transformación logarítmica en la serie original.
+_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_  En caso de heterocedasticidad y es recomendable una transformación logarítmica en la serie original. La hipótesis de la varianza constante se exige en las condiciones de estacionariedad, pero es frecuente observar que la varianza aumenta con el nivel de la serie. En este caso la transformación con logaritmo neperiano ayuda a homogeneizar su comportamiento.
 _¿SARIMA(p,d,q)?_
 _¿PERIODOGRAMA?_
+_¿irregular en media, varianza?_
 
 ________________________________________________________________________
 
@@ -255,13 +258,13 @@ Unidad de tiempo a la que pertenece cada observación de la serie:
    
 Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuos:
 
-	decompose(serie temporal, type)
+	decompose(serie temporal, type) *mediante medias móviles*
 
 		- type: tipo de serie, aditiva o multiplicativa
 		
-	stl(serie temporal, s.windows)
+	stl(serie temporal, s.windows) *mediante loess*
                 
-        	- s.windows: establecido con "periodic" o con el periodo para la extracción de la estacionalidad
+        	- s.windows: establecido con "period" o con el periodo para la extracción de la estacionalidad
 		
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
@@ -293,7 +296,7 @@ Cálculo de la tendencia mediante filtrado (medias móviles):
 	
     decompose(sertie temporal)$trend
 
-Eliminación de la tendencia mediante diferenciación:
+Eliminación de la tendencia mediante diferenciación (lag=1):
 
     diff(serie temporal)
 

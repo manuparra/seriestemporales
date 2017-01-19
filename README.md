@@ -247,6 +247,18 @@ Obtener un subconjunto de la serie teporal:
 		- start: tiempo de la primera observación
 		- end: tiempo de la última observación
 
+Conocer el tiempo de comienzo de la serie:
+
+	start(serie temporal)
+
+Conocer el tiempo de fin de la serie:
+
+	end(serie temporal)
+
+Conocer la frecuencia de la serie:
+
+	frequency(serie temporal)
+
 Representación gráfica de la serie:
 
 	plot(serie temporal)
@@ -345,12 +357,12 @@ Evaluación de la bondad del ajuste de varios modelos mediante el criterio AIC (
 
 Test de Ljung-Box para la hipótesis de independencia: 
 
-	Box.test(serie temporal)
+	Box.test(residuos modelo)
 
 Test de normalidad con los estadísticos Jarque Bera y Shapiro-Wilk:
 
-	jarque.bera.test(serie temporal)
-	shapiro.test(serie temporal)
+	jarque.bera.test(residuos modelo)
+	shapiro.test(residuos modelo)
 
 Predecir una serie temporal:
 

@@ -259,7 +259,7 @@ Conocer la frecuencia de la serie:
 
 Representación gráfica de la serie:
 
-	plot(serie temporal)
+	plot(serie temporal) *llama internamente a plot.ts(serie temporal)*
 
 Representación numérica de la serie:
 

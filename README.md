@@ -193,8 +193,9 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 - Validación: en esta etapa se busca evaluar si el modelo (o los modelos) estimado(s) se ajusta(n) razonablemente bien a los datos (y si se estimaron varios modelos para conocer cuál es mejor) antes de hacer uso del modelo para la predicción. También se debe de comprobar la estacionariedad, que los residuos sean independientes los unos de los otros, y que la media y la varianza sea constante a lo largo del tiempo. Así pues la validación o verificación incluye:
 
   	- El análisis de los coeficientes o parámetros del modelo: se desea que el modelo estimado cumpla con las condiciones de estacionariedad e invertibilidad y que exista significancia estadística en los rezagos incorporados.
-	- La evaluación de la bondad del ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste (un valor más pequeño del AIC o BIC denota un mejor ajuste).
-		- AIC (Akaike Information Criterion) o BIC (Bayesian Information Criterion)
+	- La evaluación de la bondad del ajuste: ya que los modelos han sido elegidos mediante identificación, es importante determinar cuál de los modelos presenta una mejor bondad de ajuste.
+		- AIC (Akaike Information Criterion): es una medida de la calidad relativa de un modelo estadístico que proporciona un medio para la selección de un modelo entre un conjunto de modelos. El AIC maneja un trade-off entre la bondad de ajuste del modelo y la complejidad del modelo, representando un valor más pequeño del AIC un mejor ajuste. 
+		- BIC (Bayesian Information Criterion)
 	- El análisis de los residuos: debe verificarse el supuesto de que los errores del modelo son un proceso puramente aleatorio (media cero, varianza constante y no correlación serial), es decir, no tienen estructura de dependencia y siguen un proceso de ruido blanco.
 		- Gráfico de los residuos.
 		- Correlograma de los residuos (se evalúa con el correlograma que los errores del modelo son ruido blanco) y los estadísticos Ljung–Box y Box-Pierce (test de aleatoriedad)(si el p-value es pequeño indica que no son aleatorios, en cambio, cuanto mayor es su p-valor más evidencia hay de que los residuos son ruido blanco. El nivel mínimo es 0,05, es decir, debe suceder que el p-valor sea mayor que 0,05).
@@ -217,7 +218,6 @@ _¿PROFUNDIZAR EN LAS FUNCIONES AR y MA?_
 _¿PROFUNDIZAR EN MÉTODOS DE ESTIMACIÓN?_
 _¿PROFUNDIZAR EN MÉTODOS DE VALIDACIÓN?_
 _¿PROFUNDIZAR EN PREDICCIÓN?_
-_¿PROFUNDIZAR EN AIC?_
 _¿PRUEBA DE LJUNG-BOX?_
 _¿PRUEBA DE BOX-PIERCE?_
 _¿SARIMA(p,d,q)?_

@@ -89,7 +89,7 @@ Una vez que el modelo ha sido seleccionado y sus parámetros estimados, el model
 
 ### Enfoque clásico
 
-El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo consiste en encontrar componentes que se correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria. 
+El análisis más clásico de las series temporales se basa en la idea de que los valores que toma la variable de observación son la consecuencia de las componentes anteriores (tendencia, estacionalidad, ciclo y aleatoriedad), aunque no siempre aparecen todas. Luego este enfoque descriptivo determinista consiste en encontrar componentes que se correspondan a una tendencia a largo plazo, un comportamiento estacional y una parte aleatoria. 
 
 El primer paso a seguir a la hora de realizar un análisis es determinar cómo se combinan los componentes de la serie. Para ello se consideran dos modelos habituales para relacionar los valores de la serie con los componentes anteriores:
 
@@ -175,7 +175,7 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 - Identificación: esta primera fase consiste en identificar el posible modelo ARIMA(p,d,q) que sigue la serie (es posible identificar más de un modelo candidato que pueda describir la serie), lo que requiere:
 
-      - Generalmente en primer lugar se debe de representar gráficamente la serie y se comienza modelando y eliminando tanto la tendencia como la estacionalidad (sobre todo si son muy pronunciadas y se ve claramente que existen)(ya se ha explicado anteriormente cómo se estiman y modelan ambas).   
+      - Generalmente en primer lugar se debe de representar gráficamente la serie y se comienza modelando y eliminando tanto la tendencia como la estacionalidad (sobre todo si son muy pronunciadas y se ve claramente que existen)(ya se ha explicado anteriormente cómo se estiman y modelan ambas). Aunque en el análisis y modelado de series temporales no hay un patrón fijo a seguir, lo recomendable es llegar al análisis de tendencia y estacionalidad con la serie temporal lo mas limpia posible, eliminando todo tipo de comportamientos no deseados, luego si al graficar la serie vemos claramente que es heterocedástica (no es constante en varianza)(es frecuente observar que la varianza aumenta con el nivel de la serie) es recomendable una transformación logarítmica en la serie original (o una transformación de Box-Cox).       
       - Una vez esto hecho se comprueba la estacionariedad. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
 		- Gráficamente: Representando y observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Como norma general si el ACF tiende “rápidamente” a 0 entonces es estacionaria, cuando la serie no es estacionaria, el ACF decrece lentamente a 0.	
 		- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, p-value, es menor de 0.05 indica que la serie es estacionaria con un nivel de confianza del 95% (se utiliza con series previamente desestacionalizadas)
@@ -220,7 +220,6 @@ _¿PROFUNDIZAR EN PREDICCIÓN?_
 _¿PROFUNDIZAR EN AIC?_
 _¿PRUEBA DE LJUNG-BOX?_
 _¿PRUEBA DE BOX-PIERCE?_
-_NO ESTACIONARIO EN VARIANZA (heterocedástica) -> TRANSFORMACIÓN LOGARITMICA, box-cox_  En caso de heterocedasticidad y es recomendable una transformación logarítmica en la serie original. La hipótesis de la varianza constante se exige en las condiciones de estacionariedad, pero es frecuente observar que la varianza aumenta con el nivel de la serie. En este caso la transformación con logaritmo neperiano ayuda a homogeneizar su comportamiento.
 _¿SARIMA(p,d,q)?_
 _¿PERIODOGRAMA?_
 _¿irregular en media, varianza?_

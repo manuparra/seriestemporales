@@ -283,11 +283,13 @@ Descomposición de una serie temporal en Tendencia + Efecto estacional + Residuo
 		
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
-	acf(serie temporal)
-	Acf(serie temporal)
+	acf(serie temporal, lag.max)
+	Acf(serie temporal, lag.max)
 	
-	pacf(serie temporal)
-	Pacf(serie temporal)	
+	pacf(serie temporal, lag.max)
+	Pacf(serie temporal, lag.max)	
+	
+		- lag.max: número máximo de retardos calculados
 
 Cálculo del test de Dickey-Fuller Ampliado (Test ADF):
 

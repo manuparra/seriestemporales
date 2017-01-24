@@ -208,15 +208,6 @@ ruido blanco es una serie estacionaria en la que ninguna observación depende de
 - Predicción: una vez seleccionado el mejor modelo, éste se puede utilizar para conseguir la mejor predicción de los valores a futuro de la serie a partir de su propia historia. ¿Pero cuál es el mejor predictor que se puede aplicar a los datos? El mejor predictor posible será "el que menos se equivoca" o, en términos estadísticos, aquel que minimiza el error cuadrático medio respecto a otro potencial predictor alternativo. 
 
 
-
-
-
-
-
-
-
-_¿PRUEBA DE LJUNG-BOX?_
-_¿PRUEBA DE BOX-PIERCE?_
 _¿SARIMA(p,d,q)?_
 _¿PERIODOGRAMA?_
 

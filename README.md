@@ -62,7 +62,7 @@ Por otro lado, la variable que se observa en una serie temporal puede ser de tip
 
 ________________________________________________________________________
 
-## Análisis de series temporales
+## Análisis de series temporales univariantes
 
 La tarea de predicción y análisis de series temporales por lo general consta de cinco pasos básicos (sólo como referencia):
 
@@ -371,7 +371,8 @@ Predecir una serie temporal:
 
 
 _boxplot?_
-_arima.sim_
+_arima.sim?_
+_arima estacional?_
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
@@ -401,6 +402,7 @@ ________________________________________________________________________
 - Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
 - Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
 - Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
+- Introduction to time series analysis http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm <br>
 - Modelización con datos de series temporales https://www.ucm.es/data/cont/docs/518-2013-10-25-Tema_6_EctrGrado.pdf <br> 
 - Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
 - Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>

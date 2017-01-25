@@ -224,13 +224,6 @@ Para que R trate a un conjunto de datos como serie temporal:
 		- end: tiempo de la última observación
 		- frequency: número de observaciones por unidad de tiempo
 
-Obtener un subconjunto de la serie teporal:
-
-	window(serie temporal, start, end)
-
-		- start: tiempo de la primera observación
-		- end: tiempo de la última observación
-
 Conocer el tiempo de comienzo de la serie:
 
 	start(serie temporal)
@@ -255,7 +248,24 @@ Unidad de tiempo a la que pertenece cada observación de la serie:
 
 	cycle(serie temporal)
 
-Agregación de los datos de la serie temporal:
+Obtener un subconjunto de la serie teporal (puede ser interesante por ejemplo para pintar un año y ver si presenta componente estacional):
+
+	window(serie temporal, start, end)
+
+		- start: tiempo de la primera observación
+		- end: tiempo de la última observación
+
+Extraer las subseries estacionales de la serie y pintarlas todas juntas (es interesante para ver la componente estacional)(lo ideal es usarlas sin la componente tendecia):
+
+	monthplot(serie temporal, phase)
+	
+		- phase: indica la estación a la que corresponde cada muestra
+
+	boxplot(formula, serie temporal)
+	
+		- formula: fórmula que indica la serie temporal y su división en ciclos (es decir, a que estación o ciclo corresponde cada muestra)
+
+Agregación de los datos de la serie temporal (puede ser interesante por ejemplo para cambiar la frecuencia de anual a trimestral)(siempre que los datos sean agregables):
 
 	aggregate(serie temporal, FUN, nfrequency)
 	
@@ -326,7 +336,7 @@ Cálculo del número de diferenciaciones necesarias para hacer la serie estacion
 
 		- test: tipo de test con el que se realiza el cálculo; "adf" (Augmented Dickey-Fuller), "kpss", "pp" (Phillips-Perron)
 
-Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos (usarlo simplemente como una primera aproximación): 
+Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos (se puede usar por ejemplo simplemente como una primera aproximación): 
 
 	auto.arima(serie temporal)
 	
@@ -370,7 +380,6 @@ Predecir una serie temporal:
 		- n.ahead: número de periodos a predecir
 
 
-_boxplot?_
 _arima.sim?_
 _arima estacional?_
 
@@ -397,12 +406,12 @@ ________________________________________________________________________
 
 # Bibliografía
 
+- Introduction to time series analysis http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm <br>
 - Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescrip/tema7.pdf <br>
 - Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf <br>
 - Introducción al análisis de series temporales http://halweb.uc3m.es/esp/Personal/personas/amalonso/esp/seriestemporales.pdf <br>
 - Introducción al análisis de series temporales https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf <br>
 - Introducción a series de tiempo http://www.estadisticas.gobierno.pr/iepr/LinkClick.aspx?fileticket=4_BxecUaZmg%3D <br>
-- Introduction to time series analysis http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm <br>
 - Modelización con datos de series temporales https://www.ucm.es/data/cont/docs/518-2013-10-25-Tema_6_EctrGrado.pdf <br> 
 - Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
 - Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>

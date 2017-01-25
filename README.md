@@ -200,8 +200,9 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 		- Gráfico de los residuos. Se pueden pintar 4 gráficas sobre los residuos cuyo propósito es testear la validez de la asumpción de aleatoriedad de los residuos.
 			- Diagrama de secuencia de los residuos: el gráfico debe de mostrar unos residuos planos y sin tendencia (media constante) y una dispersión vertical aproximadamente igual a lo largo del eje horizontal (varianza constante).
 			- Lag de los residuos: los datos aleatorios no deben exhibir ninguna estructura en este ploteo. Una estructura en este ploteo indica que los residuos no son aleatorios.
-			- Histograma de los residuos: el histograma debe tener una forma acampanada.
-			- Probabilidad de distribución normal de los residuos: debe tener una forma aproximadamente lineal.				![STexample](http://www.itl.nist.gov/div898/handbook/pmc/section6/negiz4/gif/res4plot.gif)				
+			- Histograma de los residuos: el histograma realiza una sumarización gráfica de la distribución de los residuos, debe tener una forma acampanada.
+			- Probabilidad de distribución normal de los residuos: chequea si los residuos están aproximadamente distribuidos normalmente, debe tener una forma aproximadamente lineal.				
+			![STexample](http://www.itl.nist.gov/div898/handbook/pmc/section6/negiz4/gif/res4plot.gif)				
 		- Correlograma de los residuos. Se evalúa con el correlograma que los errores del modelo son ruido blanco (la ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas). 	
 		- Los estadísticos Ljung–Box (y también Box-Pierce) (test de aleatoriedad). Si el p-value obtenido es pequeño indica que no son aleatorios, en cambio, cuanto mayor es su p-valor más evidencia hay de que los residuos son ruido blanco. El nivel mínimo es 0,05, es decir, debe suceder que el p-valor sea mayor que 0,05.
 		- El histograma de frecuencias para probar que los errores del modelo siguen una distribución normal. La prueba de normalidad se efectúa con los estadísticos Jarque Bera y Shapiro-Wilk (test de normalidad)(p-value pequeño = no son de distribución normal).
@@ -214,6 +215,7 @@ ruido blanco es una serie estacionaria en la que ninguna observación depende de
 
 _¿SARIMA(p,d,q)?_
 _¿PERIODOGRAMA?_
+_¿SERIES MULTIVARIANTES?_
 
 ________________________________________________________________________
 
@@ -394,9 +396,10 @@ _arima estacional?_
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 
-## Ejemplos de análisis completos de Series temporales
+## Ejemplos de análisis de Series temporales
 
-- Caso ejemplo Análisis y modelado Series temporales simple 01: http://www.itl.nist.gov/div898/handbook/pmc/section6/pmc62.htm
+- Ejemplo simple de análisis y modelado de series temporales sin predicción: http://www.itl.nist.gov/div898/handbook/pmc/section6/pmc62.htm
+- Ejemplo simple de análisis, modelado y predicción de series temporales: http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc44a.htm
 
 - Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./estudio_02_simple/)
 - Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./estudio_03_completo/)

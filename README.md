@@ -376,9 +376,11 @@ Cálculo del número de diferenciaciones estacionales necesarias para hacer la s
 
 Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos (se puede usar por ejemplo simplemente como una primera aproximación): 
 
-	auto.arima(serie temporal, seasonal)
+	auto.arima(serie temporal, seasonal, d, D)
 	
 		- seasonal: con true o false indicamos si las búsqueda restringuen el componente estacional
+		- d: orden de la primera diferenciación regular
+		- D: orden de la diferenciación estacional
 	
 Ajuste del modelo ARIMA sobre una serie temporal:
 

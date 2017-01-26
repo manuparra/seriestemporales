@@ -7,7 +7,7 @@ Table of Contents
 
    * [Series Temporales](#series-temporales)
       * [Introducción](#introducción)
-      * [Análisis de series temporales](#análisis-de-series-temporales)
+      * [Análisis de series temporales univariantes](#análisis-de-series-temporales-univariantes)
       * [Enfoques](#enfoques)
          * [Enfoque clásico](#enfoque-clásico)
          * [Enfoque Box-Jenkins](#enfoque-box-jenkins)
@@ -213,12 +213,21 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 ![STexample](./images/diagramaflujo.png)
 
-En principio se tiene que los modelos ARIMA(p,d,q) vistos anteriormente son modelos no estacionarios (aunque también se pueden ajustar a modelos estacionarios eliminando la estacionalidad previamente como se ha visto), por ello, también existen los modelos estacionales autorregresivos integrados de média móvil ARIMA(p,d,q)(P,D,Q)<sub>S</sub> (o SARIMA(p,d,q)(P,D,Q). Estos modelos son útiles sobre todo cuando la serie de tiempo observada tiene intervalos de observación menores a un año ya que entonces es frecuente que estas tengan variaciones ó patrones sistemáticos cada cierto periodo. Esta estacionalidad debe ser captadas e incluida dentro de la estructura del modelo a construir. Este tipo de procesos tiene las siguientes características:
+En principio se tiene que los modelos ARIMA(p,d,q) vistos anteriormente son modelos no estacionarios (aunque también se pueden ajustar a modelos estacionarios eliminando la estacionalidad previamente como se ha visto), por ello, también existen los modelos estacionales autorregresivos integrados de média móvil ARIMA(p,d,q)(P,D,Q)<sub>S</sub> (o SARIMA(p,d,q)(P,D,Q)). Estos modelos son útiles sobre todo cuando la serie de tiempo observada tiene intervalos de observación menores a un año ya que entonces es frecuente que estas tengan variaciones ó patrones sistemáticos cada cierto periodo. Esta estacionalidad debe ser captadas e incluida dentro de la estructura del modelo a construir. Este tipo de procesos tiene las siguientes características:
 
-	- Contiene una componente ARIMA(p,d,q) que modela la dependencia regular, que es la dependencia asociada a observaciones consecutivas.
-	- Contiene una componente ARIMA(P,D,Q) que modela la dependencia estacional, que está asociada a observaciones separadas por periodos.
+- Contiene una componente ARIMA(p,d,q) que modela la dependencia regular, que es la dependencia asociada a observaciones consecutivas.
+- Contiene una componente ARIMA(P,D,Q) que modela la dependencia estacional, que está asociada a observaciones separadas por periodos.
 
+The seasonal part of an AR or MA model will be seen in the seasonal lags of the PACF and ACF. 
+For example, an ARIMA(0,0,0)(0,0,1)12 model will show:
 
+    a spike at lag 12 in the ACF but no other significant spikes.
+    The PACF will show exponential decay in the seasonal lags; that is, at lags 12, 24, 36, ….
+
+Similarly, an ARIMA(0,0,0)(1,0,0)12 model will show:
+
+    exponential decay in the seasonal lags of the ACF
+    a single significant spike at lag 12 in the PACF.
 
 
 

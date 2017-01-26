@@ -9,8 +9,9 @@ Table of Contents
       * [Introducción](#introducción)
       * [Análisis de series temporales univariantes](#análisis-de-series-temporales-univariantes)
       * [Enfoques](#enfoques)
-         * [Enfoque clásico](#enfoque-clásico)
-         * [Enfoque Box-Jenkins](#enfoque-box-jenkins)
+      	* [Enfoque clásico (descomposición)](#enfoque-clásico)
+	* [Enfoque del Alisado Exponencial](#enfoque-del-alisado-exponencial)
+	* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
       * [Ejemplos](#ejemplos)
@@ -96,7 +97,7 @@ El primer paso a seguir a la hora de realizar un análisis es determinar cómo s
 - Modelo aditivo: donde cada componente contribuye al comportamiento de la variable de interés en forma aditiva (unidades).
 - Modelo multiplicativo: donde cada componente contribuye al comportamiento de la variable de interés en forma multiplicativa (porcentaje).
 
-Así pues, una serie temporal se puede descomponer y denotar en su manera aditiva como:
+Si a modelo multiplicativo se le aplica un logaritmo para estabilizarlo, entonces es equivalente a un modelo aditivo. Así pues, una serie temporal se puede descomponer y denotar en su manera aditiva como:
 
 X<sub>t</sub> = T<sub>t</sub> + E<sub>t</sub> + I<sub>t</sub>
 
@@ -144,11 +145,14 @@ En este punto se tiene una descomposición de la serie en componentes que separa
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, ya que explican la evolución pasada de una serie en función de pautas simples pero tienen problemas y limitaciones. Aunque son útiles para describir las pautas que sigue una serie temporal, las predicciones que proporcionan suelen ser muy malas (es decir, con un gran error asociado). La razón de esto es que en una serie temporal la observación más reciente depende, en general, de sus valores pasados, pero esta dependencia suele ser más fuerte con los datos más recientes y más débil con los más alejados. 
 
+_VARIANZA PARA VER EL MEJOR AJUSTE?_
+
+### Enfoque del Alisado Exponencial
+
 _METODOS DE SUAVIZADO?_
 _SERIES SIN TENDENCIA NI ESTACIONALIDAD?_ _naibe?_
 _SERIES CON TENDENCIA SIN ESTACIONALIDAD?_ _holt?_
 _SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
-_VARIANZA PARA VER EL MEJOR AJUSTE?_
 
 ### Enfoque Box-Jenkins
 
@@ -213,21 +217,16 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 
 ![STexample](./images/diagramaflujo.png)
 
-En principio se tiene que los modelos ARIMA(p,d,q) vistos anteriormente son modelos no estacionarios (aunque también se pueden ajustar a modelos estacionarios eliminando la estacionalidad previamente como se ha visto), por ello, también existen los modelos estacionales autorregresivos integrados de média móvil ARIMA(p,d,q)(P,D,Q)<sub>S</sub> (o SARIMA(p,d,q)(P,D,Q)). Estos modelos son útiles sobre todo cuando la serie de tiempo observada tiene intervalos de observación menores a un año ya que entonces es frecuente que estas tengan variaciones ó patrones sistemáticos cada cierto periodo. Esta estacionalidad debe ser captadas e incluida dentro de la estructura del modelo a construir. Este tipo de procesos tiene las siguientes características:
+En principio se tiene que los modelos ARIMA(p,d,q) vistos anteriormente son modelos no estacionarios (aunque también se pueden ajustar a modelos estacionarios eliminando la estacionalidad previamente como se ha visto), por ello, también existen los modelos estacionales autorregresivos integrados de média móvil ARIMA(p,d,q)(P,D,Q)<sub>S</sub> (o SARIMA(p,d,q)(P,D,Q)). Aunque la metodología para constuir estos procesos es igual, son útiles sobre todo cuando la serie de tiempo observada tiene intervalos de observación menores a un año ya que entonces es frecuente que estas tengan variaciones ó patrones sistemáticos cada cierto periodo. Esta estacionalidad debe ser captadas e incluida dentro de la estructura del modelo a construir. Este tipo de procesos tiene las siguientes características:
 
 - Contiene una componente ARIMA(p,d,q) que modela la dependencia regular, que es la dependencia asociada a observaciones consecutivas.
 - Contiene una componente ARIMA(P,D,Q) que modela la dependencia estacional, que está asociada a observaciones separadas por periodos.
 
-The seasonal part of an AR or MA model will be seen in the seasonal lags of the PACF and ACF. 
-For example, an ARIMA(0,0,0)(0,0,1)12 model will show:
+En principio la parte estacional se puede modelizar de la misma forma que la parte regular. La identificación se realiza estudiando la ACF y la PACF en los retardos estacionales. Cuando una serie tiene parte regular y parte estacional, la FAS presenta una interrelación entre ellas. Básicamente la ACF y PACF de los modelos estacionales presentan las siguientes características:
 
-    a spike at lag 12 in the ACF but no other significant spikes.
-    The PACF will show exponential decay in the seasonal lags; that is, at lags 12, 24, 36, ….
+- ACF: en los primeros rezagos se observa únicamente la parte regular, mientras que la parte estacional se observa en los retardos del orden del periodo (12, 24, etc.). También se puede observar la interacción entre ambos, mediante una componente regular en los retardos cercanos a los estacionales.
+- PACF: nuevamente en los primeros rezagos se observa únicamente la parte regular, mientras que la parte estacional se observa en los retardos del orden del periodo (12, 24, etc.). Nuevamente se puede observar la interacción entre ambos, mediante una componente regular en los retardos cercanos a los estacionales (positiva o negativa a la derecha y positiva a la izquierda).
 
-Similarly, an ARIMA(0,0,0)(1,0,0)12 model will show:
-
-    exponential decay in the seasonal lags of the ACF
-    a single significant spike at lag 12 in the PACF.
 
 
 
@@ -336,6 +335,11 @@ Cálculo de la tendencia mediante filtrado (medias móviles):
 		- sides: "2" para centrados
 	
     decompose(sertie temporal)$trend
+    
+    ma(serie temporal, order, centre)
+    
+    	- order: orden la media móvil
+	- centre: si se desea centrar la media móvil sea cual sea el orden
 
 Eliminación de la tendencia mediante diferenciación (lag=1):
 

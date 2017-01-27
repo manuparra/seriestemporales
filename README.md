@@ -438,9 +438,10 @@ _arima estacional?_
 - Ejemplo simple de análisis y modelado de series temporales sin predicción: http://www.itl.nist.gov/div898/handbook/pmc/section6/pmc62.htm
 - Ejemplo simple de análisis, modelado y predicción de series temporales: http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc44a.htm
 
-- Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./estudio_02_simple/)
-- Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./estudio_03_completo/)
-- Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./estudio_04_completo/)
+- Caso ejemplo Análisis y modelado Series temporales simple 01: [Ver](./examples/estudio_01_simple/)
+- Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./examples/estudio_02_simple/)
+- Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./examples/estudio_03_completo/)
+- Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./examples/estudio_04_completo/)
 
 
 

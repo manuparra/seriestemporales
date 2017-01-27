@@ -401,9 +401,11 @@ Evaluación de la bondad del ajuste de varios modelos mediante el criterio AIC (
 
 		- object: modelos de serie temporal que se quieren comparar
 
-Test de Ljung-Box para la hipótesis de independencia: 
+Test de Ljung-Box y Box-Pierce para la hipótesis de independencia: 
 
-	Box.test(residuos modelo)
+	Box.test(residuos modelo,type)
+	
+		- type: "Ljung-Box" o "Box-Pierce" (por defecto)
 
 Test de normalidad con los estadísticos Jarque Bera y Shapiro-Wilk:
 

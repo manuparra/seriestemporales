@@ -182,7 +182,9 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
       - Generalmente en primer lugar se debe de representar gráficamente la serie para identificar la tendencia y la estacionalidad (si es que las hay)(la estacionalidad de puede ver con las gráficas de las subsecuencias estacionarias). Posteriormente se prosigue modelando y eliminando tanto la tendencia como la estacionalidad para conseguir la estacionariedad (sobre todo si son muy pronunciadas y se ve claramente que existen)(ya se ha explicado anteriormente cómo se estiman y modelan ambas)(también pueden no eliminarse directamente e incluirse las diferenciaciones necesarias para hacerlo en el modelo ARIMA). Aunque en el análisis y modelado de series temporales no hay un patrón fijo a seguir, lo recomendable es llegar al análisis de tendencia y estacionalidad con la serie temporal lo mas limpia posible, eliminando todo tipo de comportamientos no deseados, luego si al graficar la serie vemos claramente que es heterocedástica (no es constante en varianza)(es frecuente observar que la varianza aumenta con el nivel de la serie) es recomendable una transformación logarítmica en la serie original (o una transformación de Box-Cox)(También si se observa un componente estacional muy fuerte además de tendencia, se puede probar a eliminar primero el componente estacional por si la serie resultante ya fuera estacionaria, y así no tener que realizar además la eliminación de la tendencia).       
       - Una vez esto hecho se comprueba la estacionariedad. La condición de estacionaridad es un requisito que debe cumplirse para poder aplicar modelos paramétricos de análisis y predicción de series de datos. Pero ¿cómo saber si una serie es estacionaria?
 		- Gráficamente: Representando y observando las gráficas de autocorrelación (ACF) y autocorrelación parcial (PACF). Como norma general si el ACF tiende “rápidamente” a 0 entonces es estacionaria, cuando la serie no es estacionaria, el ACF decrece lentamente a 0.	
-		- Test estadísticos: Dickey-Fuller Ampliado (Test ADF). Si el valor resultante, p-value, es menor de 0.05 (ya que el p-value representa la probabilidad y se toma como hipótesis que la serie es no estacionaria) indica que la serie es estacionaria con un nivel de confianza del 95% (en caso contrario no habría evidencia para rechazar la hipótesis de no estacionariedad). Kwiatkowski-Phillips-Schmidt-Shin (Test KPSS). En este caso la hipótesis es la contraria, luego un p-value mayor que 0.05 indica que la serie no es estacionaria.
+		- Test estadísticos: 
+			- Dickey-Fuller Ampliado (Test ADF). La hipótesis nula en este test es que la serie no es estacionaria, luego si el valor resultante, p-value, es menor de 0.05 (ya que el p-value representa la probabilidad de la hipótesis tomada) indica que la serie es estacionaria con un nivel de confianza del 95% (en caso contrario no habría evidencia para rechazar la hipótesis de no estacionariedad). 
+			- Kwiatkowski-Phillips-Schmidt-Shin (Test KPSS). En este caso la hipótesis es la contraria, luego un p-value mayor que 0.05 indica que la serie no es estacionaria.
       
       Si encontramos que la serie no es estacionaria ni habiendo eliminado la tendencia y la estacionalidad, se debe de diferenciar hasta conseguir que lo sea. La parte integrada suele ser necesaria para corregir la estacionaridad en la varianza. Normalmente los ordenes de diferenciación para que desaparezcan la tendencia o estacionalidad que quede no suelen ser elevados.      
       - Por último, una vez que la serie sea estacionaria, se determina un modelo ARIMA (o ARMA en caso de que no haga falta diferenciar) para la serie estacionaria, es decir, los órdenes p, d y q de su estructura autorregresiva, integrado y de media móvil. El modelo se puede deducir leyendo los correlogramas de la serie, es decir, las funciones de autocorrelación y autocorelación parcial (de la serie transformada, no de la original), ya que por norma general cuando solo hay un componente:
@@ -208,7 +210,7 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 			- Probabilidad de distribución normal de los residuos: chequea si los residuos están aproximadamente distribuidos normalmente, debe tener una forma aproximadamente lineal.				
 			![STexample](http://www.itl.nist.gov/div898/handbook/pmc/section6/negiz4/gif/res4plot.gif)				
 		- Correlograma de los residuos. Se evalúa con el correlograma que los errores del modelo son ruido blanco (la ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas). 	
-		- Los estadísticos Ljung–Box (y también Box-Pierce) (test de aleatoriedad). Si el p-value obtenido es pequeño indica que no son aleatorios, en cambio, cuanto mayor es su p-valor más evidencia hay de que los residuos son ruido blanco. El nivel mínimo es 0,05, es decir, debe suceder que el p-valor sea mayor que 0,05.
+		- Los estadísticos Ljung–Box (y también Box-Pierce) (test de aleatoriedad). La hipótesis nula para estos test es que los residuos son independientes. Luego si el p-value obtenido es pequeño indica que no son aleatorios, en cambio, cuanto mayor es su p-valor más evidencia hay de que los residuos son ruido blanco. El nivel mínimo es 0,05, es decir, debe suceder que el p-valor sea mayor que 0,05.
 		- El histograma de frecuencias para probar que los errores del modelo siguen una distribución normal. La prueba de normalidad se efectúa con los estadísticos Jarque Bera y Shapiro-Wilk (test de normalidad)(p-value pequeño = no son de distribución normal).
 		
 		Para que un modelo sea válido, los diferentes análisis sobre los residuos obtenidos en la estimación serán "ruido blanco". Un ruido blanco es una serie estacionaria en la que ninguna observación depende de las otras y, por tanto, todos los valores de la ACF y la PACF son nulos. El correlograma y el correlograma parcial deben ser muy similares y los valores no deben ser significativamente distintos de cero. Si ésto no es así y los residuos muestran estructura, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo teórico que podamos intuir y se repiten las etapas anteriores hasta obtener un modelo adecuado.
@@ -376,12 +378,20 @@ Cálculo del número de diferenciaciones estacionales necesarias para hacer la s
 
 Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan los datos (se puede usar por ejemplo simplemente como una primera aproximación): 
 
-	auto.arima(serie temporal, seasonal, d, D)
+	auto.arima(serie temporal, seasonal, stepwise, d, D)
 	
 		- seasonal: con true o false indicamos si las búsqueda restringuen el componente estacional
+		- stepwise: a FALSE realiza una búsqueda sobre todos los modelos (lento), a TRUE hace una búsqueda gradual (rápido)
 		- d: orden de la primera diferenciación regular
 		- D: orden de la diferenciación estacional
+
+Simulación de un modelo ARIMA:
+
+	arima.sim(model, n)
 	
+		- model: lista con los componenetes AR y MA, se puede usar también _order_ para el orden
+		- n: longitud de la serie que se simula
+
 Ajuste del modelo ARIMA sobre una serie temporal:
 
 	arima(serie temporal, order, seasonal)

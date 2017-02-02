@@ -267,15 +267,21 @@ En el desarrollo teórico de la mayoría de técnicas y modelos no se tienen en 
 
 En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. Luego el objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Luego existen diversos métodos de imputación diferenciados en la forma de estimar los datos faltantes, cuya elección preferible vendrá dada por la naturaleza de la serie:
 
-- Métodos de imputación simple
+- Métodos de imputación simples
 	- Imputación mediante la media: se reemplazan los valores perdidos por la media de los valores observados.
 	- Imputación mediante regresión: se estima una regresión de las observaciones existentes y se imputa cada valor perdido mediante la ecuación de regresión estimada.
 	- Imputación mediante regresión estocástica: similar al enterior pero se imputa añadiendo a la predicción un valor residual para reestablecer la pérdida de variabilidad.
 	- Imputación mediante médias móviles: se reemplazan las observaciones faltantes por los valores estimados mediante médias móviles.
+	- Imputación por Last Observation Carried Forward (locf): reemplaza el dato perdido por la observacion que le precede.  
 - Métodos de imputación basados en máxima verosimilitud
-	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final. 
+	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final (son especialmente efectivos cuando los datos faltan al azar). El analisis de imputaciónn multiple esta dividido en tres fases: fase de imputacion, fase de an ́alisis y fase de puesta en comun.
 	- Imputación mediante el algoritmo de máxima verosimilitud EM (Expectation-Maximization):
-
+- Métodos de imputación basados en machine learning
+	- KNN
+	- K-Nearest
+	- KMI
+	- SVMI
+	- LLSI
 
 kalman filter
 
@@ -283,19 +289,6 @@ interpolación
 	polinomial
 	lineal
 
-
-
---
-
-Métodos de imputación de máxima verosimilitud
-
-Métodos de imputación basados en machine learning
-
-	KNN
-	K-Nearest
-	KMI
-	SVMI
-	LLSI
 
 
 ________________________________________________________________________
@@ -505,7 +498,16 @@ Imputación de valores perdidos mediante médias móviles:
 	na.ma(serie temporal, k)
 
 		- k: ventana de la média móvil
+
+Imputación de valores perdidos mediante locf:
+
+	na.locf(serie temporal, option) *paquete imputeTS*
+	
+		- option: locf para reemplazar con la anterior, nocb para reemplazar con la posterior
 		
+	na.locf(serie temporal, fromLast) *paquete zoo*
+	
+		- fromLast: valor a true para reemplazar con la posterior, en caso contrario con la anterior
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 

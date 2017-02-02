@@ -272,22 +272,19 @@ En estadística, la imputación es el proceso de reemplazar los valores perdidos
 	- Imputación mediante regresión: se estima una regresión de las observaciones existentes y se imputa cada valor perdido mediante la ecuación de regresión estimada.
 	- Imputación mediante regresión estocástica: similar al enterior pero se imputa añadiendo a la predicción un valor residual para reestablecer la pérdida de variabilidad.
 	- Imputación mediante médias móviles: se reemplazan las observaciones faltantes por los valores estimados mediante médias móviles.
-	- Imputación por Last Observation Carried Forward (locf): reemplaza el dato perdido por la observacion que le precede.  
+	- Imputación por Last Observation Carried Forward (locf): reemplaza el dato perdido por la observacion que le precede. 
+	- Imputación por interpolación: se estiman los valores perdidos interpolando (uniendo de manera lineal, polinomial, etc.) el último valor válido antes del valor perdido y el primer valor válido después del valor perdido.	
 - Métodos de imputación basados en máxima verosimilitud
 	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final (son especialmente efectivos cuando los datos faltan al azar). El analisis de imputaciónn multiple esta dividido en tres fases: fase de imputacion, fase de an ́alisis y fase de puesta en comun.
-	- Imputación mediante el algoritmo de máxima verosimilitud EM (Expectation-Maximization):
+	- Imputación mediante el algoritmo EM (Expectation-Maximization): es un algoritmo particularmente importante para el analisis de datos faltantes. Es un método iterativo de dos pasos (esperanza y maximizacion) donde se empezará por reemplazar los datos ausentes por unos valores estimados y a continuación proceder a una primera estimación de los parámetros, seguidamente se usarán los parámetros estimados para proceder a una nueva estimación de los datos faltantes, que serán posteriormente utilizados para obtener unas estimaciones de los parámetros, y así sucesivamente hasta que la convergencia de los parámetros sea aceptable.
 - Métodos de imputación basados en machine learning
-	- KNN
-	- K-Nearest
-	- KMI
-	- SVMI
-	- LLSI
+	- Imputación con K-Nearest Neighbor
+	- Imputación con K-means (clustering)
+	- Imputación con máquina de soporte vectorial
+
 
 kalman filter
 
-interpolación
-	polinomial
-	lineal
 
 
 
@@ -508,6 +505,17 @@ Imputación de valores perdidos mediante locf:
 	na.locf(serie temporal, fromLast) *paquete zoo*
 	
 		- fromLast: valor a true para reemplazar con la posterior, en caso contrario con la anterior
+
+Imputación de valores perdidos mediante interpolación:
+
+	na.interpolation(serie temporal, option) *paquete imputeTS*
+	
+		- option: "linear" "spline" (polinomial) o "stine"
+		
+	na.approx(serie temporal) *paquete zoo*
+	
+	na.interp(serie temporal) *paquete forescast*
+
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 

@@ -252,6 +252,7 @@ En principio la parte estacional se puede modelizar de la misma forma que la par
 
 Por ejemplo, un modelo ARIMA(0,0,0)(0,0,1)<sub>12</sub> mostraría únicamente una barra significativa en el rezago 12 de la ACF, mientras que la PACF mostraría un decaimiento exponencial en el rezago estacionario. De manera similar, un ARIMA(0,0,0)(1,0,0)<sub>12</sub> mostraría un decaimiento exponencial en los rezagos estacionales de la ACF, y una sola barra significativa en el rezago 12 del PACF.
 
+Por último, una de las desventajas de los modelos ARIMA está en que asumen que las observaciones están presentes en cada periodo de tiempo (ya que son necesarios para el cómputo de las autocorrelaciones), algo que no siempre es así ya que es habitual encontrar series de tiempo con valores perdidos. Por lo que este tipo de series requiere que se apliquen previamente métodos que estimen los valores faltantes para poder emplear el método ARIMA.
 
 
 _¿PERIODOGRAMA?_
@@ -266,7 +267,21 @@ Muchas series temporales existentes contienen valores perdidos o no presentes en
 
 En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. Luego el objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Hay múltiples métodos de imputación, cuya elección preferible vendrá dada por la naturaleza de la serie.
 
+kalman filter
+em
+interpolación
 
+--
+
+Métodos de imputación de máxima verosimilitud
+
+Métodos de imputación basados en machine learning
+
+	KNN
+	K-Nearest
+	KMI
+	SVMI
+	LLSI
 
 
 ________________________________________________________________________
@@ -509,6 +524,7 @@ ________________________________________________________________________
 - Series temporales en R https://dl.orangedox.com/9fzOYs2ZoimR4izLVE/7-Series%20temporales%20en%20R.pdf <br>
 - A Complete Tutorial on Time Series Modeling in R https://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/<br>
 - A little book of R for time series https://media.readthedocs.org/pdf/a-little-book-of-r-for-time-series/latest/a-little-book-of-r-for-time-series.pdf <br>
+- Methods for the estimation of missing values in time series http://ro.ecu.edu.au/cgi/viewcontent.cgi?article=1063&context=theses <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

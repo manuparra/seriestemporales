@@ -252,7 +252,7 @@ En principio la parte estacional se puede modelizar de la misma forma que la par
 
 Por ejemplo, un modelo ARIMA(0,0,0)(0,0,1)<sub>12</sub> mostraría únicamente una barra significativa en el rezago 12 de la ACF, mientras que la PACF mostraría un decaimiento exponencial en el rezago estacionario. De manera similar, un ARIMA(0,0,0)(1,0,0)<sub>12</sub> mostraría un decaimiento exponencial en los rezagos estacionales de la ACF, y una sola barra significativa en el rezago 12 del PACF.
 
-Por último, una de las desventajas de los modelos ARIMA está en que asumen que las observaciones están presentes en cada periodo de tiempo (ya que son necesarios para el cómputo de las autocorrelaciones), algo que no siempre es así ya que es habitual encontrar series de tiempo con valores perdidos. Por lo que este tipo de series requiere que se apliquen previamente métodos que estimen los valores faltantes para poder emplear el método ARIMA.
+Por último, una de las desventajas de los modelos de Box-Jenkins está en que asumen que las observaciones están presentes en cada periodo de tiempo (ya que son necesarios para el cómputo de las autocorrelaciones), algo que no siempre es así ya que es habitual encontrar series de tiempo con valores perdidos. Por lo que este tipo de series requiere que se apliquen previamente métodos que estimen los valores faltantes para poder emplear el método ARIMA.
 
 
 _¿PERIODOGRAMA?_
@@ -261,15 +261,29 @@ ________________________________________________________________________
 
 ## Manejo de datos perdidos en series temporales
 
-Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior. Uno de los métodos más conocidos para tratar con este problema es la imputación.
+En el desarrollo teórico de la mayoría de técnicas y modelos no se tienen en cuenta algunas cuestiones que surgen en su aplicación práctica, como es en concreto la existencia de datos faltantes, también denominados perdidos o incompletos. Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior, o también realizar el análisis únicamente con los datos disponibles. Pero por el contrario, uno de los métodos más conocidos para tratar con este problema es la imputación.
 
 **Imputación** 
 
-En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. Luego el objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Hay múltiples métodos de imputación, cuya elección preferible vendrá dada por la naturaleza de la serie.
+En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. Luego el objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Luego existen diversos métodos de imputación diferenciados en la forma de estimar los datos faltantes, cuya elección preferible vendrá dada por la naturaleza de la serie:
+
+- Métodos de imputación simple
+	- Imputación mediante la media: se reemplazan los valores perdidos por la media de los valores observados.
+	- Imputación mediante regresión: se estima una regresión de las observaciones existentes y se imputa cada valor perdido mediante la ecuación de regresión estimada.
+	- Imputación mediante regresión estocástica: similar al enterior pero se imputa añadiendo a la predicción un valor residual para reestablecer la pérdida de variabilidad.
+	- Imputación mediante médias móviles: se reemplazan las observaciones faltantes por los valores estimados mediante médias móviles.
+- Métodos de imputación basados en máxima verosimilitud
+	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final. 
+	- Imputación mediante el algoritmo de máxima verosimilitud EM (Expectation-Maximization):
+
 
 kalman filter
-em
+
 interpolación
+	polinomial
+	lineal
+
+
 
 --
 
@@ -482,6 +496,16 @@ Predecir una serie temporal:
 		- object: modelo de serie temporal
 		- n.ahead: número de periodos a predecir
 
+Imputación de valores perdidos mediante la media:
+
+	na.mean(serie temporal)
+
+Imputación de valores perdidos mediante médias móviles:
+
+	na.ma(serie temporal, k)
+
+		- k: ventana de la média móvil
+		
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
@@ -489,6 +513,7 @@ Predecir una serie temporal:
 - base: incorporado en R
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
+- imputeTS: https://cran.r-project.org/web/packages/imputeTS/index.html
 
 ## Ejemplos de análisis de Series temporales
 

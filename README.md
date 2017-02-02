@@ -260,6 +260,13 @@ ________________________________________________________________________
 
 ## Manejo de datos perdidos en series temporales
 
+Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior. Uno de los métodos más conocidos para tratar con este problema es la imputación.
+
+**Imputación** 
+
+En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. Luego el objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Hay múltiples métodos de imputación, cuya elección preferible vendrá dada por la naturaleza de la serie.
+
+
 
 
 ________________________________________________________________________

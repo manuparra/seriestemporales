@@ -15,8 +15,9 @@ Table of Contents
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
-      * [Ejemplos](#ejemplos)
-
+      * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-R)
+      	 * [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
+      * [Ejemplos de análisis de Series temporales](#ejemplos-se-análisis-de-series-temporales)
    * [Bibliografía](#bibliografía)
 
 
@@ -261,7 +262,7 @@ ________________________________________________________________________
 
 ## Manejo de datos perdidos en series temporales
 
-En el desarrollo teórico de la mayoría de técnicas y modelos no se tienen en cuenta algunas cuestiones que surgen en su aplicación práctica, como es en concreto la existencia de datos faltantes, también denominados perdidos o incompletos. Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior, o también realizar el análisis únicamente con los datos disponibles. Pero por el contrario, uno de los métodos más conocidos para tratar con este problema es la imputación.
+En el desarrollo teórico de la mayoría de técnicas y modelos no se tienen en cuenta algunas cuestiones que surgen en su aplicación práctica, como es en concreto la existencia de datos faltantes, también denominados perdidos o incompletos. Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior. Otra forma de lidiar con ellos es realizar el análisis únicamente con los datos disponibles. Pero uno de los métodos más conocidos para tratar con este problema es la imputación.
 
 **Imputación** 
 
@@ -275,12 +276,16 @@ En estadística, la imputación es el proceso de reemplazar los valores perdidos
 	- Imputación por Last Observation Carried Forward (locf): reemplaza el dato perdido por la observacion que le precede. 
 	- Imputación por interpolación: se estiman los valores perdidos interpolando (uniendo de manera lineal, polinomial, etc.) el último valor válido antes del valor perdido y el primer valor válido después del valor perdido.	
 - Métodos de imputación basados en máxima verosimilitud
-	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final (son especialmente efectivos cuando los datos faltan al azar). El analisis de imputaciónn multiple esta dividido en tres fases: fase de imputacion, fase de análisis y fase de puesta en común.
-	- Imputación mediante el algoritmo EM (Expectation-Maximization): es un algoritmo particularmente importante para el analisis de datos faltantes. Es un método iterativo de dos pasos (esperanza y maximizacion) donde se empezará por reemplazar los datos ausentes por unos valores estimados y a continuación proceder a una primera estimación de los parámetros, seguidamente se usarán los parámetros estimados para proceder a una nueva estimación de los datos faltantes, que serán posteriormente utilizados para obtener unas estimaciones de los parámetros, y así sucesivamente hasta que la convergencia de los parámetros sea aceptable.
+	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final. El análisis de imputación múltiple esta dividido en tres fases: fase de imputacion, fase de análisis y fase de puesta en común. 
+	- Imputación mediante el algoritmo EM (Expectation-Maximization): es un algoritmo importante para el análisis de datos faltantes. Es un método iterativo de dos pasos (esperanza y maximizacion) donde se comienza por reemplazar los datos ausentes por unos valores estimados y a continuación se procede a una primera estimación de los parámetros, para con estos parámetros volver a iniciar al primer paso y así sucesivamente hasta que la convergencia de los parámetros sea aceptable. 
 - Métodos de imputación basados en machine learning
 	- Imputación con K-Nearest Neighbor
 	- Imputación con K-means (clustering)
 	- Imputación con máquina de soporte vectorial
+
+En el ámbito de la imputación, la imputación en series temporales univariantes es un reto adicional, debido a que la mayoría de algoritmos estándar están desarrollados para series temporales multivarientes ya que dependen de la correlación entre los inter-atributos para estimar los valores de los datos perdidos (imputación múltiple, EM, etc.), algo que no ocurre en el caso univariante (al menos directamente).
+
+
 
 
 kalman filter
@@ -486,6 +491,23 @@ Predecir una serie temporal:
 		- object: modelo de serie temporal
 		- n.ahead: número de periodos a predecir
 
+### Paquetes R para el análisis y tratamiento de Series Temporales:
+
+- stats: incorporado en R
+- base: incorporado en R
+- tseries: https://cran.r-project.org/web/packages/tseries/index.html
+- forecast: https://cran.r-project.org/web/packages/forecast/index.html
+- TSA: https://cran.r-project.org/web/packages/TSA/TSA.pdf
+
+________________________________________________________________________
+
+## Imputación de datos perdidos en series temporales con R
+
+Aunque la imputación en general está bien cubierta en R, es dificil encontrar funciones para la imputación de series temporales univariantes. El problema reside en que la mayoría de técnicas de imputación standar no pueden ser aplicadas a series temporales univariantes de forma directa, ya que la mayoría de algoritmos dependen de correlaciones entre los inter-atributos, mientras que la imputación de series univariantes necesitan emplear dependencias del tiempo.
+
+
+
+
 Imputación de valores perdidos mediante la media:
 
 	na.mean(serie temporal)
@@ -516,14 +538,13 @@ Imputación de valores perdidos mediante interpolación:
 	
 	na.interp(serie temporal) *paquete forescast*
 
+### Paquetes R para la imputación de datos perdidos en series Temporales:
 
-### Paquetes R para el análisis y tratamiento de Series Temporales:
-
-- stats: incorporado en R
-- base: incorporado en R
-- tseries: https://cran.r-project.org/web/packages/tseries/index.html
+- zoo: https://cran.r-project.org/web/packages/zoo/zoo.pdf
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - imputeTS: https://cran.r-project.org/web/packages/imputeTS/index.html
+
+
 
 ## Ejemplos de análisis de Series temporales
 
@@ -534,11 +555,6 @@ Imputación de valores perdidos mediante interpolación:
 - Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./examples/estudio_02_simple/)
 - Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./examples/estudio_03_completo/)
 - Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./examples/estudio_04_completo/)
-
-
-
-
-
 
 ________________________________________________________________________
 
@@ -560,6 +576,7 @@ ________________________________________________________________________
 - A Complete Tutorial on Time Series Modeling in R https://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/<br>
 - A little book of R for time series https://media.readthedocs.org/pdf/a-little-book-of-r-for-time-series/latest/a-little-book-of-r-for-time-series.pdf <br>
 - Methods for the estimation of missing values in time series http://ro.ecu.edu.au/cgi/viewcontent.cgi?article=1063&context=theses <br>
+- Comparison of different Methods for Univariate Time Series Imputation in R: https://arxiv.org/ftp/arxiv/papers/1510/1510.03924.pdf <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

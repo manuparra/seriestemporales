@@ -540,13 +540,25 @@ Imputación de valores perdidos mediante agregación:
 	na.aggregate(serie temporal, by)
 	
 		- by: agrupación para generar la imputación
-		
+
 Imputación de valores perdidos mediante filtro de Kalman en modelos en el espacio de estados o estructurales:
 
 	na.kalman(serie temporal, model, smooth)
 	
 		- model: modelo usado al que se le aplica el filtro de Kalman. Puede ser "auto.arima" para usar una representación en el espacio de estados de los modelos ARIMA, o "StructTS" para usar un modelo estructural ajustado por máxima verosimilitud.
 		- smooth: "true" para usar kalmanSmooth (mejor opción para imputación) o "false" para kalmanRun.
+
+Imputación de valores perdidos por descomposición estacional:
+
+	na.seadec(serie temporal, algorithm)
+	
+		- algorithm: algoritmo usado para realizar la imputación
+
+Imputación de valores perdidos por división estacional:
+
+	na.seasplit(serie temporal, algorithm)
+	
+		- algorithm: algoritmo usado para realizar la imputación
 
 **Series temporales multivariantes**
 

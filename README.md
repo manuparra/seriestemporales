@@ -262,11 +262,13 @@ ________________________________________________________________________
 
 ## Manejo de datos perdidos en series temporales
 
-En el desarrollo teórico de la mayoría de técnicas y modelos no se tienen en cuenta algunas cuestiones que surgen en su aplicación práctica, como es en concreto la existencia de datos faltantes, también denominados perdidos o incompletos. Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior. Otra forma de lidiar con ellos es realizar el análisis únicamente con los datos disponibles. Pero uno de los métodos más conocidos para tratar con este problema es la imputación.
+En el desarrollo teórico de la mayoría de técnicas y modelos no se tienen en cuenta algunas cuestiones que surgen en su aplicación práctica, como es en concreto la existencia de datos faltantes, también denominados perdidos o incompletos. Muchas series temporales existentes contienen valores perdidos o no presentes en las observaciones que las componen (ya sean provocados por mediciones incorrectas, errores, etc). Estos valores perdidos crean numerosos problemas y hacen dificil el análisis de los datos, por lo tanto su presencia hace que sea necesaria una etapa de preprocesado de la serie. Los modelos de pérdida de datos se clasifican en tres tipos diferentes: MCAR, MAR y MNAR. Conocer esta causa que genera los datos perdidos es importante ya que puede ser de ayuda a la hora de seleccionar un método concreto para tratarlos.
+
+La manera más simple de tratar con ellos es descartándolos, pero esto solo es posible cuándo son muy pocos los valores perdidos y no tienen influencia en el análisis posterior. Otra forma de lidiar con ellos es realizar el análisis únicamente con los datos disponibles. Pero uno de los métodos más conocidos para tratar con este problema es la imputación.
 
 **Imputación** 
 
-En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. Luego el objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Luego existen diversos métodos de imputación diferenciados en la forma de estimar los datos faltantes, cuya elección preferible vendrá dada por la naturaleza de la serie:
+En estadística, la imputación es el proceso de reemplazar los valores perdidos con valores sustitutos. El objetivo de la imputación es rellenar los valores perdidos con estimaciones (realizadas con el método de aprendizaje más apropiado para cada caso) de estos teniendo en cuenta las relaciones posibles entre las observaciones. Luego existen diversos métodos de imputación diferenciados en la forma de estimar los datos faltantes, cuya elección preferible vendrá dada por la naturaleza de la serie:
 
 - Métodos de imputación simples
 	- Imputación mediante la media: se reemplazan los valores perdidos por la media de los valores observados.
@@ -283,9 +285,9 @@ En estadística, la imputación es el proceso de reemplazar los valores perdidos
 	- Imputación con K-means (clustering)
 	- Imputación con máquina de soporte vectorial
 
-En el ámbito de la imputación, la imputación en series temporales univariantes es un reto adicional, debido a que la mayoría de algoritmos estándar están desarrollados para series temporales multivarientes ya que dependen de la correlación entre los inter-atributos para estimar los valores de los datos perdidos (imputación múltiple, EM, etc.), algo que no ocurre en el caso univariante (al menos directamente).
-
-
+En el ámbito de la imputación, la imputación en series temporales univariantes es un reto adicional, debido a que la mayoría de algoritmos complejos están desarrollados para series temporales multivariantes ya que dependen de la correlación entre los inter-atributos para estimar los valores de los datos perdidos (imputación múltiple, EM, etc.), algo que no ocurre en el caso univariante (al ser un único atributo). Pero además de los métodos simples, también hay posibilidades adicionales más complejas para la imputación en series temporales univariantes:
+- Algoritmos multivariantes con datos retardados (lagged): consisten en emplear indirectamente los algoritmos de series multivariantes en series univariantes empleando el tiempo (variable implícita de una serie temporal) como un atributo más. La forma habitual de hacer esto es mediante lags (lags son variables que toman el valor de otra variable en un instante de tiempo previo) y leads (toman el valor de otra variable en un instante de tiempo posterior).
+- Filtro de Kalman con modelos ARIMA de espacio de estados: 
 
 
 kalman filter
@@ -296,6 +298,8 @@ kalman filter
 ________________________________________________________________________
 
 ## Series temporales con R
+
+**Series temporales univariantes**
 
 Para que R trate a un conjunto de datos como serie temporal:
 
@@ -503,10 +507,9 @@ ________________________________________________________________________
 
 ## Imputación de datos perdidos en series temporales con R
 
-Aunque la imputación en general está bien cubierta en R, es dificil encontrar funciones para la imputación de series temporales univariantes. El problema reside en que la mayoría de técnicas de imputación standar no pueden ser aplicadas a series temporales univariantes de forma directa, ya que la mayoría de algoritmos dependen de correlaciones entre los inter-atributos, mientras que la imputación de series univariantes necesitan emplear dependencias del tiempo.
+**Series temporales univariantes**
 
-
-
+Aunque la imputación en general está bien cubierta en R, es dificil encontrar funciones para la imputación de series temporales univariantes. El problema reside en que la mayoría de técnicas de imputación estandar no pueden ser aplicadas a series temporales univariantes de forma directa, ya que la mayoría de algoritmos dependen de correlaciones entre los inter-atributos, mientras que la imputación de series univariantes necesitan emplear dependencias del tiempo.
 
 Imputación de valores perdidos mediante la media:
 
@@ -544,7 +547,12 @@ Imputación de valores perdidos mediante interpolación:
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - imputeTS: https://cran.r-project.org/web/packages/imputeTS/index.html
 
-
+- mtsdi: https://cran.r-project.org/web/packages/mtsdi/mtsdi.pdf
+- mice: https://cran.r-project.org/web/packages/mice/mice.pdf
+- amelia: https://cran.r-project.org/web/packages/Amelia/Amelia.pdf
+- mvnmle: https://cran.r-project.org/web/packages/mvnmle/mvnmle.pdf
+- missForest: https://cran.r-project.org/web/packages/missForest/missForest.pdf
+- yaImpute: https://cran.r-project.org/web/packages/yaImpute/yaImpute.pdf
 
 ## Ejemplos de análisis de Series temporales
 

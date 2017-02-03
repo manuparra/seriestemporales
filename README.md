@@ -287,13 +287,7 @@ En estadística, la imputación es el proceso de reemplazar los valores perdidos
 
 En el ámbito de la imputación, la imputación en series temporales univariantes es un reto adicional, debido a que la mayoría de algoritmos complejos están desarrollados para series temporales multivariantes ya que dependen de la correlación entre los inter-atributos para estimar los valores de los datos perdidos (imputación múltiple, EM, kNN, etc.), algo que no ocurre en el caso univariante (al ser un único atributo). Pero además de los métodos simples, también hay posibilidades adicionales más complejas para la imputación en series temporales univariantes:
 - Algoritmos multivariantes con datos retardados: consisten en emplear indirectamente los algoritmos de series multivariantes en series univariantes empleando el tiempo (variable implícita de una serie temporal) como un atributo más. La forma habitual de hacer esto es mediante lags (variables que toman el valor de otra variable en un instante de tiempo previo) y leads (toman el valor de otra variable en un instante de tiempo posterior).
-- Filtro de Kalman con modelos ARIMA de espacio de estados: 
-
-
-kalman filter
-
-
-
+- Filtro de Kalman con modelos ARIMA de espacio de estados: todos los modelos ARIMA pueden ser reescritos (y estimados) como modelos en el espacio de estados. Estos modelos en el espacio de estados pueden entre otras muchas cosas estimar observaciones perdidas. Luego los principales beneficios de representar sistemas dinámicos en forma de espacio de estados es que el espacio de estados permite que las variables no observadas puedan ser incorporadas y estimadas junto con el modelo observable, y que además, estos modelos en el espacio de estados pueden ser analizados usando un algoritmo recursivo llamado filtro de Kalman (Kalman filter), que es usado, entre otras cosas, para determinar las estimaciones óptimas de los modelos en el espacio de estados.
 
 ________________________________________________________________________
 
@@ -540,6 +534,19 @@ Imputación de valores perdidos mediante interpolación:
 	na.approx(serie temporal) *paquete zoo*
 	
 	na.interp(serie temporal) *paquete forescast*
+	
+Imputación de valores perdidos mediante agregación:
+
+	na.aggregate(serie temporal, by)
+	
+		- by: agrupación para generar la imputación
+		
+Imputación de valores perdidos mediante filtro de Kalman en modelos en el espacio de estados o estructurales:
+
+	na.kalman(serie temporal, model, smooth)
+	
+		- model: modelo usado al que se le aplica el filtro de Kalman. Puede ser "auto.arima" para usar una representación en el espacio de estados de los modelos ARIMA, o "StructTS" para usar un modelo estructural ajustado por máxima verosimilitud.
+		- smooth: "true" para usar kalmanSmooth (mejor opción para imputación) o "false" para kalmanRun.
 
 **Series temporales multivariantes**
 

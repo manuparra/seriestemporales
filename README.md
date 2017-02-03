@@ -281,12 +281,12 @@ En estadística, la imputación es el proceso de reemplazar los valores perdidos
 	- Imputación múltiple: consiste en realizar varias imputaciones de las observaciones faltantes para luego analizar los conjuntos de datos completados y combinar los resultados obtenidos para obtener una estimacion final. El análisis de imputación múltiple esta dividido en tres fases: fase de imputacion, fase de análisis y fase de puesta en común. 
 	- Imputación mediante el algoritmo EM (Expectation-Maximization): es un algoritmo importante para el análisis de datos faltantes. Es un método iterativo de dos pasos (esperanza y maximizacion) donde se comienza por reemplazar los datos ausentes por unos valores estimados y a continuación se procede a una primera estimación de los parámetros, para con estos parámetros volver a iniciar al primer paso y así sucesivamente hasta que la convergencia de los parámetros sea aceptable. 
 - Métodos de imputación basados en machine learning
-	- Imputación con K-Nearest Neighbor
-	- Imputación con K-means (clustering)
-	- Imputación con máquina de soporte vectorial
+	- Imputación con K-Nearest Neighbor: se estiman los valores peridos con la media de los vecinos seleccionados.
+	- Imputación con K-means
+	- Imputación con máquinas de soporte vectorial
 
-En el ámbito de la imputación, la imputación en series temporales univariantes es un reto adicional, debido a que la mayoría de algoritmos complejos están desarrollados para series temporales multivariantes ya que dependen de la correlación entre los inter-atributos para estimar los valores de los datos perdidos (imputación múltiple, EM, etc.), algo que no ocurre en el caso univariante (al ser un único atributo). Pero además de los métodos simples, también hay posibilidades adicionales más complejas para la imputación en series temporales univariantes:
-- Algoritmos multivariantes con datos retardados (lagged): consisten en emplear indirectamente los algoritmos de series multivariantes en series univariantes empleando el tiempo (variable implícita de una serie temporal) como un atributo más. La forma habitual de hacer esto es mediante lags (lags son variables que toman el valor de otra variable en un instante de tiempo previo) y leads (toman el valor de otra variable en un instante de tiempo posterior).
+En el ámbito de la imputación, la imputación en series temporales univariantes es un reto adicional, debido a que la mayoría de algoritmos complejos están desarrollados para series temporales multivariantes ya que dependen de la correlación entre los inter-atributos para estimar los valores de los datos perdidos (imputación múltiple, EM, kNN, etc.), algo que no ocurre en el caso univariante (al ser un único atributo). Pero además de los métodos simples, también hay posibilidades adicionales más complejas para la imputación en series temporales univariantes:
+- Algoritmos multivariantes con datos retardados: consisten en emplear indirectamente los algoritmos de series multivariantes en series univariantes empleando el tiempo (variable implícita de una serie temporal) como un atributo más. La forma habitual de hacer esto es mediante lags (variables que toman el valor de otra variable en un instante de tiempo previo) y leads (toman el valor de otra variable en un instante de tiempo posterior).
 - Filtro de Kalman con modelos ARIMA de espacio de estados: 
 
 
@@ -541,6 +541,24 @@ Imputación de valores perdidos mediante interpolación:
 	
 	na.interp(serie temporal) *paquete forescast*
 
+**Series temporales multivariantes**
+
+Imputación de valores perdidos mediante imputación múltiple:
+
+	mice(serie temporal, m, method)
+	
+		- m: número de imputaciones múltiples
+		- method: método de imputación de los datos
+
+Imputación de valores perdidos mediante k-NN:
+
+	kNN(serie temporal, variable, k) *paquete imputeTS*
+	
+		- variable: nombre de la columna a imputar
+		- k: número de vecinos cercanos usados
+
+
+
 ### Paquetes R para la imputación de datos perdidos en series Temporales:
 
 - zoo: https://cran.r-project.org/web/packages/zoo/zoo.pdf
@@ -553,6 +571,7 @@ Imputación de valores perdidos mediante interpolación:
 - mvnmle: https://cran.r-project.org/web/packages/mvnmle/mvnmle.pdf
 - missForest: https://cran.r-project.org/web/packages/missForest/missForest.pdf
 - yaImpute: https://cran.r-project.org/web/packages/yaImpute/yaImpute.pdf
+- VIM: https://cran.r-project.org/web/packages/VIM/VIM.pdf
 
 ## Ejemplos de análisis de Series temporales
 

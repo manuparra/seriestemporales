@@ -374,7 +374,11 @@ Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelac
 
 Cálculo del test de Dickey-Fuller Ampliado (Test ADF) para estacionariedad:
 
-	adf.test(serie temporal)
+	adf.test(serie temporal) *paquete tseries* *siempre elimina la tendencia de la serie evaluada*
+	
+	adfTest(serie temporal, type) *paquete fUnitRoots*
+	
+		type: tipo de regresión de raíz unitaria empleada. "nc" sin intercepto ni tendencia, "c" sin tendencia con intercept, "ct" con intercepto y tendencia
 	
 Cálculo del test de Kwiatkowski-Phillips-Schmidt-Shin (Test KPSS) para estacionariedad:
 

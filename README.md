@@ -58,6 +58,8 @@ Un tipo especial de serie estacionaria es la serie denominada **ruido blanco**. 
 
 ![STexample](./images/wn.png)
 
+Otro tipo especial de serie temporal es la llamada **camino aleatorio**, una serie es un camino aleatorio si la primera diferenciación de la serie es un ruido blanco.
+
 Las series temporales también se pueden dividir según cuántas variables se observan o según su variabilidad:
 
 - Univariante: la serie temporal es un conjunto de observaciones sobre una única caracteristica o variable.

@@ -12,6 +12,8 @@ Table of Contents
       		* [Enfoque clásico (descomposición)](#enfoque-clásico)
 			* [Enfoque del Alisado Exponencial](#enfoque-del-alisado-exponencial)
 			* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
+				* [ARIMA](#arima-(autoregresive-integrated-moving-average))
+				* [SARIMA](#sarima-(seasonal-autoregresive-integrated-moving-average))
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)

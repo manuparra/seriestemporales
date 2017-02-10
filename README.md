@@ -159,14 +159,7 @@ En este punto se tiene una descomposición de la serie en componentes que separa
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, ya que explican la evolución pasada de una serie en función de pautas simples pero tienen problemas y limitaciones. Aunque son útiles para describir las pautas que sigue una serie temporal, las predicciones que proporcionan suelen ser muy malas (es decir, con un gran error asociado). La razón de esto es que en una serie temporal la observación más reciente depende, en general, de sus valores pasados, pero esta dependencia suele ser más fuerte con los datos más recientes y más débil con los más alejados. 
 
-_VARIANZA PARA VER EL MEJOR AJUSTE?_
-
 ### Enfoque del Alisado Exponencial
-
-_METODOS DE SUAVIZADO?_
-_SERIES SIN TENDENCIA NI ESTACIONALIDAD?_ _naibe?_
-_SERIES CON TENDENCIA SIN ESTACIONALIDAD?_ _holt?_
-_SERIES SIN TENDENCIA CON ESTACIONALIDAD?_ _holtwinters?_
 
 ### Enfoque Box-Jenkins
 
@@ -265,9 +258,6 @@ Por ejemplo, un modelo ARIMA(0,0,0)(0,0,1)<sub>12</sub> mostraría únicamente u
 
 Por último, una de las desventajas de los modelos de Box-Jenkins está en que asumen que las observaciones están presentes en cada periodo de tiempo (ya que son necesarios para el cómputo de las autocorrelaciones), algo que no siempre es así ya que es habitual encontrar series de tiempo con valores perdidos. Por lo que este tipo de series requiere que se apliquen previamente métodos que estimen los valores faltantes para poder emplear el método ARIMA.
 
-
-_¿PERIODOGRAMA?_
-_¿SERIES MULTIVARIANTES?_
 ________________________________________________________________________
 
 ## Manejo de datos perdidos en series temporales

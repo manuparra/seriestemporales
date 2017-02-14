@@ -276,13 +276,11 @@ Los métodos de predicción basados en redes neuronales artificiales están basa
 - Redes neuronales Feed-Fordward: en estos modelos multicapa las salidas de cada son las entradas de la capa siguiente.
 - Redes neuronales Long-Short Term Memory:
 
-Con respecto a las series temporales, la hipótesis reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan modelo autoregresivo lineal. 
+Con respecto a las series temporales, la hipótesis reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan modelo autoregresivo lineal. La aplicación de redes neuronales artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
 
-La aplicación de Redes Neuronales Artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
+- Una búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal. Para ello se pueden emplear algunos de los análisis tradicionales de series temporales para estimar la dependencia entre los datos, como son las funciones de autocorrelación simple y parcial, etc.
 
-- Una búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal.
-
-Exploratory data analysis: Apply some of the traditional time series analysis methods to estimate the lag dependence in the data (e.g. auto-correlation and partial auto-correlation plots, transformations, differencing). Let's say that you find a given month's value is correlated with the past three month's data but not much so beyond that.
+Exploratory data analysis: Apply some of the traditional time series analysis methods to estimate the lag dependence in the data (e.g. auto-correlation and partial auto-correlation plots, transformations, differencing). 
 
 
 - Creación de la red: tiene como objetivo determinar cada elemento que compone la arquitectura de la red.

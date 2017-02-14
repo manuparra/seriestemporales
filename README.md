@@ -269,23 +269,52 @@ ________________________________________________________________________
 
 ## Predicción de series temporales con redes neuronales
 
-Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal, pero también se pueden realizar desde un punto de vista no lineal, con métodos como las redes neuronales. Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas (si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). 
+Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal. Con los métodos vistos anteriormente se obtienen resultados satisfactorios en series de tiempo lineales, pero al utilizarlos en series no lineales, presentan limitaciones ya que no son capaces de capturar las relaciones no lineales de los datos. Así entran en juego los métodos capaces de capturar las relaciones lineales y no lineales entre los datos, como son las redes neuronales.
 
+Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). 
 
 - Redes neuronales Feed-Fordward: en estos modelos multicapa las salidas de cada son las entradas de la capa siguiente.
 - Redes neuronales Long-Short Term Memory:
 
+Con respecto a las series temporales, la hipótesis reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan modelo autoregresivo lineal. 
 
-The inputs to each node are combined using a weighted linear combination. The result is then modified by a nonlinear function before being output.
+La aplicación de Redes Neuronales Artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
+
+- Una búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal.
+
+Exploratory data analysis: Apply some of the traditional time series analysis methods to estimate the lag dependence in the data (e.g. auto-correlation and partial auto-correlation plots, transformations, differencing). Let's say that you find a given month's value is correlated with the past three month's data but not much so beyond that.
 
 
+- Creación de la red: tiene como objetivo determinar cada elemento que compone la arquitectura de la red.
 
+Create the neural network layout: You'll take the past three month's values as inputs and you want to predict the next month's value. So, you need a neural network with an input layer containing three nodes and an output layer containing one node. You should probably have a hidden layer with at least a couple of nodes.
+Unfortunately, picking the number of hidden layers, and their respective number of nodes, is not something for which there are clear guidelines. I'd start small, like 3:2:1.
 
+- Entrenamiento:
+En  esta  etapa  se  define  el  algoritmo  de  entrenamiento  y  los  parámetros  de
+configuración  propios  de  éste.  Se  consideran  dos  algoritmos  de  entrenamiento
+supervisado, que ajustan los pesos sinápticos mediante la minimización del error:
+Backpropagation y Resilient Propagation.
 
-Con respecto a las series temporales, los valores de los rezagos de estas pueden ser usados como entradas a una red neuronal, de igual modo que se usan modelo autoregresivo lineal. 
+Partition your data into training and validation sets: Take the first 24 points as your training values and the remaining points as the validation set.
 
+- Validación:
+Esta etapa tiene como objetivo realizar la validación del proceso de aprendizaje
+de la red. Se presenta a la red el conjunto de datos seleccionados para este fin y se
+obtienen los valores de la predicción del siguiente periodo para 
+cada patrón de datos
 
-Ventajas y desventajas
+Test the network on the validation set (months 25-36): Here you will pass in the three values the neural network needs for the input layer and see what the output node gets set to. So, to see how well the trained neural network can predict month 32's value you'll pass in values for months 29, 30, and 31
+
+Cálculo de los factores de comparación
+El objetivo de esta etapa consiste en calcular los factores que serán utilizados en
+el análisis de los resultados al comparar los distintos modelos de redes neuronales
+obtenidos y elegir la más efectiva en la predicción de una serie de tiempo específica.
+Para  llevar  a  cabo  esta  tarea  se  obtienen  los  siguientes  factores:  Error  Absoluto
+Medio Porcentual (EAMP), Coeficiente de correlación (R), Representación gráfica
+de las series, Representación gráfica del EAMP
+
+**Ventajas y desventajas**
 
 Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento y se comportan peor (sobreentrenamiento, etc...)
 

@@ -278,51 +278,14 @@ Los métodos de predicción basados en redes neuronales artificiales están basa
 
 Con respecto a las series temporales, la hipótesis reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan modelo autoregresivo lineal. La aplicación de redes neuronales artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
 
-- Una búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal. Para ello se pueden emplear algunos de los análisis tradicionales de series temporales para estimar la dependencia entre los datos, como son las funciones de autocorrelación simple y parcial, etc.
-
-Exploratory data analysis: Apply some of the traditional time series analysis methods to estimate the lag dependence in the data (e.g. auto-correlation and partial auto-correlation plots, transformations, differencing). 
-
-
-- Creación de la red: tiene como objetivo determinar cada elemento que compone la arquitectura de la red.
-
-Create the neural network layout: You'll take the past three month's values as inputs and you want to predict the next month's value. So, you need a neural network with an input layer containing three nodes and an output layer containing one node. You should probably have a hidden layer with at least a couple of nodes.
-Unfortunately, picking the number of hidden layers, and their respective number of nodes, is not something for which there are clear guidelines. I'd start small, like 3:2:1.
-
-- Entrenamiento:
-En  esta  etapa  se  define  el  algoritmo  de  entrenamiento  y  los  parámetros  de
-configuración  propios  de  éste.  Se  consideran  dos  algoritmos  de  entrenamiento
-supervisado, que ajustan los pesos sinápticos mediante la minimización del error:
-Backpropagation y Resilient Propagation.
-
-Partition your data into training and validation sets: Take the first 24 points as your training values and the remaining points as the validation set.
-
-- Validación:
-Esta etapa tiene como objetivo realizar la validación del proceso de aprendizaje
-de la red. Se presenta a la red el conjunto de datos seleccionados para este fin y se
-obtienen los valores de la predicción del siguiente periodo para 
-cada patrón de datos
-
-Test the network on the validation set (months 25-36): Here you will pass in the three values the neural network needs for the input layer and see what the output node gets set to. So, to see how well the trained neural network can predict month 32's value you'll pass in values for months 29, 30, and 31
-
-Cálculo de los factores de comparación
-El objetivo de esta etapa consiste en calcular los factores que serán utilizados en
-el análisis de los resultados al comparar los distintos modelos de redes neuronales
-obtenidos y elegir la más efectiva en la predicción de una serie de tiempo específica.
-Para  llevar  a  cabo  esta  tarea  se  obtienen  los  siguientes  factores:  Error  Absoluto
-Medio Porcentual (EAMP), Coeficiente de correlación (R), Representación gráfica
-de las series, Representación gráfica del EAMP
+- Búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal. Para ello se pueden emplear algunos de los análisis tradicionales de series temporales para estimar la dependencia entre los datos, como son las funciones de autocorrelación simple y parcial, etc. 
+- Planteamiento de varias redes neuronales tentativas: tiene como objetivo determinar varias arquitectura de la red con diferentes parámetros de entrada como pueden ser el número de rezagos significativos o nº de neuronas de la capa oculta (también se puede transformar o diferenciar la serie (luego se desharán los cambios)).
+- Entrenamiento y test: se dividen los datos disponibles en datos de entrenamiento y datos de test. Se entrenan los diversos modelos de redes neuronales planteados (mediante  algoritmos  de  entrenamiento como Backpropagation o Resilient Propagation...) para ajustar los parámetros, y se testean con los datos de test para ver cuál de ellos ofrece un mejor rendimiento minimizando el error de predicción.
+- Predicción: se realiza la predicción con el modelo que la fase anterior haya determinado como el mejor. 
 
 **Ventajas y desventajas**
 
 Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento y se comportan peor (sobreentrenamiento, etc...)
-
-
-
-
-
-
-
-
 ________________________________________________________________________
 
 ## Manejo de datos perdidos en series temporales

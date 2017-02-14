@@ -14,6 +14,7 @@ Table of Contents
 			* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
 				* [ARIMA](#arima-(autoregresive-integrated-moving-average))
 				* [SARIMA](#sarima-(seasonal-autoregresive-integrated-moving-average))
+	* [Predicción de series temporales con redes neuronales](#predicción-de-series-temporales-con-redes-neuronales)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
@@ -157,6 +158,8 @@ I<sub>t</sub> = X<sub>t</sub> / (T<sub>t</sub> * E<sub>t</sub>)
 
 En este punto se tiene una descomposición de la serie en componentes que separan tendencia, estacionalidad y ruido. Estos componentes obtenidos de la serie la describen, pero no la predicen. Las predicciones de valores futuros se consiguen usando las componentes T<sub>t</sub> y E<sub>t</sub> con valores de tiempo t+1, t+2, etc. Para ello se realiza un pronóstico futuro de la tendencia, y se le añade la predicción de la estacionalidad (índice de estacionalidad) correspondiente a cada periodo (la componente irregular o aleatorio no es predecible y por lo tanto no se considera).
 
+**Ventajas e inconvenientes**
+
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, ya que explican la evolución pasada de una serie en función de pautas simples pero tienen problemas y limitaciones. Aunque son útiles para describir las pautas que sigue una serie temporal, las predicciones que proporcionan suelen ser muy malas (es decir, con un gran error asociado). La razón de esto es que en una serie temporal la observación más reciente depende, en general, de sus valores pasados, pero esta dependencia suele ser más fuerte con los datos más recientes y más débil con los más alejados. 
 
 ### Enfoque del Alisado Exponencial
@@ -258,7 +261,40 @@ En principio la parte estacional se puede modelizar de la misma forma que la par
 
 Por ejemplo, un modelo ARIMA(0,0,0)(0,0,1)<sub>12</sub> mostraría únicamente una barra significativa en el rezago 12 de la ACF, mientras que la PACF mostraría un decaimiento exponencial en el rezago estacionario. De manera similar, un ARIMA(0,0,0)(1,0,0)<sub>12</sub> mostraría un decaimiento exponencial en los rezagos estacionales de la ACF, y una sola barra significativa en el rezago 12 del PACF.
 
+**Ventajas e inconvenientes**
+
 Por último, una de las desventajas de los modelos de Box-Jenkins está en que asumen que las observaciones están presentes en cada periodo de tiempo (ya que son necesarios para el cómputo de las autocorrelaciones), algo que no siempre es así ya que es habitual encontrar series de tiempo con valores perdidos. Por lo que este tipo de series requiere que se apliquen previamente métodos que estimen los valores faltantes para poder emplear el método ARIMA.
+
+________________________________________________________________________
+
+## Predicción de series temporales con redes neuronales
+
+Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal, pero también se pueden realizar desde un punto de vista no lineal, con métodos como las redes neuronales. Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas (si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). 
+
+
+- Redes neuronales Feed-Fordward: en estos modelos multicapa las salidas de cada son las entradas de la capa siguiente.
+- Redes neuronales Long-Short Term Memory:
+
+
+The inputs to each node are combined using a weighted linear combination. The result is then modified by a nonlinear function before being output.
+
+
+
+
+
+Con respecto a las series temporales, los valores de los rezagos de estas pueden ser usados como entradas a una red neuronal, de igual modo que se usan modelo autoregresivo lineal. 
+
+
+Ventajas y desventajas
+
+Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento y se comportan peor (sobreentrenamiento, etc...)
+
+
+
+
+
+
+
 
 ________________________________________________________________________
 

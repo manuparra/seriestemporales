@@ -286,7 +286,7 @@ Con respecto a las series temporales, la idea base reside en que los valores fut
 
 **Ventajas y desventajas**
 
-Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento y se comportan peor (por ejemplo son más dados a producir sobreentrenamiento, etc...)
+Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento, de más parámetros por ajustar, y se comportan peor (por ejemplo son más dados a producir sobreentrenamiento, etc...). Además, su computación es más pesada lo que va a conllevar un mayor tiempo de cómputo.
 
 
 

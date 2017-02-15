@@ -275,22 +275,30 @@ Los métodos de predicción basados en redes neuronales artificiales están basa
 
 - Redes neuronales Feed-Fordward: es la red neuronal más sencilla, en estos modelos multicapa las salidas de cada capa son las entradas de la capa siguiente, luego la información se mueve solo en una dirección, hacia delante desde las entradas hasta las salidas pasando por las capas ocultas, y por lo tanto no hay ciclos.
 - Redes neuronales recurrentes:
+
+A recurrent neural network (RNN) is a class of artificial neural network where connections between units form a directed cycle. This creates an internal state of the network which allows it to exhibit dynamic temporal behavior. Unlike feedforward neural networks, RNNs can use their internal memory to process arbitrary sequences of inputs. This makes them applicable to tasks such as unsegmented connected handwriting recognition[1] or speech recognition.[2]
+
 - Redes neuronales Long-Short Term Memory:
+
+Long-Short Time Memory architecture consists of a set of recurrently connected subnets. 
+The objective of the LSTM architecture is to overcome the problem known as “vanishing error problem”. 
+The vanishing error problem refers to how the influence of past inputs decays quickly over time. 
+LSTM networks aims to solve this problem using memory cells. 
+
+
+
 
 Con respecto a las series temporales, la idea base reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan en un modelo autoregresivo lineal, y los valores futuros a predecir como las salidas de la red. La aplicación de redes neuronales artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
 
 - Búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal. Para ello se pueden emplear algunos de los análisis tradicionales de series temporales para estimar la dependencia entre los datos, como son las funciones de autocorrelación simple y parcial, etc. 
 - Planteamiento de varias redes neuronales tentativas: tiene como objetivo determinar varias arquitectura de la red con diferentes parámetros de entrada como pueden ser el número de rezagos significativos o nº de neuronas de la capa oculta (también se puede transformar o diferenciar la serie (luego se desharán los cambios)). Aquí es importante reseñar que la serie (o los rezagos) que se le pasa a la red neuronal como entrada no tiene la necesidad de ser estacionaria como sí ocurría en los modelos ARIMA.
-- Entrenamiento y test: se dividen los datos disponibles en datos de entrenamiento y datos de test. Se entrenan los diversos modelos de redes neuronales planteados (mediante  algoritmos  de  entrenamiento como Backpropagation o Resilient Propagation...) para ajustar los parámetros, y se testean con los datos de test para ver cuál de ellos ofrece un mejor rendimiento minimizando el error de predicción.
-- Predicción: se realiza la predicción con el modelo que la fase anterior haya determinado como el mejor. 
+- Entrenamiento y test: se dividen los datos disponibles en datos de entrenamiento y datos de test para validar la red neuronal. Se entrenan los diversos modelos de redes neuronales planteados (mediante  algoritmos  de  entrenamiento como Backpropagation o Resilient Propagation...) para ajustar los parámetros, y se testean con los datos de test para ver cuál de ellos ofrece un mejor rendimiento minimizando el error de predicción. 
+![STexample](http://www.obitko.com/tutorials/neural-network-prediction/images/train.gif)
+- Predicción: se realiza la predicción con el modelo que la fase anterior haya determinado como el mejor. Si la predicción se realiza de una vez se denomina one step ahead prediction, o si por el contrario el proceso de predicción se realiza paso a paso reempleando los valores predichos se denomina multi step ahead prediction (presenta el problema de que los errores se van acumulando).
 
 **Ventajas y desventajas**
 
 Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento, de más parámetros por ajustar, y se comportan peor (por ejemplo son más dados a producir sobreentrenamiento, etc...). Además, su computación es más pesada lo que va a conllevar un mayor tiempo de cómputo.
-
-
-
-one-step? multi-step?
 
 ________________________________________________________________________
 

@@ -269,24 +269,24 @@ ________________________________________________________________________
 
 ## Predicción de series temporales con redes neuronales
 
-Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal. Con los métodos vistos anteriormente se obtienen resultados satisfactorios en series de tiempo lineales, pero al utilizarlos en series no lineales, presentan limitaciones ya que no son capaces de capturar las relaciones no lineales de los datos. Así entran en juego los métodos capaces de capturar las relaciones lineales y no lineales entre los datos, como son las redes neuronales.
+Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal, ya que con los métodos vistos anteriormente se obtienen resultados satisfactorios en series de tiempo lineales, pero al utilizarlos en series no lineales, presentan limitaciones ya que no son capaces de capturar las relaciones no lineales de los datos. Así entran en juego los métodos capaces de capturar las relaciones lineales y no lineales entre los datos, como son las redes neuronales.
 
-Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Los nodos de cada capa están conectados con los nodos de las capas adyacentes, cada conexión es diferente ya que tiene un peso asociado que se actualiza mediante los datos observados, por lo que van a representar el conocimiento de la red. En un principio los pesos son inicializados aleatoriamente, luego hay una componente aleatoria asociada a cada red neuronal.
+Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Los nodos de cada capa están conectados con otros nodos o incluso consigo mismos, cada conexión es diferente ya que tiene un peso asociado que se actualiza mediante algoritmos de entrenamiento sobre los datos observados que minimizan una función de coste, por lo que van a representar el conocimiento de la red. En un principio los pesos son inicializados aleatoriamente, luego hay una componente aleatoria asociada a cada red neuronal.
 
 - Redes neuronales Feed-Fordward: es la red neuronal más sencilla, en estos modelos multicapa las salidas de cada capa son las entradas de la capa siguiente, luego la información se mueve solo en una dirección, hacia delante desde las entradas hasta las salidas pasando por las capas ocultas, y por lo tanto no hay ciclos.
 - Redes neuronales recurrentes:
 - Redes neuronales Long-Short Term Memory:
 
-Con respecto a las series temporales, la hipótesis reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan en un modelo autoregresivo lineal, y los valores futuros a predecir como las salidas de la red. La aplicación de redes neuronales artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
+Con respecto a las series temporales, la idea base reside en que los valores futuros son dependientes de los valores pasados, es decir, buscando en los valores pasados de una serie temporal se puede predecir su comportamiento en el futuro. Luego los valores de los rezagos de las series temporales pueden ser usados como entradas a una red neuronal, de igual modo que se usan en un modelo autoregresivo lineal, y los valores futuros a predecir como las salidas de la red. La aplicación de redes neuronales artificiales a la predicción de series temporales se puede realizar de acuerdo a una serie de etapas que pueden ser: 
 
 - Búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal. Para ello se pueden emplear algunos de los análisis tradicionales de series temporales para estimar la dependencia entre los datos, como son las funciones de autocorrelación simple y parcial, etc. 
-- Planteamiento de varias redes neuronales tentativas: tiene como objetivo determinar varias arquitectura de la red con diferentes parámetros de entrada como pueden ser el número de rezagos significativos o nº de neuronas de la capa oculta (también se puede transformar o diferenciar la serie (luego se desharán los cambios)).
+- Planteamiento de varias redes neuronales tentativas: tiene como objetivo determinar varias arquitectura de la red con diferentes parámetros de entrada como pueden ser el número de rezagos significativos o nº de neuronas de la capa oculta (también se puede transformar o diferenciar la serie (luego se desharán los cambios)). Aquí es importante reseñar que la serie (o los rezagos) que se le pasa a la red neuronal como entrada no tiene la necesidad de ser estacionaria como sí ocurría en los modelos ARIMA.
 - Entrenamiento y test: se dividen los datos disponibles en datos de entrenamiento y datos de test. Se entrenan los diversos modelos de redes neuronales planteados (mediante  algoritmos  de  entrenamiento como Backpropagation o Resilient Propagation...) para ajustar los parámetros, y se testean con los datos de test para ver cuál de ellos ofrece un mejor rendimiento minimizando el error de predicción.
 - Predicción: se realiza la predicción con el modelo que la fase anterior haya determinado como el mejor. 
 
 **Ventajas y desventajas**
 
-Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento y se comportan peor (sobreentrenamiento, etc...)
+Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento y se comportan peor (por ejemplo son más dados a producir sobreentrenamiento, etc...)
 
 
 
@@ -508,7 +508,10 @@ Ajuste del modelo ARIMA sobre una serie temporal:
 		
 Ajuste de un modelo autorregresivo AR sobre una serie temporal:
 
-	ar(serie temporal)
+	ar(serie temporal, order.max, method)
+	
+		- order.max: orden máximo del modelo a ajustar
+		- method: método con el que se ajusta el modelo
 
 Evaluación de la bondad del ajuste de varios modelos mediante el criterio AIC (Akaike Information Criterion) o BIC (Bayesian Information Criterion):
 
@@ -542,12 +545,13 @@ Predecir una serie temporal:
 
 Predicción de una serie temporal con redes neuronales
 
-	nnetar(serie temporal, p, P, size, repeats)
+	nnetar(serie temporal, p, P, size, repeats, lambda)
 	
-		- p: nº de retardos no estacionales
-		- P: nº de retardos estacionales
-		- size: nº de neuronas de la capa oculta
-		- repeats: nº de redes ajustadas con valores de los pesos diferentes
+		- p: nº de retardos no estacionales. Para datos no estacionales, el valor por defecto es el nº óptimo de razagos (acorde al AIC) de un modelo AR(p) lineal. Para datos estacionales, el valor por defecto sigue la misma metodología, pero aplicada a los datos ajustados estacionalmente (a partir de una descomposición stl)
+		- P: nº de retardos estacionales. Por defecto es 1
+		- size: nº de neuronas de la capa oculta. Por defecto es el redondeo al entero más cercano de k=(p+P+1)/2 (la mitad de los nodos de entrada)
+		- repeats: nº de redes ajustadas con valores de los pesos diferentes (inicializados aleatoriamente)
+		- lambda: parámetro para una transformación de box cox
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 

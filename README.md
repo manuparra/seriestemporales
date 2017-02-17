@@ -552,6 +552,13 @@ Predicción de una serie temporal con redes neuronales
 		- repeats: nº de redes ajustadas con valores de los pesos diferentes (inicializados aleatoriamente)
 		- lambda: parámetro para una transformación de box cox
 
+Medición de la afinidad del modelo predecido (Error medio (ME), Error medio absoluto (MAE), Porcentaje del error medio absoluto (MAPE), Error medio absoluto escalado (MASE), Porcentaje del error medio (MPE), etc.):
+
+	accuray(object, x)
+	
+		- object: objeto de la clase forecast (también sirve con arima) o un vector numérico con las predicciones
+		- x: vector con los valores reales a comparar
+
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
 - stats: incorporado en R

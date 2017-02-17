@@ -675,9 +675,14 @@ Imputación de valores perdidos mediante k-NN:
 
 ## Ejemplos de análisis de Series temporales
 
+- Ejemplo básico de las funciones referentes a una serie temporal: [Ver](./examples/pruebas_simples/basico_timeseries.R)
+- Ejemplo básico de las funciones referentes a la imputación: [Ver](./examples/pruebas_simples/basico_imputation.R)
+- Ejemplo básico de las funciones referentes a la validación cruzada: [Ver](./examples/pruebas_simples/basico_crossvalidation.R)
+
 - Ejemplo simple de análisis y modelado de series temporales sin predicción: http://www.itl.nist.gov/div898/handbook/pmc/section6/pmc62.htm
 - Ejemplo simple de análisis, modelado y predicción de series temporales: http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc44a.htm
 - Ejemplo simple de análisis, modelado y predicción de series temporales: [Ver](./examples/analisis_simple_co2/)
+
 - Caso ejemplo Análisis y modelado Series temporales simple 01: [Ver](./examples/estudio_01_simple/)
 - Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./examples/estudio_02_simple/)
 - Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./examples/estudio_03_completo/)

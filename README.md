@@ -22,7 +22,7 @@ Table of Contents
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
       * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-R)
       	 * [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
-      * [Ejemplos de análisis de Series temporales](#ejemplos-se-análisis-de-series-temporales)
+      * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
    * [Bibliografía](#bibliografía)
 
 
@@ -563,7 +563,7 @@ ________________________________________________________________________
 
 ## Series temporales con redes neuronales con R
 
-Predicción de una serie temporal con redes neuronales
+Predicción de una serie temporal feed-fordward con redes neuronales
 
 	nnetar(serie temporal, p, P, size, repeats, lambda)
 	
@@ -673,7 +673,7 @@ Imputación de valores perdidos mediante k-NN:
 - yaImpute: https://cran.r-project.org/web/packages/yaImpute/yaImpute.pdf
 - VIM: https://cran.r-project.org/web/packages/VIM/VIM.pdf
 
-## Ejemplos de análisis de Series temporales
+## Ejemplos de análisis de series temporales
 
 - Ejemplo básico de las funciones referentes a una serie temporal: [Ver](./examples/pruebas_simples/basico_timeseries.R)
 - Ejemplo básico de las funciones referentes a la imputación: [Ver](./examples/pruebas_simples/basico_imputation.R)

@@ -572,17 +572,27 @@ ________________________________________________________________________
 
 Predicción de una serie temporal feed-fordward con redes neuronales
 
-	nnetar(serie temporal, p, P, size, repeats, lambda)
+	nnetar(serie temporal, p, P, size, repeats, lambda) *paquete forecast*
 	
 		- p: nº de retardos no estacionales. Para datos no estacionales, el valor por defecto es el nº óptimo de razagos (acorde al AIC) de un modelo AR(p) lineal. Para datos estacionales, el valor por defecto sigue la misma metodología, pero aplicada a los datos ajustados estacionalmente (a partir de una descomposición stl)
 		- P: nº de retardos estacionales. Por defecto es 1
 		- size: nº de neuronas de la capa oculta. Por defecto es el redondeo al entero más cercano de k=(p+P+1)/2 (la mitad de los nodos de entrada)
 		- repeats: nº de redes ajustadas con valores de los pesos diferentes (inicializados aleatoriamente)
 		- lambda: parámetro para una transformación de box cox
+		
+	nnet(formula, x, y, data, size, linout)
+	
+		- formula: formula que debe aprender la red neuronal (valor real de la serie y rezagos)
+		- x: matriz o data.frame con los datos de los rezagos de la serie
+		- y: matriz o data.frame con los datos reales de la serie
+		- data: data.frame con los valores que aparecen en formula
+		- size: número de neuronas de la capa oculta
+		- linout: salida lineal o logística
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:
 
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
+- nnet: https://cran.r-project.org/web/packages/nnet/nnet.pdf
 - rnn: https://cran.r-project.org/web/packages/rnn/rnn.pdf
 
 ________________________________________________________________________

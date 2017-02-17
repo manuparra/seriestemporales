@@ -17,7 +17,9 @@ Table of Contents
 	* [Predicción de series temporales con redes neuronales](#predicción-de-series-temporales-con-redes-neuronales)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
-      	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
+      	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
+      * [Series temporales con redes neuronales con R](#series-temporales-con-reder-neuronales-con-r)
+      	 * [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
       * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-R)
       	 * [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
       * [Ejemplos de análisis de Series temporales](#ejemplos-se-análisis-de-series-temporales)
@@ -542,17 +544,7 @@ Predecir una serie temporal:
 		- object: modelo de serie temporal
 		- n.ahead: número de periodos a predecir
 
-Predicción de una serie temporal con redes neuronales
-
-	nnetar(serie temporal, p, P, size, repeats, lambda)
-	
-		- p: nº de retardos no estacionales. Para datos no estacionales, el valor por defecto es el nº óptimo de razagos (acorde al AIC) de un modelo AR(p) lineal. Para datos estacionales, el valor por defecto sigue la misma metodología, pero aplicada a los datos ajustados estacionalmente (a partir de una descomposición stl)
-		- P: nº de retardos estacionales. Por defecto es 1
-		- size: nº de neuronas de la capa oculta. Por defecto es el redondeo al entero más cercano de k=(p+P+1)/2 (la mitad de los nodos de entrada)
-		- repeats: nº de redes ajustadas con valores de los pesos diferentes (inicializados aleatoriamente)
-		- lambda: parámetro para una transformación de box cox
-
-Medición de la afinidad del modelo predecido (Error medio (ME), Error medio absoluto (MAE), Porcentaje del error medio absoluto (MAPE), Error medio absoluto escalado (MASE), Porcentaje del error medio (MPE), etc.):
+Medición de la afinidad del modelo predicho (Error medio (ME), Error medio absoluto (MAE), Porcentaje del error medio absoluto (MAPE), Error medio absoluto escalado (MASE), Porcentaje del error medio (MPE), etc.):
 
 	accuray(object, x)
 	
@@ -566,6 +558,25 @@ Medición de la afinidad del modelo predecido (Error medio (ME), Error medio abs
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - TSA: https://cran.r-project.org/web/packages/TSA/TSA.pdf
+
+________________________________________________________________________
+
+## Series temporales con redes neuronales con R
+
+Predicción de una serie temporal con redes neuronales
+
+	nnetar(serie temporal, p, P, size, repeats, lambda)
+	
+		- p: nº de retardos no estacionales. Para datos no estacionales, el valor por defecto es el nº óptimo de razagos (acorde al AIC) de un modelo AR(p) lineal. Para datos estacionales, el valor por defecto sigue la misma metodología, pero aplicada a los datos ajustados estacionalmente (a partir de una descomposición stl)
+		- P: nº de retardos estacionales. Por defecto es 1
+		- size: nº de neuronas de la capa oculta. Por defecto es el redondeo al entero más cercano de k=(p+P+1)/2 (la mitad de los nodos de entrada)
+		- repeats: nº de redes ajustadas con valores de los pesos diferentes (inicializados aleatoriamente)
+		- lambda: parámetro para una transformación de box cox
+
+### Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:
+
+- forecast: https://cran.r-project.org/web/packages/forecast/index.html
+- rnn: https://cran.r-project.org/web/packages/rnn/rnn.pdf
 
 ________________________________________________________________________
 

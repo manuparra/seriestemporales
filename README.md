@@ -596,6 +596,7 @@ Predicción de una serie temporal con redes neuronales feed-fordward:
 
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - nnet: https://cran.r-project.org/web/packages/nnet/nnet.pdf
+- neuralnet https://cran.r-project.org/web/packages/neuralnet/neuralnet.pdf
 - rnn: https://cran.r-project.org/web/packages/rnn/rnn.pdf
 
 ________________________________________________________________________

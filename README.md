@@ -275,7 +275,7 @@ ________________________________________________________________________
 
 Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal, ya que con los métodos vistos anteriormente se obtienen resultados satisfactorios en series de tiempo lineales, pero al utilizarlos en series no lineales, presentan limitaciones ya que no son capaces de capturar las relaciones no lineales de los datos. Así entran en juego los métodos capaces de capturar las relaciones lineales y no lineales entre los datos, como son las **redes neuronales**.
 
-Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (ya que se emplean funciones no lineales, como la función sigmoide)(para aquellas redes que usen funciones como por ejemplo la sigmoide, una **normalización** (reducir a los rangos [0,1] o [-1,1]) de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas)(si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Los nodos de cada capa están conectados con otros nodos o incluso consigo mismos, cada conexión es diferente ya que tiene un peso asociado que se actualiza mediante algoritmos de entrenamiento sobre los datos observados que minimizan una función de coste, por lo que van a representar el conocimiento de la red. En un principio los pesos son inicializados aleatoriamente, luego hay una componente aleatoria asociada a cada red neuronal. Dependiendo de la arquitectura e interconexión de todas las neuronas de una red, pueden clasificárse en distintas categorías:  
+Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (ya que se emplean funciones no lineales, como la función sigmoide)(para aquellas redes que usen funciones como por ejemplo la sigmoide, una **normalización** (obtenida con cualquiera de sus métodos: min-max, z-score, z-score mean absolute deviation, o decimal scaling) de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas)(si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Los nodos de cada capa están conectados con otros nodos o incluso consigo mismos, cada conexión es diferente ya que tiene un peso asociado que se actualiza mediante algoritmos de entrenamiento sobre los datos observados que minimizan una función de coste, por lo que van a representar el conocimiento de la red. En un principio los pesos son inicializados aleatoriamente, luego hay una componente aleatoria asociada a cada red neuronal. Dependiendo de la arquitectura e interconexión de todas las neuronas de una red, pueden clasificárse en distintas categorías:  
 
 - Redes neuronales Feed-Fordward: es la red neuronal más sencilla, en estos modelos multicapa las salidas de cada capa son las entradas de la capa siguiente, luego la información se mueve solo en una dirección, hacia delante desde las entradas hasta las salidas pasando por las capas ocultas, y por lo tanto no hay ciclos. Su desempeño es bueno para aplicaciones en las que no se requiera que la red retenga información de eventos pasados como ayuda para evaluar eventos futuros.  
 - Redes neuronales recurrentes: es un tipo de red neuronal en la que no solo las salidas de cada capa son las entradas de la capa siguiente sino que además se puede formas ciclos entre las capas, ya que una neurona se puede conectar con si misma o con otra neurona de la misma capa o incluso con neuronas de la capa anterior. Luego estas redes neuronales recurrentes son más eficaces para resolver problemas con no-linealidades temporales significativas ya que pueden mantener información pasada, lo que está intimamente ligado con secuencias de tiempo por ejemplo. El problema de estas redes reside en que funcionan bien cuándo la información que se pretende mantener es muy cercana, pero no funcionan tan bien cuándo la información es lejana, esto es así ya que la influencia de las entradas pasadas decaen rapidamente con el tiempo. Aquí es dónde aparece un tipo especial de red neuronal recurrente que puede resolver el problema:
@@ -599,11 +599,27 @@ Predicción de una serie temporal con redes neuronales feed-fordward:
 		- hidden: número de neuronas de la capa oculta
 		- algorithm: algoritmo empleado para calcular (entrenar) la red
 
+Normalización de las observaciones de una serie temporal:
+
+	scale()
+	
+	normalizeData(x, type)
+	
+		- x: datos que se van a normalizar
+		- type: tipo de normalización empleada ("0_1", "norm" o "center")
+		
+	denormalizeData(x, normParams)
+	
+		- x: valores a des-normalizar
+		- normParams: parámetros generados durante la normalización (se obtienen con getNormParameters(x))
+	
+
 ### Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:
 
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - nnet: https://cran.r-project.org/web/packages/nnet/nnet.pdf
 - neuralnet https://cran.r-project.org/web/packages/neuralnet/neuralnet.pdf
+- rsnns: https://cran.r-project.org/web/packages/RSNNS/RSNNS.pdf
 - rnn: https://cran.r-project.org/web/packages/rnn/rnn.pdf
 
 ________________________________________________________________________

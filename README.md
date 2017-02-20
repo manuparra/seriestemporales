@@ -592,12 +592,20 @@ Predicción de una serie temporal con redes neuronales feed-fordward:
 		- size: número de neuronas de la capa oculta
 		- linout: salida lineal o logística
 		
-	neuralnet(formula, data, hidden, algorithm)
+	neuralnet(formula, data, hidden, algorithm) *paquete neuralnet*
 	
 		- formula: formula que debe aprender la red neuronal (valor real de la serie y rezagos)
 		- data: data.frame con los valores que aparecen en formula
 		- hidden: número de neuronas de la capa oculta
 		- algorithm: algoritmo empleado para calcular (entrenar) la red
+		
+	mlp(x, y, size, learnFunc, linOut) *paquete rsnns*
+	
+		- x: entradas de la red neuronal
+		- y: salidas de la red neuronal
+		- size: nº de neuronas en la capa oculta
+		- learnFunc: algoritmo empleado para aprender la red
+		- linOut: función de activación de la salida lineal (TRUE) o logística
 
 Normalización de las observaciones de una serie temporal:
 

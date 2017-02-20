@@ -285,7 +285,7 @@ Con respecto a las series temporales, la idea base reside en que los valores fut
 
 - Búsqueda de las variables de entrada: tiene como objetivo identificar los retrasos o rezagos de la serie que deben considerarse como variables de entrada en la red neuronal. Para ello se pueden emplear algunos de los análisis tradicionales de series temporales para estimar la dependencia entre los datos, como son las funciones de autocorrelación simple y parcial, etc. 
 - Planteamiento de varias redes neuronales tentativas: tiene como objetivo determinar varias arquitectura de la red con diferentes parámetros de entrada como pueden ser el número de rezagos significativos o nº de neuronas de la capa oculta (también se puede transformar o diferenciar la serie (luego se desharán los cambios)). Aquí es importante reseñar que la serie (o los rezagos) que se le pasa a la red neuronal como entrada no tiene la necesidad de ser estacionaria como sí ocurría en los modelos ARIMA.
-- Entrenamiento y test: se dividen los datos disponibles en datos de entrenamiento y datos de test para validar la red neuronal. Se entrenan los diversos modelos de redes neuronales planteados (mediante  algoritmos de entrenamiento) para ajustar los parámetros, y se testean con los datos de test para ver cuál de ellos ofrece un mejor rendimiento minimizando el error de predicción (por ejemplo mediante el error medio absoluto, el error cuadrático medio, etc.). 
+- Entrenamiento y test: se dividen los datos disponibles en datos de entrenamiento y datos de test para validar la red neuronal. Se entrenan los diversos modelos de redes neuronales planteados (mediante  algoritmos de entrenamiento como por ejemplo back-propagation, etc.) para ajustar los parámetros, y se testean con los datos de test para ver cuál de ellos ofrece un mejor rendimiento minimizando el error de predicción (por ejemplo mediante el error medio absoluto, el error cuadrático medio, etc.). 
 ![STexample](http://www.obitko.com/tutorials/neural-network-prediction/images/train.gif)
 - Predicción: se realiza la predicción con el modelo que la fase anterior haya determinado como el mejor. 
 
@@ -591,6 +591,13 @@ Predicción de una serie temporal con redes neuronales feed-fordward:
 		- data: data.frame con los valores que aparecen en formula
 		- size: número de neuronas de la capa oculta
 		- linout: salida lineal o logística
+		
+	neuralnet(formula, data, hidden, algorithm)
+	
+		- formula: formula que debe aprender la red neuronal (valor real de la serie y rezagos)
+		- data: data.frame con los valores que aparecen en formula
+		- hidden: número de neuronas de la capa oculta
+		- algorithm: algoritmo empleado para calcular (entrenar) la red
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:
 

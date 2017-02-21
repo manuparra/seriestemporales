@@ -20,7 +20,7 @@ Table of Contents
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
       * [Series temporales con redes neuronales con R](#series-temporales-con-redes-neuronales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
-      * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-R)
+      * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-r)
       	 * [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
       * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
    * [Bibliografía](#bibliografía)

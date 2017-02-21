@@ -10,7 +10,7 @@ Table of Contents
       * [Análisis de series temporales univariantes](#análisis-de-series-temporales-univariantes)
       	* [Enfoques](#enfoques)
       		* [Enfoque clásico (descomposición)](#enfoque-clásico)
-			* [Enfoque del Alisado Exponencial](#enfoque-del-alisado-exponencial)
+			* [Enfoque de los Alisados o Suavizados](#enfoque-de-los-alisados-o-suavizados)
 			* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
 				* [ARIMA](#arima-(autoregresive-integrated-moving-average))
 				* [SARIMA](#sarima-(seasonal-autoregresive-integrated-moving-average))
@@ -164,7 +164,29 @@ En este punto se tiene una descomposición de la serie en componentes que separa
 
 Los métodos clásicos de análisis de series temporales tienen la ventaja de no ser excesivamente complejos, ya que explican la evolución pasada de una serie en función de pautas simples pero tienen problemas y limitaciones. Aunque son útiles para describir las pautas que sigue una serie temporal, las predicciones que proporcionan suelen ser muy malas (es decir, con un gran error asociado). La razón de esto es que en una serie temporal la observación más reciente depende, en general, de sus valores pasados, pero esta dependencia suele ser más fuerte con los datos más recientes y más débil con los más alejados. 
 
-### Enfoque del Alisado Exponencial
+### Enfoque de los Alisados o Suavizados
+
+Los métodos de suavizado o alisado son técnicas de tipo predictivo más que descriptivo (resultan más adecuados para pronosticar). Estos modelos se pueden emplear en:
+
+**Series temporales sin tendencia ni estacionalidad**
+
+Este tipo de series tienen un comportamiento más o menos estable, se le pueden aplicar:
+
+- Modelos "naive" o ingenuos: según la importancia que se le de a las observaciones se tiene:
+	- Se otorga la misma importancia a todas las observaciones a la hora de predecir, de esta forma la previsión vendrá dada por la media de las observaciones. 
+	- Se da importancia únicamente a la última de las observaciones, ignorando el restode forma que el ajuste de la serie es su “sombra”, es la misma serie pero retardada en una unidad de periodo.
+- Modelos de médias móviles: se basan en considerar únicamente las últimas k observaciones. De esta forma se da el mismo peso a los últimos k datos y nada al resto. Este procedimiento no es tan extremo como los anteriores, y al sustituir cada dato por una media de los k últimos la serie se suaviza y se elimina ruido, obteniendo el patrón subyacente de la misma. Cuantas más observaciones relevantes (k) tomemos al aplicar este tipo de ajuste más se suavizará la serie.
+- Modelos de suavizado exponencial simple: consisten en dar importancia a todos los datos anteriores, pero concediéndoles diferentes pesos. Los datos más relevantes a la hora de efectuar una previsión son los últimos de los que se dispone, de forma que este método considera que la importancia disminuye conforme nos alejamos de ellos. De esta manera se sustituye cada dato de la serie por una media ponderada de las observaciones anteriores, considerando que los pesos de las mismas decaen de forma exponencial conforme éstas se alejan en el tiempo (la fórmula del ajuste es recursiva).
+
+**Series temporales no estacionales con tendencia**
+
+- Modelo de Holt:
+
+**Series temporales con tendencia y estacionalidad**
+
+- Modelo de Holt-Winters:
+
+
 
 ### Enfoque Box-Jenkins
 

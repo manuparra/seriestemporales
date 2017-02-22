@@ -189,7 +189,7 @@ En el caso de series temporales con tendencia lineal (creciente o decreciente) p
 
 En el caso de series temporales con tendencia lineal (creciente o decreciente) y comportamiento estacional, el modelo clásico que se aplica es el de Holt-Winters:
 
-- Modelo de Holt-Winters: es una extensión del modelo de Holt, solo que además considera estacionalidad, luego ahora el modelo depende de tres parámetros, alpha, beta y gamma (suavizado de nivel, de tendencia y estacional). El parámetro gamma modula la importancia que tienen las observaciones hechas en el mismo periodo de tiempos pasados sobre la predicción en tiempo t. Gamma oscila entre 0 y 1. Si gamma es 0 la predicción en tiempo t va a tomar un valor constante que va a depender de todas las observaciones pasadas dentro de ese mismo periodo. Si gamma es 1 la prediccion en tiempo t va a depender solamente de la observación hecha en tiempo t-p, siendo p la frecuencia (por ejemplo t = 12 para observaciones mensuales). La tendencia y la estacionalidad se pueden combinar de manera aditiva o multiplicativa.
+- Modelo de Holt-Winters: es una extensión del modelo de Holt, solo que además considera estacionalidad, luego ahora el modelo depende de tres parámetros, alpha, beta y gamma (suavizado de nivel, de tendencia y estacional). El parámetro gamma modula la importancia que tienen las observaciones hechas en el mismo periodo de tiempos pasados sobre la predicción en tiempo t. Gamma oscila entre 0 y 1. Si gamma es 0 la predicción en tiempo t va a tomar un valor constante que va a depender de todas las observaciones pasadas dentro de ese mismo periodo. Si gamma es 1 la prediccion en tiempo t va a depender solamente de la observación hecha en tiempo t-p, siendo p la frecuencia (por ejemplo t = 12 para observaciones mensuales). La tendencia y la estacionalidad se pueden combinar de manera aditiva o multiplicativa (el modelo multiplicativo sería más adecuado cuando la amplitud del ciclo va cambiando en el tiempo). El modelo de suavizado exponencial aditivo de Winters es muy similar a un modelo ARIMA con cero órdenes de autorregresión, un orden de diferenciación, un orden de diferenciación estacional y p+1 órdenes de media móvil, donde p es el número de periodos contenidos en un intervalo estacional. Mientras que el modelo de suavizado exponencial multiplicativo de Winters no es similar a ningún modelo ARIMA.
 
 ### Enfoque Box-Jenkins
 
@@ -588,8 +588,42 @@ Medición de la afinidad del modelo predicho (Error medio (ME), Error medio abso
 		- object: objeto de la clase forecast (también sirve con arima) o un vector numérico con las predicciones
 		- x: vector con los valores reales a comparar
 
+Ajustar una serie temporal mediante un alisado exponencial simple:
 
+	HoltWinters(serie temporal, alpha, beta, gamma) *paquete stats*
+	
+		- alpha: parámetro alpha del alisado exponencial
+		- beta: parámetro beta del alisado exponencial. Debe establecerse a FALSE
+		- gamma: parámetro gamma del alisado exponencial. Debe establecerse a FALSE
+		
+Ajustar una serie temporal mediante un alisado exponencial doble:
 
+	HoltWinters(serie temporal, alpha, beta, gamma) *paquete stats*
+	
+		- alpha: parámetro alpha del alisado exponencial
+		- beta: parámetro beta del alisado exponencial
+		- gamma: parámetro gamma del alisado exponencial. Debe establecerse a FALSE
+
+Ajustar una serie temporal mediante un alisado exponencial Holt-Winter:
+
+	HoltWinters(serie temporal, alpha, beta, gamma, seasonal) *paquete stats*
+	
+		- alpha: parámetro alpha del alisado exponencial
+		- beta: parámetro beta del alisado exponencial
+		- gamma: parámetro gamma del alisado exponencial
+		- seasonal: permite diferenciar entre un modelo aditivo o multiplicativo. Solo disponible si está presente el parámetro gamma.
+
+Predicción de valores de una serie temporal ajusta con un alisado:
+
+	forecast(object, h) *forecast.HoltWinters()*
+
+		- object: modelo de serie temporal
+		- h: número de periodos a predecir
+
+	predict(object, n.ahead) *predict.HoltWinters*
+
+		- object: modelo de serie temporal
+		- n.ahead: número de periodos a predecir
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 

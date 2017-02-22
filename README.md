@@ -170,19 +170,20 @@ Los métodos de suavizado o alisado se basan en modelos paramétricos determinis
 
 **Series temporales sin tendencia ni estacionalidad**
 
-Este tipo de series tienen un comportamiento más o menos estable que sigue un patrón subyacente salvo fluctuaciones aleatorias, a este tipo de series se le pueden aplicar:
+Este tipo de series tienen un comportamiento más o menos estable que sigue un patrón subyacente salvo fluctuaciones aleatorias (comportamiento estacionario), a este tipo de series se le pueden aplicar:
 
 - Modelos "naive" o ingenuos: según la importancia que se le de a las observaciones se tiene:
 	- Se otorga la misma importancia a todas las observaciones a la hora de predecir, de esta forma la previsión vendrá dada por la media de las observaciones. 
 	- Se da importancia únicamente a la última de las observaciones ignorando el resto, de forma que el ajuste de la serie es su “sombra”, es la misma serie pero retardada en una unidad de periodo.
 - Modelos de médias móviles: se basan en considerar únicamente las últimas k observaciones. De esta forma se da el mismo peso a los últimos k datos y nada al resto. Este procedimiento no es tan extremo como los anteriores, y al sustituir cada dato por una media de los k últimos la serie se suaviza y se elimina ruido, obteniendo el patrón subyacente de la misma. Cuantas más observaciones relevantes (k) tomemos al aplicar este tipo de ajuste más se suavizará la serie.
-- Modelos de suavizado exponencial simple: consisten en dar importancia a todos los datos anteriores, pero concediéndoles diferentes pesos. Los datos más relevantes a la hora de efectuar una previsión son los últimos de los que se dispone, de forma que este método considera que la importancia disminuye conforme nos alejamos de ellos. De esta manera se sustituye cada dato de la serie por una media ponderada de las observaciones anteriores, considerando que los pesos de las mismas decaen de forma exponencial conforme éstas se alejan en el tiempo (la fórmula del ajuste es recursiva).
+- Modelos de suavizado exponencial simple: consisten en dar importancia a todos los datos anteriores, pero concediéndoles diferentes pesos. Los datos más relevantes a la hora de efectuar una previsión son los últimos de los que se dispone, disminuyendo la importancia conforme nos alejamos de ellos. De esta manera se sustituye cada dato de la serie por una media ponderada de las observaciones anteriores, considerando que los pesos de las mismas decaen de forma exponencial conforme éstas se alejan en el tiempo (la fórmula del ajuste es recursiva). Su único parámetro de suavizado es el nivel. El suavizado exponencial simple es el más similar a un modelo ARIMA con cero órdenes de autorregresión, un orden de diferenciación y un orden de media móvil.
 
 **Series temporales no estacionales con tendencia**
 
 En el caso de series temporales con tendencia lineal (creciente o decreciente) pero sin comportamiento estacional, el modelo clásico que más se suele aplicar es el de Holt:
 
-- Modelo de Holt: es un modelo de suavizado exponencial doble.
+- Modelos de suavizado exponencial de Brown: es un modelo de suavizado exponencial simple aplicado doblemente, por lo que es también conocido como suavizado exponencial doble. En un principio se alisa directamente a la variable objeto de estudio, mientras que en la segunda operación se procede a alisar a la variable alisada previamente obtenida.
+- Modelo de Holt:
 
 **Series temporales con tendencia y estacionalidad**
 
@@ -786,6 +787,7 @@ ________________________________________________________________________
 - Modelización con datos de series temporales https://www.ucm.es/data/cont/docs/518-2013-10-25-Tema_6_EctrGrado.pdf <br> 
 - Series temporales: Modelo ARIMA http://www.estadistica.net/ECONOMETRIA/SERIES-TEMPORALES/modelo-arima.pdf <br>
 - Modelo ARIMA https://www.uam.es/personal_pdi/economicas/anadelsur/pdf/Box-Jenkins.PDF <br>
+- Técnicas de suavización http://renanquispellanos.com/recursos/aporte%20intelectual/tecnicas%20prediccion/12.unidad9.pdf <br>
 - Análisis descriptivo de series temporales con R https://www.uam.es/personal_pdi/ciencias/acuevas/docencia/doct/Series-temporales-con-R.pdf <br>
 - Análisis básico de series temporales con R https://rpubs.com/joser/SeriesTemporalesBasicas <br>
 - Quick-R: Time Series http://www.statmethods.net/advstats/timeseries.html <br>

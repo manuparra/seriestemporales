@@ -609,11 +609,13 @@ Ajustar una serie temporal mediante un alisado exponencial doble:
 		- beta: parámetro beta del alisado exponencial
 		- gamma: parámetro gamma del alisado exponencial. Debe establecerse a FALSE
 
-	holt(serie temporal, alpha, beta, h) *paquete forecast*
+	holt(serie temporal, alpha, beta, h, exponential, damped) *paquete forecast*
 	
 		- alpha: parámetro alpha del alisado exponencial
 		- beta: parámetro beta del alisado exponencial
 		- h: nº de periodos a predecir
+		- exponential: a TRUE se calcula una tendencia exponencial, a FALSE lineal
+		- damped: a TRUE para no usar una tendencia lineal
 
 Ajustar una serie temporal mediante un alisado exponencial Holt-Winter:
 
@@ -624,13 +626,15 @@ Ajustar una serie temporal mediante un alisado exponencial Holt-Winter:
 		- gamma: parámetro gamma del alisado exponencial
 		- seasonal: permite diferenciar entre un modelo aditivo o multiplicativo. Solo disponible si está presente el parámetro gamma
 
-	hw(serie temporal, alpha, beta, gamma, seasonal h) *paquete forecast*
+	hw(serie temporal, alpha, beta, gamma, seasonal, h, exponential, damped) *paquete forecast*
 	
 		- alpha: parámetro alpha del alisado exponencial
 		- beta: parámetro beta del alisado exponencial
 		- gamma: parámetro gamma del alisado exponencial
 		- seasonal: permite diferenciar entre un modelo aditivo o multiplicativo
 		- h: nº de periodos a predecir
+		- exponential: a TRUE se calcula una tendencia exponencial, a FALSE lineal
+		- damped: a TRUE para no usar una tendencia lineal
 
 Predicción de valores de una serie temporal ajusta con un alisado:
 

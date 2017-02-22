@@ -816,6 +816,7 @@ Imputación de valores perdidos mediante k-NN:
 ## Ejemplos de análisis de series temporales
 
 - Ejemplo básico de las funciones referentes a una serie temporal: [Ver](./examples/pruebas_simples/basico_timeseries.R)
+- Ejemplo básico de las funciones referentes a una serie temporal con alisados exponenciales: [Ver](./examples/pruebas_simples/basico_alisados.R)
 - Ejemplo básico de las funciones referentes a la imputación: [Ver](./examples/pruebas_simples/basico_imputation.R)
 - Ejemplo básico de las funciones referentes a la validación cruzada: [Ver](./examples/pruebas_simples/basico_crossvalidation.R)
 

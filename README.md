@@ -166,25 +166,29 @@ Los métodos clásicos de análisis de series temporales tienen la ventaja de no
 
 ### Enfoque de los Alisados o Suavizados
 
-Los métodos de suavizado o alisado son técnicas de tipo predictivo más que descriptivo (resultan más adecuados para pronosticar). Estos modelos se pueden emplear en:
+Los métodos de suavizado o alisado se basan en modelos paramétricos deterministas que se ajustan a la evolución de la serie. Son técnicas de tipo predictivo más que descriptivo (resultan más adecuados para pronosticar). Estos modelos se pueden emplear en:
 
 **Series temporales sin tendencia ni estacionalidad**
 
-Este tipo de series tienen un comportamiento más o menos estable, se le pueden aplicar:
+Este tipo de series tienen un comportamiento más o menos estable que sigue un patrón subyacente salvo fluctuaciones aleatorias, a este tipo de series se le pueden aplicar:
 
 - Modelos "naive" o ingenuos: según la importancia que se le de a las observaciones se tiene:
 	- Se otorga la misma importancia a todas las observaciones a la hora de predecir, de esta forma la previsión vendrá dada por la media de las observaciones. 
-	- Se da importancia únicamente a la última de las observaciones, ignorando el restode forma que el ajuste de la serie es su “sombra”, es la misma serie pero retardada en una unidad de periodo.
+	- Se da importancia únicamente a la última de las observaciones ignorando el resto, de forma que el ajuste de la serie es su “sombra”, es la misma serie pero retardada en una unidad de periodo.
 - Modelos de médias móviles: se basan en considerar únicamente las últimas k observaciones. De esta forma se da el mismo peso a los últimos k datos y nada al resto. Este procedimiento no es tan extremo como los anteriores, y al sustituir cada dato por una media de los k últimos la serie se suaviza y se elimina ruido, obteniendo el patrón subyacente de la misma. Cuantas más observaciones relevantes (k) tomemos al aplicar este tipo de ajuste más se suavizará la serie.
 - Modelos de suavizado exponencial simple: consisten en dar importancia a todos los datos anteriores, pero concediéndoles diferentes pesos. Los datos más relevantes a la hora de efectuar una previsión son los últimos de los que se dispone, de forma que este método considera que la importancia disminuye conforme nos alejamos de ellos. De esta manera se sustituye cada dato de la serie por una media ponderada de las observaciones anteriores, considerando que los pesos de las mismas decaen de forma exponencial conforme éstas se alejan en el tiempo (la fórmula del ajuste es recursiva).
 
 **Series temporales no estacionales con tendencia**
 
-- Modelo de Holt:
+En el caso de series temporales con tendencia lineal (creciente o decreciente) pero sin comportamiento estacional, el modelo clásico que más se suele aplicar es el de Holt:
+
+- Modelo de Holt: es un modelo de suavizado exponencial doble.
 
 **Series temporales con tendencia y estacionalidad**
 
-- Modelo de Holt-Winters:
+En el caso de series temporales con tendencia lineal (creciente o decreciente) y comportamiento estacional, el modelo clásico que se aplica es el de Holt-Winters:
+
+- Modelo de Holt-Winters: es una extensión del modelo de Holt, que además considera estacionalidad. La tendencia y la estacionalidad se pueden combinar de manera aditiva o multiplicativa.
 
 
 

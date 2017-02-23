@@ -665,7 +665,7 @@ ________________________________________________________________________
 
 Debido a que las redes neuronales tienen un componente aleatorio, es aconsejable establecer una semilla para asegurar que los datos sean reproducibles.
 
-Predicción de una serie temporal con redes neuronales feed-fordward:
+Ajuste de una serie temporal con redes neuronales feed-fordward:
 
 	nnetar(serie temporal, p, P, size, repeats, lambda, scale.inputs) *paquete forecast*
 	
@@ -715,7 +715,24 @@ Normalización de las observaciones de una serie temporal:
 	
 		- x: valores a des-normalizar
 		- normParams: parámetros generados durante la normalización (se obtienen con getNormParameters(x))
+
+Ajuste de una serie temporal con redes neuronales parcialmente recurrentes:
+
+	jordan(x, y, size, learnFunc, linOut) *paquete rsnns*
 	
+		- x: entradas de la red neuronal
+		- y: salidas de la red neuronal
+		- size: nº de neuronas en la capa oculta
+		- learnFunc: algoritmo empleado para aprender la red
+		- linOut: función de activación de la salida lineal (TRUE) o logística
+
+	elman(x, y, size, learnFunc, linOut) *paquete rsnns*
+	
+		- x: entradas de la red neuronal
+		- y: salidas de la red neuronal
+		- size: nº de neuronas en la capa oculta
+		- learnFunc: algoritmo empleado para aprender la red
+		- linOut: función de activación de la salida lineal (TRUE) o logística
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:
 

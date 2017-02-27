@@ -15,6 +15,7 @@ Table of Contents
 				* [ARIMA](#arima-(autoregresive-integrated-moving-average))
 				* [SARIMA](#sarima-(seasonal-autoregresive-integrated-moving-average))
 	* [Predicción de series temporales con redes neuronales](#predicción-de-series-temporales-con-redes-neuronales)
+      * [Análisis de series temporales multivariantes](#análisis-de-series-temporales-multivariantes)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
@@ -325,6 +326,18 @@ Con respecto a las series temporales, la idea base reside en que los valores fut
 **Ventajas y desventajas**
 
 Los modelos no lineales son más potentes, pero por contra necesitan de más datos de entrenamiento, de más parámetros por ajustar, y se comportan peor (por ejemplo son más dados a producir sobreentrenamiento, etc...). Además, su computación es más pesada lo que va a conllevar un mayor tiempo de cómputo.
+
+________________________________________________________________________
+
+## Análisis de series temporales multivariantes
+
+Los modelos vistos hasta ahora, constituyen una modelización de una serie temporal univariante (útiles para conocer las características de una serie temporal de tendencia, ciclo, estacionalidad, o para predecir), pero no tienen en cuenta la interrelación entre distintas variables (variable objeto de estudio con otras variables relevantes), y por lo tanto su utilidad puede verse limitada. Esta necesidad del estudio interrelacional entre variables, se hace latente por ejemplo en el ámbito económico, ya que la realidad económica de sectores, países, empresas, o el conjunto de la economía mundial viene determinada porque sus variables económicas vienen determinadas por la interrelación entre distintas variables, así por ejemplo las ventas
+de una empresa están en relación con la renta de los consumidores, la demanda de turistas está en relación con el crecimiento del PIB o de los precios relativos, la demanda de transporte ferroviario está en relación con el nivel de actividad etc.
+
+Para resolver estas limitaciones se presentan los modelos multivariantes, que son modelos que sí tienen en cuenta la interrelación entre variables. Estudian la relación entre una variable de interés y una serie de variables explicativas (que influyen en la variable de interés) estableciendo un modelo uniecuacional en el que hay una variable independiente y el resto son exógenas (aunque no siempre lo son).
+
+
+
 
 ________________________________________________________________________
 

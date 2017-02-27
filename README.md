@@ -345,7 +345,13 @@ La forma multivariante de los modelos ARIMA Box-Jenkins es llamada modelos VARMA
 
 Los modelos de vectores autoregresivos, VAR, son unos de los modelos más empleados para el análisis de series de tiempo multivariantes. Los modelos VAR son una simple extensión de los modelos AR, con la diferencia de que mientras que los modelos autorregresivos univariantes recogen la dinámica de una sola serie temporal, los modelos multivariantes recogen las estructuras dinámicas sobre varias series temporales (por lo que presentan tantas ecuaciones como series haya). 
 
-Al igual que con los modelos univariantes, para poder aplicar los modelos multivariantes se necesita que las series temporales que forman el modelo multivariante sean estacionarias, por lo que el proceso para la estacionariedad, identificación del medelo, etc. es el mismo.
+Al igual que con los modelos univariantes, existe una metodología para la construcción de los modelos multivariantes:
+- Se necesita que las series temporales que forman el modelo multivariante sean estacionarias (una serie temporal multivariante es estacionaria si todas las series temporales que la componen son estacionarias), para ello se pueden emplear las mismas técnicas para comprobar la estacionariedad (gráficas de las funciones de autocorrelación, test de estacionariedad, etc.), y también para conseguir que sea estacionaria (diferenciación)
+- Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, etc.)
+
+
+- Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes.
+- La predicción con modelos VAR es una extensión de la predicción con modelos AR.
 
 
 ________________________________________________________________________

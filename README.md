@@ -331,12 +331,27 @@ ________________________________________________________________________
 
 ## Análisis de series temporales multivariantes
 
-Los modelos vistos hasta ahora, constituyen una modelización de una serie temporal univariante (útiles para conocer las características de una serie temporal de tendencia, ciclo, estacionalidad, o para predecir), pero no tienen en cuenta la interrelación entre distintas variables (variable objeto de estudio con otras variables relevantes), y por lo tanto su utilidad puede verse limitada. Esta necesidad del estudio interrelacional entre variables, se hace latente por ejemplo en el ámbito económico, ya que la realidad económica de sectores, países, empresas, o el conjunto de la economía mundial viene determinada porque sus variables económicas vienen determinadas por la interrelación entre distintas variables, así por ejemplo las ventas
-de una empresa están en relación con la renta de los consumidores, la demanda de turistas está en relación con el crecimiento del PIB o de los precios relativos, la demanda de transporte ferroviario está en relación con el nivel de actividad etc.
+Los modelos vistos hasta ahora, constituyen una modelización univariante de una serie temporal (útiles para conocer las características de una serie temporal de tendencia, ciclo, estacionalidad, o para predecir), pero no tienen en cuenta la interrelación entre distintas variables (variable objeto de estudio con otras variables relevantes), y por lo tanto su utilidad puede verse limitada. Esta necesidad del estudio interrelacional entre variables se hace latente en muchos ámbitos, como por ejemplo en el ámbito meteorológico o en el económico, ya que por ejemplo la realidad económica de sectores, países, empresas, o el conjunto de la economía mundial viene determinada porque sus variables económicas vienen determinadas por la interrelación entre distintas variables, así por ejemplo las ventas de una empresa están en relación con la renta de los consumidores, o la demanda de turistas está en relación con el crecimiento del PIB o de los precios relativos, etc.
 
-Para resolver estas limitaciones se presentan los modelos multivariantes, que son modelos que sí tienen en cuenta la interrelación entre variables. Estudian la relación entre una variable de interés y una serie de variables explicativas (que influyen en la variable de interés) estableciendo un modelo uniecuacional en el que hay una variable independiente y el resto son exógenas (aunque no siempre lo son). En el marco multivariante se considera el pasado tanto de la variable que se quiere explicar, como el de las variables que están relacionadas con dicha variable.
+Para resolver estas limitaciones se presentan los modelos multivariantes, que son modelos que sí tienen en cuenta la interrelación entre variables de distintas series temporales, luego estos modelos contienen varias series temporales. Concretamente estudian la relación entre una variable de interés y una serie de variables explicativas (que influyen en la variable de interés). En el marco multivariante se considera el pasado tanto de la variable que se quiere explicar, como el de las variables que están relacionadas con dicha variable. Los modelos multivariantes de series temporales son una generalización de los modelos univariantes, la diferencia está en que en vez de una sola variable hay n variables (en vez de una serie, hay varias series). 
+
+## Enfoque Box-Jenkins
 
 
+**VAR**
+
+Los modelos de vectores autoregresivos, VAR, son unos de los modelos más empleados para el análisis de series de tiempo multivariantes. Los modelos VAR son una simple extensión de los modelos AR, con la diferencia de que mientras que los modelos autorregresivos univariantes recogen la dinámica de una sola serie temporal, los modelos multivariantes recogen las estructuras dinámicas sobre varias series temporales, por lo que presentan tantas ecuaciones como series haya.
+
+
+
+**VARMA**
+
+
+VAR models are a specific case of more general VARMA models. VARMA models for multivariate time series include the VAR structure above along with moving average terms for each variable.
+
+La forma multivariante de los modelos ARIMA Box-Jenkins es llamada modelos VARMA o ARMAV (AutoRegressive Moving Average Vector o simply vector ARMA process) (VARIMA o ARIMAV). La estimación del componente de medias móviles es especialmente complicado luego una de las formas más frecuentes de modelar una serie temporal es como un vector autoregresivo
+
+En principio se van a especificar y estimar sobre variables estacionarias
 
 
 ________________________________________________________________________

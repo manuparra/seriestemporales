@@ -339,16 +339,17 @@ Para resolver estas limitaciones se presentan los modelos multivariantes, que so
 
 ## Enfoque Box-Jenkins
 
-La forma multivariante de los modelos ARIMA Box-Jenkins es llamada modelos VARMA o ARMAV (AutoRegressive Moving Average Vector) (VARIMA o ARIMAV). Sin embargo, el ajuste de este tipo modelos es bastante complicado, lo que hace que una de las formas más frecuentes de modelar modelos multivariantes sea como vectores autoregresivos:
+La forma multivariante de los modelos ARIMA Box-Jenkins es llamada modelos VARMA o ARMAV (AutoRegressive Moving Average Vector) (VARIMA o ARIMAV). Sin embargo, el ajuste de este tipo modelos es bastante complicado, lo que hace que por simplicidad una de las formas más frecuentes de modelar modelos multivariantes sea como vectores autoregresivos:
 
 **VAR**
 
-Los modelos de vectores autoregresivos, VAR, son unos de los modelos más empleados para el análisis de series de tiempo multivariantes. Los modelos VAR son una simple extensión de los modelos AR, con la diferencia de que mientras que los modelos autorregresivos univariantes recogen la dinámica de una sola serie temporal, los modelos multivariantes recogen las estructuras dinámicas sobre varias series temporales (por lo que presentan tantas ecuaciones como series haya). 
+Los modelos de vectores autoregresivos, VAR, son unos de los modelos más empleados para el análisis de series de tiempo multivariantes. Los modelos VAR son una extensión de los modelos AR, con la diferencia de que mientras que los modelos autorregresivos univariantes recogen la dinámica de una sola serie temporal, los modelos multivariantes recogen las estructuras dinámicas sobre varias series temporales (por lo que presentan tantas ecuaciones como series haya). 
 
 Al igual que con los modelos univariantes, existe una metodología para la construcción de los modelos multivariantes:
 - Se necesita que las series temporales que forman el modelo multivariante sean estacionarias (una serie temporal multivariante es estacionaria si todas las series temporales que la componen son estacionarias), para ello se pueden emplear las mismas técnicas para comprobar la estacionariedad (gráficas de las funciones de autocorrelación, test de estacionariedad, etc.), y también para conseguir que sea estacionaria (diferenciación).
 - Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, etc.).
 - Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes.
+- Se estiman ecuación a ecuación como una serie univariante. 
 - La predicción con modelos VAR es una extensión de la predicción con modelos AR.
 
 ________________________________________________________________________
@@ -676,6 +677,21 @@ Predicción de valores de una serie temporal ajusta con un alisado:
 		- object: modelo de serie temporal
 		- n.ahead: número de periodos a predecir
 
+**Series temporales multivariantes**
+
+Determinación del nº de lags óptimos a emplear en un modelo VAR:
+
+	VARselect(serie temporal, lag.max)
+	
+		lag.max: número máximo de retardos a evaluar
+
+Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuación:
+
+	VAR(serie temporal, p)
+	
+		- p: orden, nº de rezagos empleados
+
+
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
 - stats: incorporado en R
@@ -684,6 +700,7 @@ Predicción de valores de una serie temporal ajusta con un alisado:
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - TSA: https://cran.r-project.org/web/packages/TSA/TSA.pdf
 
+- vars: https://cran.r-project.org/web/packages/vars/vars.pdf
 ________________________________________________________________________
 
 ## Series temporales con redes neuronales con R

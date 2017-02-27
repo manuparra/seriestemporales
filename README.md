@@ -16,6 +16,7 @@ Table of Contents
 				* [SARIMA](#sarima-(seasonal-autoregresive-integrated-moving-average))
 	* [Predicción de series temporales con redes neuronales](#predicción-de-series-temporales-con-redes-neuronales)
       * [Análisis de series temporales multivariantes](#análisis-de-series-temporales-multivariantes)
+      	* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
@@ -24,6 +25,7 @@ Table of Contents
       * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-r)
       	 * [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
       * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
+      * [Análisis gráfico de series temporales](#análisis-gráfico-de-series-temporales)
    * [Bibliografía](#bibliografía)
 
 
@@ -873,6 +875,12 @@ Imputación de valores perdidos mediante k-NN:
 - Caso ejemplo Análisis y modelado Series temporales simple 02: [Ver](./examples/estudio_02_simple/)
 - Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./examples/estudio_03_completo/)
 - Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./examples/estudio_04_completo/)
+
+________________________________________________________________________
+
+## Análisis gráfico de series temporales
+
+[Ver](./analisisgrafico/analisisgrafico.md)
 
 ________________________________________________________________________
 

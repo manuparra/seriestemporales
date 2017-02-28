@@ -343,13 +343,13 @@ La forma multivariante de los modelos ARIMA Box-Jenkins es llamada modelos VARMA
 
 **VAR**
 
-Los modelos de vectores autoregresivos, VAR, son unos de los modelos más empleados para el análisis de series de tiempo multivariantes. Los modelos VAR son una extensión de los modelos AR, con la diferencia de que mientras que los modelos autorregresivos univariantes recogen la dinámica de una sola serie temporal, los modelos multivariantes recogen las estructuras dinámicas sobre varias series temporales (por lo que presentan tantas ecuaciones como series haya). Dicha estructura consiste en que cada observación de una serie es una función lineal de los rezagos pasados de ella misma y los de las demás observaciones de las otras series. El número de rezagos empleado viene denotado por el componente p de VAR(p).
+Los modelos de vectores autoregresivos, VAR, son unos de los modelos más empleados para el análisis de series de tiempo multivariantes. Los modelos VAR son una extensión de los modelos AR, con la diferencia de que mientras que los modelos autorregresivos univariantes recogen la dinámica de una sola serie temporal, los modelos multivariantes recogen las estructuras dinámicas sobre varias series temporales (por lo que presentan tantas ecuaciones como series haya). Dicha estructura consiste en que cada observación de una serie es una función lineal de los rezagos pasados de ella misma y los de las demás observaciones de las otras series. Esta estructura es propicia para ser representada en forma matricial, y es fácilmente extendible para contener un número mayor de series y de rezagos. El número de rezagos empleado viene denotado por el componente p de VAR(p).
 
 Al igual que con los modelos univariantes, existe una metodología para la construcción de los modelos multivariantes:
 - Se necesita que las series temporales que forman el modelo multivariante sean estacionarias (una serie temporal multivariante es estacionaria si todas las series temporales que la componen son estacionarias), para ello se pueden emplear las mismas técnicas para comprobar la estacionariedad (gráficas de las funciones de autocorrelación, test de estacionariedad, etc.), y también para conseguir que sea estacionaria (diferenciación).
-- Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, etc.).
+- Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, HQ, etc.).
 - Se estiman ecuación a ecuación como una serie univariante. 
-- Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes.
+- Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes. Se destaca aquí el test de Portmanteau que prueba que los residuos están incorrelacionados.
 - La predicción con modelos VAR es una extensión de la predicción con modelos AR.
 
 ________________________________________________________________________
@@ -927,6 +927,7 @@ ________________________________________________________________________
 - Comparison of different Methods for Univariate Time Series Imputation in R: https://arxiv.org/ftp/arxiv/papers/1510/1510.03924.pdf <br>
 - A blog by Rob J Hyndman: http://robjhyndman.com/hyndsight/ <br>
 - Redes de neuronas recurrentes http://eva.evannai.inf.uc3m.es/et/docencia/doctorado/cib/documentacion/NNRecurrentes.pdf <br>
+- Multivariate time series models: http://lipas.uwasa.fi/~bepa/Multivariate.pdf <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

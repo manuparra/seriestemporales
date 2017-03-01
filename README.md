@@ -17,6 +17,8 @@ Table of Contents
 	* [Predicción de series temporales con redes neuronales](#predicción-de-series-temporales-con-redes-neuronales)
       * [Análisis de series temporales multivariantes](#análisis-de-series-temporales-multivariantes)
       	* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
+			* [VAR](#var)
+			* [VEC](#vec)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
       	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
@@ -360,7 +362,7 @@ Al igual que con los modelos univariantes, existe una metodología para la const
 
 En los modelos VAR, así como en la modelización univariante de series temporales, se asume que las series temporales utilizadas son estacionarias, esto debe de ser así ya que cuando se efectúan regresiones entre variables no estacionarias podemos caer en el problema de las llamadas correlaciones espurias (estimaciones de modelos que presentan en principio buenas validaciones, pero que encierran relaciones no-reales). Aunque en general la regresión entre series no estacionarias conduce a correlaciones espurias, existe una situación especial en el que tal regresión no sería espuria, sino que el estimador MCO sería correcto. Esa situación especial recibe el nombre de cointegración (Por definición, una combinación lineal de dos o más series no estacionarias puede ser estacionaria. Luego si existe una combinación lineal de series que es estacionaria, se dice que las series no estacionarias, con raíz unitaria, que dan lugar a esa combinación están cointegradas). La combinación lineal estacionaria se denomina ecuación de cointegración y puede interpretarse como la relación de equilibrio a largo plazo entre las distintas variables que conforman la ecuación por lo cual, en sí misma, tiene una alta importancia para el análisis de los fenómenos que la serie contiene.
 
-Pues bien, un modelo de **vector de corrección del error** (VEC) es un modelo VAR restringido (habitualmente con sólo dos variables) que tiene restricciones de cointegración incluidas en su especificación, por lo que se diseña para ser utilizado con series que no son estacionarias pero de las que se sabe que son cointegradas. El principio detrás de estos modelos es que existe una relación de equilibrio a largo plazo entre variables y que, sin embargo, en el corto plazo puede haber desequilibrios. Con los modelos de corrección del error, una proporción del desequilibrio de un período es corregido gradualmente a través de ajustes parciales en el corto plazo. Una de las claves de los modelos VEC es determinar si las series que modelizamos son cointegradas y, si es así, determinar la ecuación de integración. Para ello se utiliza el método de Johansen.
+Pues bien, un modelo de **vector de corrección del error** (VEC)(VECM, Vector Error Correction Models) es un modelo VAR restringido (habitualmente con sólo dos variables) que tiene restricciones de cointegración incluidas en su especificación, por lo que se diseña para ser utilizado con series que no son estacionarias pero de las que se sabe que son cointegradas. El principio detrás de estos modelos es que existe una relación de equilibrio a largo plazo entre variables y que, sin embargo, en el corto plazo puede haber desequilibrios. Con los modelos de corrección del error, una proporción del desequilibrio de un período es corregido gradualmente a través de ajustes parciales en el corto plazo. Una de las claves de los modelos VEC es determinar si las series que se modelan son cointegradas y, si es así, determinar la ecuación de integración. Para ello se utiliza el método de Johansen (luego si la serie multivariante es cointegrada se utiliza un modelo VEC, si no es cointegrada se utiliza un modelo VAR).
 
 ________________________________________________________________________
 
@@ -939,6 +941,7 @@ ________________________________________________________________________
 - Redes de neuronas recurrentes http://eva.evannai.inf.uc3m.es/et/docencia/doctorado/cib/documentacion/NNRecurrentes.pdf <br>
 - Multivariate time series models: http://lipas.uwasa.fi/~bepa/Multivariate.pdf <br>
 - Analysis of multiple time series: https://www.kevinsheppard.com/images/5/56/Chapter5.pdf <br>
+- Técnicas avanzadas de predicción: https://www.uam.es/docencia/predysim/combinado5/unidad5.htm <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

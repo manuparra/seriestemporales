@@ -353,7 +353,7 @@ Donde y<sub>t</sub> es la variable objeto de predicción (vector de variables a 
 
 Al igual que con los modelos univariantes, existe una metodología para la construcción de los modelos multivariantes:
 - Se necesita que las series temporales que forman el modelo multivariante sean estacionarias (una serie temporal multivariante es estacionaria si todas las series temporales que la componen son estacionarias), para ello se pueden emplear las mismas técnicas para comprobar la estacionariedad (gráficas de las funciones de autocorrelación, test de estacionariedad, etc.), y también para conseguir que sea estacionaria (diferenciación).
-- Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, HQ, etc.).
+- Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, HQ, etc.)(Puede ser el caso que este conjunto de pruebas estadísticas no dejen una dirección clara, entonces se tiene que se ha demostrado que los criterios BIC y HQ proporcionan estimaciones consistentes del verdadero orden del retardo, mientras que AIC sobreestima el orden del retardo con una alta probabilidad).
 - Se estiman ecuación a ecuación como una serie univariante aplicando MCO transformado matricialmente para un sistema de ecuaciones.
 - Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes. Se destaca aquí el test de Portmanteau que prueba que los residuos están incorrelacionados.
 - La predicción con modelos VAR es una extensión de la predicción con modelos AR.
@@ -693,9 +693,13 @@ Predicción de valores de una serie temporal ajusta con un alisado:
 
 Determinación del nº de lags óptimos a emplear en un modelo VAR:
 
-	VARselect(serie temporal, lag.max)
+	VARselect(serie temporal, lag.max) *paquete vars*
 	
 		lag.max: número máximo de retardos a evaluar
+		
+	VARorder(serie temporal, maxp) *paquete MTS*
+	
+		max.p: número máximo de retardos a evaluar
 
 Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuación:
 
@@ -703,6 +707,9 @@ Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuaci�
 	
 		- p: orden, nº de rezagos empleados
 
+Pruebas de cointegración de Johansen:
+
+	ca.jo()
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
@@ -713,6 +720,7 @@ Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuaci�
 - TSA: https://cran.r-project.org/web/packages/TSA/TSA.pdf
 
 - vars: https://cran.r-project.org/web/packages/vars/vars.pdf
+- MTS: https://cran.r-project.org/web/packages/MTS/MTS.pdf
 ________________________________________________________________________
 
 ## Series temporales con redes neuronales con R

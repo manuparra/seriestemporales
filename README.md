@@ -959,6 +959,7 @@ ________________________________________________________________________
 - Multivariate time series models: http://lipas.uwasa.fi/~bepa/Multivariate.pdf <br>
 - Analysis of multiple time series: https://www.kevinsheppard.com/images/5/56/Chapter5.pdf <br>
 - Técnicas avanzadas de predicción: https://www.uam.es/docencia/predysim/combinado5/unidad5.htm <br>
+- Johansen Test for Cointegrating Time Series Analysis in R:https://www.quantstart.com/articles/Johansen-Test-for-Cointegrating-Time-Series-Analysis-in-R <br>
 
 - Análisis de series temporales https://www.youtube.com/watch?v=NDOPKRAT3-E <br>
 - Análisis clásico de series temporales https://www.youtube.com/watch?v=cQxFPPIj7gc <br>

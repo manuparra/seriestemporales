@@ -270,7 +270,7 @@ Luego un Proceso Autoregresivo Integrado y de Media Móvil, ARIMA (p,d,q), es un
 			- Gráfico Q-Q: Similar al gráfico de probabilidad normal, con la diferencia de que se usa el cuantil de la distribución como eje X.			
 			![STexample](http://www.itl.nist.gov/div898/handbook/pmc/section6/negiz4/gif/res4plot.gif)				
 		- Correlogramas de los residuos. Se evalúa con el correlograma que los errores del modelo no tengan correlación y sean ruido blanco (la ACF y la PACF de un ruido blanco (serie de datos independientes entre sí) tienen todos los coeficientes nulos en teoría, o no significativos en las gráficas al menos para el 95% de los coeficientes estimados). 	
-		- Los estadísticos Ljung–Box (y también Box-Pierce) (test de aleatoriedad). La hipótesis nula para estos test es que los residuos son independientes. Luego si el p-value obtenido es pequeño indica que no son aleatorios, en cambio, cuanto mayor es su p-valor más evidencia hay de que los residuos son ruido blanco. El nivel mínimo es 0,05, es decir, debe suceder que el p-valor sea mayor que 0,05.
+		- Los estadísticos Ljung–Box (y también Box-Pierce) (test de aleatoriedad) (son test de portmanteau). La hipótesis nula para estos test es que los residuos son independientes (es decir, están incorrelacionados). Luego si el p-value obtenido es pequeño indica que no son aleatorios, en cambio, cuanto mayor es su p-valor más evidencia hay de que los residuos son ruido blanco. El nivel mínimo es 0,05, es decir, debe suceder que el p-valor sea mayor que 0,05.
 		- Los estadísticos Jarque Bera, Shapiro-Wilk, Kolmogorov-Smirnov, D'Agostino, Lilliefors o Anderson-Darling (test de normalidad, o prueba de normalidad). Presentan como hipótesis nula que los errores se encuentran distribuidos normalmente, luego un p-value menor que 0.05, denotará que la hipótesis se puede rechazar, y los residuos no siguen una distribución normal (el test de Shapiro-Wilk no se recomienda para un conjunto de valores superior a 50).
 		
 		Para que un modelo sea válido, los diferentes análisis sobre los residuos obtenidos en la estimación serán "ruido blanco". Un ruido blanco es una serie estacionaria en la que ninguna observación depende de las otras y, por tanto, todos los valores de la ACF y la PACF son nulos. El correlograma y el correlograma parcial deben ser muy similares y los valores no deben ser significativamente distintos de cero. Si ésto no es así y los residuos muestran estructura, habrá que realizar una nueva estimación incorporando la estructura más parecida al modelo teórico que podamos intuir y se repiten las etapas anteriores hasta obtener un modelo adecuado.
@@ -355,12 +355,12 @@ Al igual que con los modelos univariantes, existe una metodología para la const
 - Se necesita que las series temporales que forman el modelo multivariante sean estacionarias (una serie temporal multivariante es estacionaria si todas las series temporales que la componen son estacionarias), para ello se pueden emplear las mismas técnicas para comprobar la estacionariedad (gráficas de las funciones de autocorrelación, test de estacionariedad, etc.), y también para conseguir que sea estacionaria (diferenciación).
 - Se necesita identificar el modelo VAR(p) que sigue la serie (longitud de retardos seleccionados), para ello se tiene que determinar el orden más apropiado para el modelo, lo que se puede hacer de la misma manera que en las series univariantes (extensiones multivariantes del AIC, BIC, HQ, etc.)(Puede ser el caso que este conjunto de pruebas estadísticas no dejen una dirección clara, entonces se tiene que se ha demostrado que los criterios BIC y HQ proporcionan estimaciones consistentes del verdadero orden del retardo, mientras que AIC sobreestima el orden del retardo con una alta probabilidad).
 - Se estiman ecuación a ecuación como una serie univariante aplicando MCO transformado matricialmente para un sistema de ecuaciones.
-- Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes. Se destaca aquí el test de Portmanteau que prueba que los residuos están incorrelacionados.
+- Se necesita validar el modelo multivariante elegido, para ello es crucial que los residuos cumplan la asunción de ser ruidos blancos multivariantes. Se destaca aquí los test de Portmanteau que prueban que los residuos están incorrelacionados.
 - La predicción con modelos VAR es una extensión de la predicción con modelos AR.
 
 **VEC**
 
-En los modelos VAR, así como en la modelización univariante de series temporales, se asume que las series temporales utilizadas son estacionarias, esto debe de ser así ya que cuando se efectúan regresiones entre variables no estacionarias podemos caer en el problema de las llamadas correlaciones espurias (estimaciones de modelos que presentan en principio buenas validaciones, pero que encierran relaciones no-reales). Aunque en general la regresión entre series no estacionarias conduce a correlaciones espurias, existe una situación especial en el que tal regresión no sería espuria, sino que el estimador MCO sería correcto. Esa situación especial recibe el nombre de cointegración (Por definición, una combinación lineal de dos o más series no estacionarias puede ser estacionaria. Luego si existe una combinación lineal de series que es estacionaria, se dice que las series no estacionarias, con raíz unitaria, que dan lugar a esa combinación están cointegradas). La combinación lineal estacionaria se denomina ecuación de cointegración y puede interpretarse como la relación de equilibrio a largo plazo entre las distintas variables que conforman la ecuación por lo cual, en sí misma, tiene una alta importancia para el análisis de los fenómenos que la serie contiene.
+En los modelos VAR, así como en la modelización univariante de series temporales, se asume que las series temporales utilizadas son estacionarias, esto debe de ser así ya que cuando se efectúan regresiones entre variables no estacionarias podemos caer en el problema de las llamadas correlaciones espurias (estimaciones de modelos que presentan en principio buenas validaciones, pero que encierran relaciones no-reales). Aunque en general la regresión entre series no estacionarias conduce a correlaciones espurias, existe una situación especial en el que tal regresión no sería espuria, sino que el estimador MCO sería correcto. Esa situación especial recibe el nombre de **cointegración** (Por definición, una combinación lineal de dos o más series no estacionarias puede ser estacionaria. Luego si existe una combinación lineal de series que es estacionaria, se dice que las series no estacionarias, con raíz unitaria, que dan lugar a esa combinación están cointegradas). La combinación lineal estacionaria se denomina ecuación de cointegración y puede interpretarse como la relación de equilibrio a largo plazo entre las distintas variables que conforman la ecuación por lo cual, en sí misma, tiene una alta importancia para el análisis de los fenómenos que la serie contiene.
 
 Pues bien, un modelo de **vector de corrección del error** (VEC)(VECM, Vector Error Correction Models) es un modelo VAR restringido (habitualmente con sólo dos variables) que tiene restricciones de cointegración incluidas en su especificación, por lo que se diseña para ser utilizado con series que no son estacionarias pero de las que se sabe que son cointegradas. El principio detrás de estos modelos es que existe una relación de equilibrio a largo plazo entre variables y que, sin embargo, en el corto plazo puede haber desequilibrios. Con los modelos de corrección del error, una proporción del desequilibrio de un período es corregido gradualmente a través de ajustes parciales en el corto plazo. Una de las claves de los modelos VEC es determinar si las series que se modelan son cointegradas y, si es así, determinar la ecuación de integración. Para ello se utiliza el método de Johansen (luego si la serie multivariante es cointegrada se utiliza un modelo VEC, si no es cointegrada se utiliza un modelo VAR).
 
@@ -695,11 +695,11 @@ Determinación del nº de lags óptimos a emplear en un modelo VAR:
 
 	VARselect(serie temporal, lag.max) *paquete vars*
 	
-		lag.max: número máximo de retardos a evaluar
+		- lag.max: número máximo de retardos a evaluar
 		
 	VARorder(serie temporal, maxp) *paquete MTS*
 	
-		max.p: número máximo de retardos a evaluar
+		- max.p: número máximo de retardos a evaluar
 
 Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuación:
 
@@ -709,7 +709,16 @@ Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuaci�
 
 Pruebas de cointegración de Johansen:
 
-	ca.jo()
+	ca.jo(serie tempotal, type, K)
+	
+		- type: test empleado, "eigen" o "trace"
+		- K: lag de la serie VAR 
+		
+Ajuste y estimación de los parámetros de cointegración:
+
+	cajorls(serie temporal, r)
+	
+		- r: rango de cointegración
 
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 

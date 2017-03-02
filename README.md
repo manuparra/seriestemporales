@@ -720,6 +720,13 @@ Ajuste y estimación de los parámetros de cointegración:
 	
 		- r: rango de cointegración
 
+Transformación de un modelo VECM en un modelo VAR:
+
+	vec2var(z, r)
+
+		- z: objeto obtenido con ca.jo
+		- r: rango de cointegración
+
 ### Paquetes R para el análisis y tratamiento de Series Temporales:
 
 - stats: incorporado en R

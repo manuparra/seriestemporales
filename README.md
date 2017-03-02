@@ -915,6 +915,7 @@ Imputación de valores perdidos mediante k-NN:
 - Ejemplo básico de las funciones referentes a una serie temporal con redes neuronales: [Ver](./examples/pruebas_simples/basico_redesneuronales.R)
 - Ejemplo básico de las funciones referentes a la imputación: [Ver](./examples/pruebas_simples/basico_imputation.R)
 - Ejemplo básico de las funciones referentes a la validación cruzada: [Ver](./examples/pruebas_simples/basico_crossvalidation.R)
+- Ejemplo básico de las funciones referentes a una serie temporal multivariante: [Ver](./examples/pruebas_simples/basico_multivariantes.R)
 
 - Ejemplo simple de análisis y modelado de series temporales sin predicción: http://www.itl.nist.gov/div898/handbook/pmc/section6/pmc62.htm
 - Ejemplo simple de análisis, modelado y predicción de series temporales: http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc44a.htm

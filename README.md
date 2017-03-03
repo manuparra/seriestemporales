@@ -692,6 +692,27 @@ Predicción de valores de una serie temporal ajustada con un alisado:
 		- object: modelo de serie temporal
 		- n.ahead: número de periodos a predecir
 
+Ajuste de una serie temporal aditiva (con tendencia no lineal y estacionalidad semanal y anual)(buena con periodicidad diaria):
+
+	prophet(df)
+	
+		- df: data.frame con una columna ds con el tiempo, y otra columna y con las observaciones
+	
+Extensión del data.frame de la serie temporal aditiva con los periodos temporales a predecir:	
+
+	make_future_dataframe(m, periods, freq)
+	
+		- m: objeto prophet
+		- periods: nº de periodos que se va a predecir
+		- freq: frecuencia de la serie 
+		
+Predicción de la serie temporal aditiva:
+	
+	predict(object, df)
+	
+		- object: objeto prophet
+		- df: data.frame con el periodo a predecir incluido (también predice la serie ajustada)
+
 **Series temporales multivariantes**
 
 Determinación del nº de lags óptimos a emplear en un modelo VAR:

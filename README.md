@@ -492,11 +492,11 @@ Transformación BoxCox de una serie:
 
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
-	acf(serie temporal, lag.max)
-	Acf(serie temporal, lag.max)
+	acf(serie temporal, lag.max) *paquete stats*
+	Acf(serie temporal, lag.max) *paqute forecast*
 	
-	pacf(serie temporal, lag.max)
-	Pacf(serie temporal, lag.max)	
+	pacf(serie temporal, lag.max) *paquete stats*
+	Pacf(serie temporal, lag.max) *paqute forecast*	
 	
 		- lag.max: número máximo de retardos calculados
 
@@ -530,7 +530,7 @@ Cálculo de la tendencia mediante filtrado (medias móviles):
 	
     decompose(sertie temporal)$trend
     
-    ma(serie temporal, order, centre)
+    ma(serie temporal, order, centre) *paquete forecast*
     
     	- order: orden la media móvil
 	- centre: si se desea centrar la media móvil sea cual sea el orden
@@ -574,15 +574,15 @@ Cálculo (identificación) automático del mejor modelo ARIMA al que se ajustan 
 
 Simulación de un modelo ARIMA:
 
-	arima.sim(model, n)
+	arima.sim(model, n) 
 	
 		- model: lista con los componenetes AR y MA, se puede usar también _order_ para el orden
 		- n: longitud de la serie que se simula
 
 Ajuste del modelo ARIMA sobre una serie temporal:
 
-	arima(serie temporal, order, seasonal)
-	Arima(serie temporal, order, seasonal,lambda)  *permite una componente de tendencia*
+	arima(serie temporal, order, seasonal) *paquete stats*
+	Arima(serie temporal, order, seasonal,lambda)  *permite una componente de tendencia* *paquete forecast*
 
 		- order: especificación de los tres componentes del modelo en forma de vector
 		- seasonal: especificación de la parte estacional del modelo junto con el periodo (si la serie original es estacionaria)
@@ -680,7 +680,7 @@ Ajustar una serie temporal mediante un alisado exponencial Holt-Winter:
 		- exponential: a TRUE se calcula una tendencia exponencial, a FALSE lineal
 		- damped: a TRUE para no usar una tendencia lineal
 
-Predicción de valores de una serie temporal ajusta con un alisado:
+Predicción de valores de una serie temporal ajustada con un alisado:
 
 	forecast(object, h) *forecast.HoltWinters()*
 
@@ -737,6 +737,7 @@ Transformación de un modelo VECM en un modelo VAR:
 - tseries: https://cran.r-project.org/web/packages/tseries/index.html
 - forecast: https://cran.r-project.org/web/packages/forecast/index.html
 - TSA: https://cran.r-project.org/web/packages/TSA/TSA.pdf
+- prophet: https://cran.r-project.org/web/packages/prophet/prophet.pdf
 
 - vars: https://cran.r-project.org/web/packages/vars/vars.pdf
 - MTS: https://cran.r-project.org/web/packages/MTS/MTS.pdf

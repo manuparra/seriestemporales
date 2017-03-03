@@ -16,7 +16,7 @@ Table of Contents
 				* [SARIMA](#sarima-(seasonal-autoregresive-integrated-moving-average))
 	* [Predicción de series temporales con redes neuronales](#predicción-de-series-temporales-con-redes-neuronales)
       * [Análisis de series temporales multivariantes](#análisis-de-series-temporales-multivariantes)
-      	* [Enfoque Box-Jenkins](#enfoque-box-jenkins)
+      	* [Enfoque Box-Jenkins](#enfoque-box-jenkins-1)
 			* [VAR](#var)
 			* [VEC](#vec)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			

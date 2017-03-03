@@ -21,11 +21,12 @@ Table of Contents
 			* [VEC](#vec)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
-      	 * [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
-      * [Series temporales con redes neuronales con R](#series-temporales-con-redes-neuronales-con-r)
-      	 * [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
-      * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-r)
-      	 * [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
+	 * [Series temporales con alisados, arima, etc. con R](#series-temporales-con-alisados,-arima,-etc.-con-r)     
+      	 	* [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales:)
+      	 * [Series temporales con redes neuronales con R](#series-temporales-con-redes-neuronales-con-r)
+      	 	* [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
+      	 * [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-r)
+      	 	* [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
       * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
       * [Análisis gráfico de series temporales](#análisis-gráfico-de-series-temporales)
    * [Bibliografía](#bibliografía)
@@ -398,6 +399,8 @@ En el ámbito de la imputación, la imputación en series temporales univariante
 ________________________________________________________________________
 
 ## Series temporales con R
+
+## Series temporales con alisados, arima, etc. con R
 
 **Series temporales univariantes**
 

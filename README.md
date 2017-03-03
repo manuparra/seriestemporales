@@ -26,9 +26,9 @@ Table of Contents
 	* [Series temporales con redes neuronales con R](#series-temporales-con-redes-neuronales-con-r)
       	 	* [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
 	* [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-r)
-      	 	* [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	 	 
+      	 	* [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	
+	* [Análisis gráfico de series temporales](#análisis-gráfico-de-series-temporales)
       * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
-      * [Análisis gráfico de series temporales](#análisis-gráfico-de-series-temporales)
    * [Bibliografía](#bibliografía)
 
 
@@ -919,6 +919,13 @@ Imputación de valores perdidos mediante k-NN:
 - yaImpute: https://cran.r-project.org/web/packages/yaImpute/yaImpute.pdf
 - VIM: https://cran.r-project.org/web/packages/VIM/VIM.pdf
 
+
+## Análisis gráfico de series temporales
+
+[Ver](./analisisgrafico/analisisgrafico.md)
+
+________________________________________________________________________
+
 ## Ejemplos de análisis de series temporales
 
 - Ejemplo básico de las funciones referentes a una serie temporal: [Ver](./examples/pruebas_simples/basico_timeseries.R)
@@ -937,11 +944,6 @@ Imputación de valores perdidos mediante k-NN:
 - Caso ejemplo Análisis y modelado Series temporales completo 03: [Ver](./examples/estudio_03_completo/)
 - Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./examples/estudio_04_completo/)
 
-________________________________________________________________________
-
-## Análisis gráfico de series temporales
-
-[Ver](./analisisgrafico/analisisgrafico.md)
 
 ________________________________________________________________________
 

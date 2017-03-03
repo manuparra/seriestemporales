@@ -708,7 +708,7 @@ Extensión del data.frame de la serie temporal aditiva con los periodos temporal
 		
 Predicción de la serie temporal aditiva:
 	
-	predict(object, df)
+	predict(object, df) *predict.prophet*
 	
 		- object: objeto prophet
 		- df: data.frame con el periodo a predecir incluido (también predice la serie ajustada)

@@ -970,6 +970,12 @@ ________________________________________________________________________
 
 # Bibliografía
 
+- The analysis of time series. An introduction. Chris Chatfield <br>
+- Time series analysis. With apllications in R. Jonathan D. Cryer <br>
+- Time series analysis and its applications. With R examples. Robert H. Shumway <br>
+- Using R for data analysis and graphics. Introduction, code and commentary. J. H. Maindonald <br>
+- Data preprocesing in data mining. Salvador García, Julián Luengo and Francisco Herrera <br>
+
 - Introduction to time series analysis http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm <br>
 - Series temporales http://halweb.uc3m.es/esp/Personal/personas/jmmarin/esp/EDescrip/tema7.pdf <br>
 - Series temporales http://humanidades.cchs.csic.es/cchs/web_UAE/tutoriales/PDF/SeriesTemporales.pdf <br>

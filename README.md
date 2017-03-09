@@ -29,6 +29,7 @@ Table of Contents
       	 	* [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	
 	* [Análisis gráfico de series temporales](#análisis-gráfico-de-series-temporales)
       * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
+   * [Cursos relacionados](#cursos-relacionados)
    * [Bibliografía](#bibliografía)
 
 
@@ -952,6 +953,7 @@ ________________________________________________________________________
 - Ejemplo básico de las funciones referentes a una serie temporal: [Ver](./examples/pruebas_simples/basico_timeseries.R)
 - Ejemplo básico de las funciones referentes a una serie temporal con alisados exponenciales: [Ver](./examples/pruebas_simples/basico_alisados.R)
 - Ejemplo básico de las funciones referentes a una serie temporal con redes neuronales: [Ver](./examples/pruebas_simples/basico_redesneuronales.R)
+- Ejemplo básico de comparación de funciones de modelado de series temporales con redes neuronales, modelos arima, alisados exponenciales y modelos aditivos:  [Ver](./examples/pruebas_simples/basico_comparacion.R)
 - Ejemplo básico de las funciones referentes a la imputación: [Ver](./examples/pruebas_simples/basico_imputation.R)
 - Ejemplo básico de las funciones referentes a la validación cruzada: [Ver](./examples/pruebas_simples/basico_crossvalidation.R)
 - Ejemplo básico de las funciones referentes a una serie temporal multivariante: [Ver](./examples/pruebas_simples/basico_multivariantes.R)
@@ -966,6 +968,22 @@ ________________________________________________________________________
 - Caso ejemplo Análisis y modelado Series temporales completo 04: [Ver](./examples/estudio_04_completo/)
 
 
+________________________________________________________________________
+
+# Cursos relacionados
+
+Series temporales:
+
+	https://www.udacity.com/course/time-series-forecasting--ud980
+
+Machine learning:
+
+	https://es.coursera.org/learn/machine-learning
+
+Deep learning:
+
+	https://www.udacity.com/course/deep-learning--ud730
+	
 ________________________________________________________________________
 
 # Bibliografía

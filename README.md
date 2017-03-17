@@ -18,7 +18,7 @@ Table of Contents
 		* [Enfoque Box-Jenkins](#enfoque-box-jenkins-1)
 			* [VAR](#var)
 			* [VEC](#vec)
-	* [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales
+	* [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)
 	* [Series temporales con R](#series-temporales-con-r)
 		* [Series temporales con alisados, arima, etc. con R](#series-temporales-con-alisados-arima-etc-con-r)
 			* [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)

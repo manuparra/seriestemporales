@@ -21,12 +21,12 @@ Table of Contents
 			* [VEC](#vec)
       * [Manejo de datos perdidos en series temporales](#manejo-de-datos-perdidos-en-series-temporales)			
       * [Series temporales con R](#series-temporales-con-r)
-	 * [Series temporales con alisados, arima, etc. con R](#series-temporales-con-alisados-arima-etc-con-r)     
-      	 	* [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
+	 * [Series temporales con alisados, arima, etc. con R](#series-temporales-con-alisados-arima-etc-con-r)
+	 	* [Paquetes R para el análisis y tratamiento de Series Temporales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales)
 	* [Series temporales con redes neuronales con R](#series-temporales-con-redes-neuronales-con-r)
-      	 	* [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
+		* [Paquetes R para el análisis y tratamiento de Series Temporales con redes neuronales:](#paquetes-r-para-el-análisis-y-tratamiento-de-series-temporales-con-redes-neuronales)
 	* [Imputación de datos perdidos en series temporales con R](#imputación-de-datos-perdidos-en-series-temporales-con-r)
-      	 	* [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	
+		* [Paquetes R para la imputación de datos perdidos en series Temporales:](#paquetes-r-para-la-imputación-de-datos-perdidos-en-series-temporales)	
 	* [Análisis gráfico de series temporales](#análisis-gráfico-de-series-temporales)
       * [Ejemplos de análisis de series temporales](#ejemplos-de-análisis-de-series-temporales)
    * [Cursos relacionados](#cursos-relacionados)
@@ -319,7 +319,7 @@ Los nodos de cada capa están conectados con otros nodos o incluso consigo mismo
 	- La red de Jordan: las neuronas de contexto reciben una copia de las neuronas de salida y de ellas mismas, acumulando así las salidas de la red para todos los instantes anteriores.
 	- La red de Elman: las neuronas de contexto reciben una copia de las neuronas ocultas de la red.
 - Redes neuronales recurrentes: es un tipo de red neuronal en la que no solo las salidas de cada capa son las entradas de la capa siguiente sino que además se puede formas ciclos entre las capas, ya que una neurona se puede conectar con si misma o con otra neurona de la misma capa o incluso con neuronas de la capa anterior (tienen caminos de retroalimentación entre todos los elementos que las conforman). Luego estas redes neuronales recurrentes son más eficaces para resolver problemas con no-linealidades temporales significativas ya que pueden mantener información pasada, lo que está intimamente ligado con secuencias de tiempo por ejemplo. El problema de estas redes reside en que funcionan bien cuándo la información que se pretende mantener es muy cercana, pero no funcionan tan bien cuándo la información es lejana, esto es así ya que la influencia de las entradas pasadas decaen rapidamente con el tiempo. Aquí es dónde aparece un tipo especial de red neuronal recurrente que puede resolver el problema:
-	- Redes neuronales Long-Short Term Memory: son capaces de aprender las dependencias largas ya que han sido especialmente diseñadas para ello (usan celdas de memoria), y funcionan muy bien en una gran variedad de problemas.
+	- Redes neuronales Long-Short Term Memory: son capaces de aprender las dependencias largas ya que han sido especialmente diseñadas para ello (tienen neuronas especiales que usan celdas de memoria que almacenan información un tiempo arbitrario).
 
 ![STexample](https://lh3.googleusercontent.com/LG5dLIqDTDKNiSCsRtrt8_B0at9slkrdVxVO2BRJ6Hva6asqP2vsixIsuLZt-cS1QYy9B7Tw9mrjCviL7e1I7_sa)
 

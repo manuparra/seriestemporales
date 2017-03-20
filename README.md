@@ -338,6 +338,25 @@ Los modelos no lineales son más potentes, pero por contra necesitan de más dat
 ________________________________________________________________________
 
 ## Predicción de series temporales con deep learning
+
+En construcción...
+
+Una red neuronal profunda es una red neuronal artificial con más capas que las 3 o 4 habituales de un perceptrón multicapa (entrada,ocultas y salida)(red neuronal poco profunda, superficial o shallow). Esta estructura superficial, se ha mantenido vigente durante bastante tiempo debido a los problemas de entrenamiento de las redes neuronales profundas, como el ¿VANISHING GRADIENT?, entre otras (capacidad computacional, etc.).
+
+Algunas de las técnicas empleadas para superar las dificultades de entrenamiento de una estrucutra profunda son:
+- Pre-entrenar la red con métodos ¿greedy layer wise?: los experimentos han demostrado que las redes neuronales profundas con pesos iniciales inicialidos de manera aleatoria, obtienen peores resultados que las redes neuronales con solo una o dos capas ocultas ¿PROBLEMA BACKPROPAGATION?. Por lo que los resultados de las redes neuronales profundas pueden ser significativamente mejorados cuando se **pre-entrena** la red con algoritmos de aprendizaje no supervisados. 
+	- Pre-entrenamiento con Restricted Boltzmann machine (RBM) apilados, Deep Belief Network: El método de preentrenamiento de RBM inicializa con los pesos de los RBM apilados que ya han sido entrenados con los datos
+- No pre-entrenar la red: otro método consiste en entrenar la red neuronal profunda de una manera más simple, empleando ReLu en lugar de la típica función sigmoide ¿resuelve problema backpropagation?.
+
+Puede que se produzca sobreentrenamiento durante el entrenamiento de una red neuronal profunda si el volumen de datos disponibles es relativamente pequeño con respecto al tamaño de la red neuronal. Cuando se produce este sobreentrenamiento, existe un cierto punto donde el error de test empieza a incrementar mientras el error de entrenamiento aún decrece, lo que significa que el modelo memoriza los datos de entrenamiento dados pero no predice bien en una situación real. Este sobreentrenamiento puede ser observado ¿COMO?
+
+Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción de caracterísiticas abstractas de una red neuronal sobre los datos.
+
+**Métodos de deep learning aplicados a series temporales**
+- Deep Belief Networks con Restricted Boltzmann Machine
+- Auto-encoders (stacked autoencoders, stacked denoising auto-encoders...)
+- LSTM (Recurrent neural networks) 
+
 ________________________________________________________________________
 
 ## Análisis de series temporales multivariantes

@@ -343,20 +343,55 @@ En construcción...
 
 Una red neuronal profunda es una red neuronal artificial con más capas que las 3 o 4 habituales de un perceptrón multicapa (entrada,ocultas y salida)(red neuronal poco profunda, superficial o shallow). Esta estructura superficial, se ha mantenido vigente durante bastante tiempo debido a los problemas de entrenamiento de las redes neuronales profundas, como el ¿VANISHING GRADIENT?, entre otras (capacidad computacional, etc.).
 
-Algunas de las técnicas empleadas para superar las dificultades de entrenamiento de una estrucutra profunda son:
+Debido a la dificultad de entrenar estas arquitecturas profundas de una manera eficiente, las redes neuronales profundas no han tenido relevancia hasta la aparición de algunas técnicas que superan las dificultades de entrenamiento de una estructura profunda, como son:
 - Pre-entrenar la red con métodos ¿greedy layer wise?: los experimentos han demostrado que las redes neuronales profundas con pesos iniciales inicialidos de manera aleatoria, obtienen peores resultados que las redes neuronales con solo una o dos capas ocultas ¿PROBLEMA BACKPROPAGATION?. Por lo que los resultados de las redes neuronales profundas pueden ser significativamente mejorados cuando se **pre-entrena** la red con algoritmos de aprendizaje no supervisados. 
 	- Pre-entrenamiento con Restricted Boltzmann machine (RBM) apilados, Deep Belief Network: El método de preentrenamiento de RBM inicializa con los pesos de los RBM apilados que ya han sido entrenados con los datos
 - No pre-entrenar la red: otro método consiste en entrenar la red neuronal profunda de una manera más simple, empleando ReLu en lugar de la típica función sigmoide ¿resuelve problema backpropagation?.
 
 Puede que se produzca sobreentrenamiento durante el entrenamiento de una red neuronal profunda si el volumen de datos disponibles es relativamente pequeño con respecto al tamaño de la red neuronal. Cuando se produce este sobreentrenamiento, existe un cierto punto donde el error de test empieza a incrementar mientras el error de entrenamiento aún decrece, lo que significa que el modelo memoriza los datos de entrenamiento dados pero no predice bien en una situación real. Este sobreentrenamiento puede ser observado ¿COMO?
 
-Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción de caracterísiticas abstractas de una red neuronal sobre los datos.
+Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción de caracterísiticas abstractas de una red neuronal sobre los datos. Deep learning ha mostrado buenas capacidades para modelar y predecir series temporales por medio de técnicas como:
 
-**Métodos de deep learning aplicados a series temporales**
+**Métodos/Arquitecturas de deep learning aplicados a series temporales**
 - Deep Belief Networks con Restricted Boltzmann Machine
 - Auto-encoders (stacked autoencoders, stacked denoising auto-encoders...)
 - LSTM (Recurrent neural networks) 
 
+************
+
+El algoritmo de backpropagation es muy usado para entrenar redes neuronales (superficiales), pero ofrece un rendimiento muy bajo con redes neuronales profundas ya que al tener un gran conjunto de pesos iniciales acaba estancándose en algún mínimo local. Por ello se propusieron técnicas de aprendizaje no supervisado greedy layer-wise que sí pueden realizar el entrenamiento de manera adecuada ya que su idea clave es pre-entrenar la red capa por capa de una manera ascendente. Una vez realizada este proceso de pre-entrenamiento, el algoritmo de back-propagation sí puede ser unasdo para encontrar los parámetros óptimos de la red completa de una manera descendente.
+
+Luego el entrenamiento general puede ser dividido en dos fases, una fase de pre-entrenamiento no supervisado de una manera greedy layer-wise'y otra fase de entrenamiento supervisado.
+
+***
+
+Forma de obtener el número de capas óptimo: Otro consejo: No te lances a meter capas. Empieza entrenando con pocos datos y pocas capas. Mantén siempre un conjunto de datos de entrenamiento y uno de test. Nunca entrenes con los datos de test. Pero durante el entrenamiento ve evaluando el error en ambos conjuntos. Si ves que ambos van bajando, genial. Si el error de test empieza a diverger, necesitas más datos. Si el error de entrenamiento se estanca y lo quieres más bajo, necesitas más capas.
+
+***
+
+Un grave problema de los algoritmos de propagación hacia atrás es que el error se va diluyendo de forma exponencial a medida que atraviesa capas en su camino hasta el principio de la red. Esto es un problema porque en una red muy profunda (con muchas capas ocultas), sólo las últimas capas se entrenan, mientras que las primeras apenas sufren cambios.
+
+Por eso, una técnica muy habitual en Deep Learning consiste en entrenar de manera no supervisada, y continuar con un entrenamiento supervisado. Es decir, el entrenamiento supervisado, en lugar de empezar con pesos al azar, empieza con pesos útiles, especialmente para las primeras capas.
+
+***
+
+greedy - algoritmo voraz
+
+***
+
+FOTO
+
+***
+
+TRUCOS 
+
+- before training on the whole dataset try to overfit on a very small subset of it, that way you know your network can converge. 
+- Always use dropout to minimize the chance of overfitting. Use it after large > 256 (fully connected layers or convolutional layers).
+- Avoid Sigmoid's , TanH's gates they are expensive and get saturated and may stop back propagation. In fact the deeper your network the less attractive Sigmoid's and TanH's are. Use the much cheaper and effective ReLU's and PreLU's instead.
+- Don't use ReLU's they are so 2012. Yes they are a very useful non-linearity that solved a lot of problems. However try fine-tuning a new model and watch nothing happen because of bad initialization with ReLU's blocking backpropagation. Instead use PreLU's with a very small multiplier usually 0.1. Using PreLU's converges faster and will not get stuck like ReLU's during the initial stages.
+- Use Batch Normalization (check paper Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift) ALWAYS. It works and it is great. It allows faster convergence ( much faster) and smaller datasets. You will save time and resources
+- Always go for the smaller models, if you are working and deploying deep learning models like me, you quickly understand the pain of pushing gigabytes of models to your users or to a server in the other side of the world. Go for the smaller models even if you lose some accuracy.
+- Don't even try to train anything without a high end GPU.
 ________________________________________________________________________
 
 ## Análisis de series temporales multivariantes

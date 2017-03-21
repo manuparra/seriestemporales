@@ -352,9 +352,13 @@ Al entrenar una red neuronal profunda puede que se produzca sobreentrenamiento s
 Así pues una red neuronal profunda es una red neuronal artificial con una arquitectura mayor y ms compleja que las 3 o 4 capas habituales de un perceptrón multicapa (entrada, ocultas y salida). Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción automática de caracterísiticas abstractas de una red neuronal sobre los datos. La técnicas de Deep learning han mostrado buenas capacidades para modelar y predecir series temporales por medio de aquitecturas como:
 
 **Arquitecturas de deep learning aplicados a series temporales**
-- Deep Belief Networks con Restricted Boltzmann Machine
-- Auto-encoders (stacked autoencoders, stacked denoising auto-encoders...)
-- LSTM (Recurrent neural networks) 
+- Deep Belief Networks con Restricted Boltzmann Machine:
+- Auto-codificadores (Auto-encoders): se suelen implementar como redes de neuronas con tres capas (entrada y salida de igual tamaño y oculta de tamaño mayor o menor), aprenden a producir a la salida exactamente la misma información que recibe a la entrada. Lo interesante de esto radica en que si la capa oculta tiene un nº menor de neuronas que la capa de entrada, la red se verá obligada a encontrar una representación intermedia de la información en su capa oculta usando menos números, o si por el contrario si la capa oculta tiene más neuronas ahora la red tendría que aprender nuevamente un código alternativo, pero en este caso disperso (cuidado aquí que hay que hacer que la red no solo se limite a copiar información). En ambos casos la red está forzada a generalizar, y encontrar patrones o características fundamentales en los ejemplos que pueda representar mediante las neuronas de su capa oculta.
+	- Auto-codificadores apilados (stacked auto-encoders): un solo auto-codificador puede encontrar características simples, pero si se quiere que detecten conceptos más complejos se necesita emplear varios. La manera de hacerlo es usar el resultado codificado en la capa oculta de un auto-codificador como la capa oculta de otro auto-codificador. Esto va a permitir obtener características más complejas de los datos. La idea de deep learning mediante auto-codificadores es continuar haciendo esto repetidas veces, por lo que se tendrá una jerarquía de características cada vez más complejas, junto con una pila de codificadores, que serán entrenados uno a uno (se elimina así el problema inherente a la back-propagation) usando cada codificador entrenado para entrenar el siguiente.
+	
+![STexample](https://rubenlopezg.files.wordpress.com/2014/04/stacked-autoencoder1.png)	
+	
+- LSTM (Recurrent neural networks):
 
 ************
 

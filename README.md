@@ -341,37 +341,28 @@ ________________________________________________________________________
 
 En construcción...
 
-Una red neuronal profunda es una red neuronal artificial con más capas que las 3 o 4 habituales de un perceptrón multicapa (entrada,ocultas y salida)(red neuronal poco profunda, superficial o shallow). Esta estructura superficial, se ha mantenido vigente durante bastante tiempo debido a los problemas de entrenamiento de las redes neuronales profundas, como el ¿VANISHING GRADIENT?, entre otras (capacidad computacional, etc.).
+La estructura anterior de las redes neuronales artificiales (red neuronal poco profunda, superficial o shallow), se ha mantenido vigente durante bastante tiempo debido a los problemas de entrenamiento que se presentaban en las redes neuronales a medida que se ampliaba y profundizaba su estructura. El principal problema es conocido como el problema de la desaparición del gradiente (vanishing gradient problem)(entre otros problemas como capacidad computacional, etc.), dicho problema reside en los algoritmos de entrenamiento (propagación hacia atrás (backpropagation)) debido a que el error se va diluyendo de forma exponencial a medida que atraviesa capas en su camino hasta el principio de la red, lo que es un problema porque en una red muy profunda (con muchas capas ocultas) sólo las últimas capas se entrenan, mientras que las primeras apenas sufren cambios. Lo que ofrece un rendimiento muy bajo con redes neuronales profundas ya que al tener un gran conjunto de pesos iniciales acaba estancándose en algún mínimo local. De echo, los experimentos han demostrado que las redes neuronales profundas con pesos iniciales inicialidos de manera aleatoria, obtienen peores resultados que las redes neuronales con solo una o dos capas ocultas.
 
-Debido a la dificultad de entrenar estas arquitecturas profundas de una manera eficiente, las redes neuronales profundas no han tenido relevancia hasta la aparición de algunas técnicas que superan las dificultades de entrenamiento de una estructura profunda, como son:
-- Pre-entrenar la red con métodos ¿greedy layer wise?: los experimentos han demostrado que las redes neuronales profundas con pesos iniciales inicialidos de manera aleatoria, obtienen peores resultados que las redes neuronales con solo una o dos capas ocultas ¿PROBLEMA BACKPROPAGATION?. Por lo que los resultados de las redes neuronales profundas pueden ser significativamente mejorados cuando se **pre-entrena** la red con algoritmos de aprendizaje no supervisados. 
-	- Pre-entrenamiento con Restricted Boltzmann machine (RBM) apilados, Deep Belief Network: El método de preentrenamiento de RBM inicializa con los pesos de los RBM apilados que ya han sido entrenados con los datos
-- No pre-entrenar la red: otro método consiste en entrenar la red neuronal profunda de una manera más simple, empleando ReLu en lugar de la típica función sigmoide ¿resuelve problema backpropagation?.
+Debido a esta dificultad de entrenar estas arquitecturas profundas de una manera eficiente, las redes neuronales profundas no han tenido relevancia hasta la aparición de algunas técnicas que superan las dificultades de entrenamiento de una estructura profunda, como son los métodos de aprendizaje greedy layer-wise, que sí pueden realizar el entrenamiento de manera adecuada ya que su idea clave es pre-entrenar la red capa por capa de una manera ascendente, de forma que una vez realizado este proceso de pre-entrenamiento, el algoritmo de back-propagation sí puede ser usado para encontrar los parámetros óptimos de la red completa de una manera descendente. Esto ha dado lugar a una mejora significativa de los resultados de las redes neuronales cuando se **pre-entrena** la red con algoritmos de aprendizaje no supervisados. Además, ha dado lugar a que se haya convertido en una técnica muy habitual en Deep Learning entrenar en primer lugar de manera no supervisada greedy layer-wise, y continuar con un entrenamiento supervisado, es decir, el entrenamiento supervisado, en lugar de empezar con pesos al azar, empieza con pesos útiles, especialmente para las primeras capas.
 
-Puede que se produzca sobreentrenamiento durante el entrenamiento de una red neuronal profunda si el volumen de datos disponibles es relativamente pequeño con respecto al tamaño de la red neuronal. Cuando se produce este sobreentrenamiento, existe un cierto punto donde el error de test empieza a incrementar mientras el error de entrenamiento aún decrece, lo que significa que el modelo memoriza los datos de entrenamiento dados pero no predice bien en una situación real. Este sobreentrenamiento puede ser observado ¿COMO?
+Un método alternativo al pre-entrenamiento consiste en entrenar la red neuronal profunda de una manera más simple, empleando ReLu en lugar de la típica función sigmoide ¿resuelve problema backpropagation?.
 
-Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción de caracterísiticas abstractas de una red neuronal sobre los datos. Deep learning ha mostrado buenas capacidades para modelar y predecir series temporales por medio de técnicas como:
+Al entrenar una red neuronal profunda puede que se produzca sobreentrenamiento si el volumen de datos disponibles es relativamente pequeño con respecto al tamaño de la red neuronal. Cuando se produce este sobreentrenamiento, existe un cierto punto donde el error de test empieza a incrementar mientras el error de entrenamiento aún decrece, lo que significa que el modelo memoriza los datos de entrenamiento dados pero no predice bien en una situación real. Este sobreentrenamiento puede ser observado ¿COMO?
 
-**Métodos/Arquitecturas de deep learning aplicados a series temporales**
+Así pues una red neuronal profunda es una red neuronal artificial con una arquitectura mayor y ms compleja que las 3 o 4 capas habituales de un perceptrón multicapa (entrada, ocultas y salida). Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción de caracterísiticas abstractas de una red neuronal sobre los datos. La técnicas de Deep learning han mostrado buenas capacidades para modelar y predecir series temporales por medio de aquitecturas como:
+
+**Arquitecturas de deep learning aplicados a series temporales**
 - Deep Belief Networks con Restricted Boltzmann Machine
 - Auto-encoders (stacked autoencoders, stacked denoising auto-encoders...)
 - LSTM (Recurrent neural networks) 
 
 ************
 
-El algoritmo de backpropagation es muy usado para entrenar redes neuronales (superficiales), pero ofrece un rendimiento muy bajo con redes neuronales profundas ya que al tener un gran conjunto de pesos iniciales acaba estancándose en algún mínimo local. Por ello se propusieron técnicas de aprendizaje no supervisado greedy layer-wise que sí pueden realizar el entrenamiento de manera adecuada ya que su idea clave es pre-entrenar la red capa por capa de una manera ascendente. Una vez realizada este proceso de pre-entrenamiento, el algoritmo de back-propagation sí puede ser unasdo para encontrar los parámetros óptimos de la red completa de una manera descendente.
 
-Luego el entrenamiento general puede ser dividido en dos fases, una fase de pre-entrenamiento no supervisado de una manera greedy layer-wise'y otra fase de entrenamiento supervisado.
 
 ***
 
 Forma de obtener el número de capas óptimo: Otro consejo: No te lances a meter capas. Empieza entrenando con pocos datos y pocas capas. Mantén siempre un conjunto de datos de entrenamiento y uno de test. Nunca entrenes con los datos de test. Pero durante el entrenamiento ve evaluando el error en ambos conjuntos. Si ves que ambos van bajando, genial. Si el error de test empieza a diverger, necesitas más datos. Si el error de entrenamiento se estanca y lo quieres más bajo, necesitas más capas.
-
-***
-
-Un grave problema de los algoritmos de propagación hacia atrás es que el error se va diluyendo de forma exponencial a medida que atraviesa capas en su camino hasta el principio de la red. Esto es un problema porque en una red muy profunda (con muchas capas ocultas), sólo las últimas capas se entrenan, mientras que las primeras apenas sufren cambios.
-
-Por eso, una técnica muy habitual en Deep Learning consiste en entrenar de manera no supervisada, y continuar con un entrenamiento supervisado. Es decir, el entrenamiento supervisado, en lugar de empezar con pesos al azar, empieza con pesos útiles, especialmente para las primeras capas.
 
 ***
 
@@ -380,6 +371,12 @@ greedy - algoritmo voraz
 ***
 
 FOTO
+
+****
+
+A deep belief network (DBN) for forecasting can be seen as a two-step algorithm: The DBN performs a feature learning to reduce the dimensionality of the input data set. An additional layer, e.g., a linear layer, is added to carry out the forecasting. To train a DBN for regression, two training steps have to be performed: In the first training step, the DBN is trained in an unsupervised manner by contrastive divergence. The second training step starts with appending an ANN, e.g., one layer of fully connected neurons, to the pre-trained topology.
+
+In more detail, each layer of a DBN consists of a Restricted Boltzmann Machine (RBM). 
 
 ***
 

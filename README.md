@@ -307,7 +307,7 @@ ________________________________________________________________________
 
 Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal, ya que con los métodos vistos anteriormente se obtienen resultados satisfactorios en series de tiempo lineales, pero al utilizarlos en series no lineales, presentan limitaciones ya que no son capaces de capturar las relaciones no lineales de los datos. Así entran en juego los métodos capaces de capturar las relaciones lineales y no lineales entre los datos, como son las **redes neuronales**.
 
-Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (ya que se emplean funciones no lineales, como la función sigmoide)(si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Para aquellas redes que usen funciones como por ejemplo la sigmoide, una **normalización** de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas. Entre los tipos de normalización más comunes se pueden encontrar:
+Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (ya que se emplean funciones de activación no lineales, como la función sigmoide)(si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Para aquellas redes que usen funciones como por ejemplo la sigmoide, una **normalización** de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas. Entre los tipos de normalización más comunes se pueden encontrar:
 - min-max: reescala los valores de los datos entre el rango 0 y 1 (-1 y 1), correspondiéndose el valor mayor de los datos a 1, y el menor a 0.
 - z-score: los datos son escalados para tener una media de 0 y una desviación estándar de 1 (μ = 0 y σ = 1), se obtiene restando a cada elemento la media de la población y dividiendolo entre la desviación estándar de la población, y cada valor representa el número de desviaciones estándar que está por encima o por debajo de la media.
 - decimal scaling: normaliza los datos moviendo el punto decimal. El número de movimientos del punto decimal para los datos viene dado por valor máximo absoluto de los datos.
@@ -349,7 +349,7 @@ Un método alternativo al pre-entrenamiento consiste en entrenar la red neuronal
 
 Al entrenar una red neuronal profunda puede que se produzca sobreentrenamiento si el volumen de datos disponibles es relativamente pequeño con respecto al tamaño de la red neuronal. Cuando se produce este sobreentrenamiento, existe un cierto punto donde el error de test empieza a incrementar mientras el error de entrenamiento aún decrece, lo que significa que el modelo memoriza los datos de entrenamiento dados pero no predice bien en una situación real. Este sobreentrenamiento puede ser observado ¿COMO?
 
-Así pues una red neuronal profunda es una red neuronal artificial con una arquitectura mayor y ms compleja que las 3 o 4 capas habituales de un perceptrón multicapa (entrada, ocultas y salida). Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción de caracterísiticas abstractas de una red neuronal sobre los datos. La técnicas de Deep learning han mostrado buenas capacidades para modelar y predecir series temporales por medio de aquitecturas como:
+Así pues una red neuronal profunda es una red neuronal artificial con una arquitectura mayor y ms compleja que las 3 o 4 capas habituales de un perceptrón multicapa (entrada, ocultas y salida). Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción automática de caracterísiticas abstractas de una red neuronal sobre los datos. La técnicas de Deep learning han mostrado buenas capacidades para modelar y predecir series temporales por medio de aquitecturas como:
 
 **Arquitecturas de deep learning aplicados a series temporales**
 - Deep Belief Networks con Restricted Boltzmann Machine
@@ -358,6 +358,7 @@ Así pues una red neuronal profunda es una red neuronal artificial con una arqui
 
 ************
 
+Deep-learning networks end in an output layer: a logistic, or softmax, classifier that assigns a likelihood to a particular outcome or label. 
 
 
 ***
@@ -377,6 +378,12 @@ FOTO
 A deep belief network (DBN) for forecasting can be seen as a two-step algorithm: The DBN performs a feature learning to reduce the dimensionality of the input data set. An additional layer, e.g., a linear layer, is added to carry out the forecasting. To train a DBN for regression, two training steps have to be performed: In the first training step, the DBN is trained in an unsupervised manner by contrastive divergence. The second training step starts with appending an ANN, e.g., one layer of fully connected neurons, to the pre-trained topology.
 
 In more detail, each layer of a DBN consists of a Restricted Boltzmann Machine (RBM). 
+
+RBM: RBMs are shallow, two-layer neural nets that constitute the building blocks of deep-belief networks. The first layer of the RBM is called the visible, or input, layer, and the second is the hidden layer. he nodes are connected to each other across layers, but no two nodes of the same layer are linked. That is, there is no intra-layer communication – this is the restriction in a restricted Boltzmann machine. 
+
+***
+
+Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
 
 ***
 
@@ -1071,6 +1078,8 @@ ________________________________________________________________________
 - Comparison of different Methods for Univariate Time Series Imputation in R: https://arxiv.org/ftp/arxiv/papers/1510/1510.03924.pdf <br>
 - A blog by Rob J Hyndman: http://robjhyndman.com/hyndsight/ <br>
 - Redes de neuronas recurrentes http://eva.evannai.inf.uc3m.es/et/docencia/doctorado/cib/documentacion/NNRecurrentes.pdf <br>
+- A Beginner’s Guide to Recurrent Networks and LSTMs: https://deeplearning4j.org/lstm <br>
+- ¿Qué es y cómo funciona “Deep Learning”? https://rubenlopezg.wordpress.com/2014/05/07/que-es-y-como-funciona-deep-learning/ <br>
 - Multivariate time series models: http://lipas.uwasa.fi/~bepa/Multivariate.pdf <br>
 - Analysis of multiple time series: https://www.kevinsheppard.com/images/5/56/Chapter5.pdf <br>
 - Técnicas avanzadas de predicción: https://www.uam.es/docencia/predysim/combinado5/unidad5.htm <br>

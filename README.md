@@ -1042,6 +1042,10 @@ Series temporales:
 Machine learning:
 
 	https://es.coursera.org/learn/machine-learning
+	
+Redes neuronales:
+
+	https://www.coursera.org/learn/neural-networks
 
 Deep learning:
 

@@ -391,6 +391,9 @@ Softmax is a function used as the output layer of a neural network that classifi
 Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
 
 ***
+Fine tuning step
+ 
+***
 
 TRUCOS 
 

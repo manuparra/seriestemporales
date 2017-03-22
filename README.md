@@ -388,6 +388,8 @@ RBM: RBMs are shallow, two-layer neural nets that constitute the building blocks
 
 Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
 
+Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
+
 ***
 
 TRUCOS 

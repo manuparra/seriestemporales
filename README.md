@@ -352,12 +352,15 @@ Al entrenar una red neuronal profunda puede que se produzca sobreentrenamiento s
 Así pues una red neuronal profunda es una red neuronal artificial con una arquitectura mayor y más compleja que las 3 o 4 capas habituales de un perceptrón multicapa (entrada, ocultas y salida). Este cambio hacía una estructura profunda (gran número de capas) incrementa la capacidad de absorción automática de caracterísiticas abstractas de una red neuronal sobre los datos. La técnicas de Deep learning han mostrado buenas capacidades para modelar y predecir series temporales por medio de aquitecturas como:
 
 **Arquitecturas de deep learning empleadas en series temporales**
-- Redes de creencia profunda (Deep Belief Networks) con Máquinas de Boltzmann restringidas (Restricted Boltzmann Machine): una red de creencia profunda está formada por un conjunto de máquina de Bolztmann restringuidas apiladas.
-	- Máquina de Boltzmann restringuida (Restricted Boltzmann Machine): es una red neuronal que puede aprender una distribución de probabilidad sobre su propio conjunto de entradas. Están compuestas de una capa oculta y otra visible con conexiones completamente conectadas y no dirigidas entre ellas. El principal interés en ellas ha venido por la reciente introducción del algoritmo de entrenamiento no supervisado de la divergencia contrastiva, método por el cuál se entrenan.
-	
+
 - Auto-codificadores (Auto-encoders): se suelen implementar como redes de neuronas con tres capas (entrada y salida de igual tamaño y oculta de tamaño mayor o menor), aprenden a producir a la salida exactamente la misma información que recibe a la entrada. Lo interesante de esto radica en que si la capa oculta tiene un nº menor de neuronas que la capa de entrada, la red se verá obligada a encontrar una representación intermedia de la información en su capa oculta usando menos números, o si por el contrario si la capa oculta tiene más neuronas ahora la red tendría que aprender nuevamente un código alternativo, pero en este caso disperso (cuidado aquí que hay que hacer que la red no solo se limite a copiar información). En ambos casos la red está forzada a generalizar, y encontrar patrones o características fundamentales en los ejemplos que pueda representar mediante las neuronas de su capa oculta.
-	- Auto-codificadores apilados (stacked auto-encoders): un solo auto-codificador puede encontrar características simples, pero si se quiere que detecten conceptos más complejos se necesita emplear varios. La manera de hacerlo es usar el resultado codificado en la capa oculta de un auto-codificador como la capa oculta de otro auto-codificador. Esto va a permitir obtener características más complejas de los datos. La idea de deep learning mediante auto-codificadores es continuar haciendo esto repetidas veces, por lo que se tendrá una jerarquía de características cada vez más complejas, junto con una pila de codificadores, que serán entrenados uno a uno (mediante back-propagation) usando cada codificador entrenado para entrenar el siguiente (se elimina así el problema inherente a la back-propagation en redes profundas). Tras este paso de pre-entrenamiento se dejan los pesos inicializados correctamente para en la última capa añadir una o más capas enteramente conectadas con la última capa del autodecodificador de forma que ahora toda la red ahora puede verse como un perceptrón de múltiples capas y es entrenado utilizando backpropagation (este paso también se denomina ajuste fino (fine tuning)).
+	- Auto-codificadores apilados (stacked auto-encoders): un solo auto-codificador puede encontrar características simples, pero si se quiere que detecten conceptos más complejos se necesita emplear varios. La manera de hacerlo es usar el resultado codificado en la capa oculta de un auto-codificador como la capa oculta de otro auto-codificador. Esto va a permitir obtener características más complejas de los datos. La idea de deep learning mediante auto-codificadores es continuar haciendo esto repetidas veces, por lo que se tendrá una jerarquía de características cada vez más complejas, junto con una pila de codificadores, que serán entrenados uno a uno (mediante back-propagation) usando cada codificador entrenado para entrenar el siguiente (se elimina así el problema inherente a la back-propagation en redes profundas). Tras este paso de pre-entrenamiento los autocodificadores dejan los pesos inicializados eficazmente para en la última capa añadir una o más capas enteramente conectadas con la última capa del autodecodificador de forma que ahora toda la red ahora puede verse como un perceptrón de múltiples capas y es entrenado utilizando backpropagation (este paso también se denomina ajuste fino (fine tuning)).
 	![STexample](https://rubenlopezg.files.wordpress.com/2014/04/stacked-autoencoder1.png)	
+
+- Redes de creencia profunda (Deep Belief Networks): una red de creencia profunda está formada por un conjunto de máquinas de Bolztmann restringuidas.
+	- Máquina de Boltzmann restringuida (Restricted Boltzmann Machine): es una red neuronal que puede aprender una distribución de probabilidad sobre su propio conjunto de entradas. Están compuestas de una capa oculta y otra visible con conexiones completamente conectadas y no dirigidas entre ellas. El principal interés en ellas ha venido por la reciente introducción del algoritmo de entrenamiento no supervisado de la divergencia contrastiva, método por el cuál se entrenan.
+
+	Este procedimiento puede volver a ser visto como un procedimiento de dos pasos, un primero que lleva a cabo un aprendizaje de características de los datos de entrada, y un segundo paso añadido para la predicción. Es muy similar a los autoencoders apilados, pero en este caso los autoencoders han sido reemplazados por MBR, luego en una red de creencia profunda la capa de entrada de la primera MBR es la capa de entrada para toda la red, la capa oculta de la primera MBR es la capa de entrada de la segunda MBR, y así sucesivamente. Cada MBR se pre-entrena de manera greedy layer-wise una a una pero esta vez en vez de con back-propagation, se realiza con el algoritmo de divergencia contrastiva. Después del pre-entrenamiento, y al igual que en los autoencoders apilados, los pesos están inicializados y la red se puede ampliar mediante la conexión de una o más capas completamente conectadas a la capa oculta final MBR, formando un perceptrón de múltiples capas que puede ser afinado mediante backpropagation.
 	
 - LSTM (Recurrent neural networks):
 
@@ -365,6 +368,9 @@ Así pues una red neuronal profunda es una red neuronal artificial con una arqui
 
 Deep-learning networks end in an output layer: a logistic, or softmax, classifier that assigns a likelihood to a particular outcome or label. 
 
+Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
+
+Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
 
 ***
 
@@ -372,29 +378,11 @@ Forma de obtener el número de capas óptimo: Otro consejo: No te lances a meter
 
 ***
 
-greedy - algoritmo voraz
+greedy = algoritmo voraz
+
 
 ***
 
-FOTO
-
-****
-
-A deep belief network (DBN) for forecasting can be seen as a two-step algorithm: The DBN performs a feature learning to reduce the dimensionality of the input data set. An additional layer, e.g., a linear layer, is added to carry out the forecasting. To train a DBN for regression, two training steps have to be performed: In the first training step, the DBN is trained in an unsupervised manner by contrastive divergence. The second training step starts with appending an ANN, e.g., one layer of fully connected neurons, to the pre-trained topology.
-
-In more detail, each layer of a DBN consists of a Restricted Boltzmann Machine (RBM). 
-
-RBM: RBMs are shallow, two-layer neural nets that constitute the building blocks of deep-belief networks. The first layer of the RBM is called the visible, or input, layer, and the second is the hidden layer. he nodes are connected to each other across layers, but no two nodes of the same layer are linked. That is, there is no intra-layer communication – this is the restriction in a restricted Boltzmann machine. 
-
-***
-
-Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
-
-Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
-
-
- 
-***
 
 TRUCOS 
 

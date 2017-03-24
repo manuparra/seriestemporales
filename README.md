@@ -688,7 +688,7 @@ Predecir una serie temporal:
 
 Medición de la afinidad del modelo predicho (Error medio (ME), Error medio absoluto (MAE), Porcentaje del error medio absoluto (MAPE), Error medio absoluto escalado (MASE), Porcentaje del error medio (MPE), etc.):
 
-	accuray(object, x)
+	accuracy(object, x)
 	
 		- object: objeto de la clase forecast (también sirve con arima) o un vector numérico con las predicciones
 		- x: vector con los valores reales a comparar

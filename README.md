@@ -525,7 +525,7 @@ Agregación de los datos de la serie temporal (puede ser interesante por ejemplo
 Retardar la serie temporal:
 
 	lag(serie temporal, k) *paquete stat* *realiza un rezago del tiempo de la serie temporal*	
-	lag(serie temporal, k) *paquete quantmod* *si se le pasa una serie temporal realiza un rezago del tiempo de la serie temporal, si no, realiza un rezago de los datos añadiento un  valor NA al principio*
+	Lag(serie temporal, k) *paquete quantmod* *si se le pasa una serie temporal realiza un rezago del tiempo de la serie temporal, si no, realiza un rezago de los datos añadiento un  valor NA al principio*
 	
 		- k: número de rezagos aplicados a la serie
 

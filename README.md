@@ -551,6 +551,12 @@ Transformación BoxCox de una serie:
 	
 		- lambda: parámetro de la transformación, el parámetro óptimo para los datos se consigue con la función BoxCox.lambda(serie temporal, method=c("loglik","guerrero"))
 
+Test de heterodasticidad de Goldfeld-Quandt (hipótesis nula de que la varianza es igual en toda la serie):
+
+	gqtest(formula) *paquete lmtest*
+	
+		- formula: descripción simbólica del modelo
+
 Cómputo de las estimaciones de las funciones de autocorrelación y autocorrelación parcial:
 
 	acf(serie temporal, lag.max) *paquete stats*

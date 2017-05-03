@@ -763,9 +763,12 @@ Predicción de valores de una serie temporal ajustada con un alisado:
 
 Ajuste de una serie temporal aditiva (con tendencia no lineal y estacionalidad semanal y anual)(buena con periodicidad diaria):
 
-	prophet(df)
+	prophet(df, changepoints, n.changepoints, changepoint.prior.scale)
 	
 		- df: data.frame con una columna ds con el tiempo, y otra columna y con las observaciones
+		- changepoints: fechas dentro de df$ds para testear si hay en ellas un cambio de tendencia. Por defecto vacío
+		- n.changepoints: número de fechas a testear. Por defecto 25
+		- changepoint.prior.scale: establece la flexibilidad en el cambio de tendencia.Por defecto 0.5
 	
 Extensión del data.frame de la serie temporal aditiva con los periodos temporales a predecir:	
 

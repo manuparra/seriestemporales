@@ -366,6 +366,13 @@ Así pues una red neuronal profunda es una red neuronal artificial con una arqui
 	
 - LSTM (Recurrent neural networks):
 
+
+**Librerias que permiten aplicar deep learning sobre series temporales**
+
+- TensorFlow
+- Theano
+- Keras
+
 ************
 
 Deep-learning networks end in an output layer: a logistic, or softmax, classifier that assigns a likelihood to a particular outcome or label. 
@@ -373,6 +380,7 @@ Deep-learning networks end in an output layer: a logistic, or softmax, classifie
 Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
 
 Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
+
 
 ***
 

@@ -309,12 +309,28 @@ ________________________________________________________________________
 
 Hasta ahora, los enfoques de análisis de series temporales se han llevado a cabo desde un punto de vista lineal, ya que con los métodos vistos anteriormente se obtienen resultados satisfactorios en series de tiempo lineales, pero al utilizarlos en series no lineales, presentan limitaciones ya que no son capaces de capturar las relaciones no lineales de los datos. Así entran en juego los métodos capaces de capturar las relaciones lineales y no lineales entre los datos, como son las **redes neuronales**.
 
-Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (ya que se emplean funciones de activación no lineales, como la función sigmoide)(si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Para aquellas redes que usen funciones como por ejemplo la sigmoide, una **normalización** de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas. Entre los tipos de normalización más comunes se pueden encontrar:
+Los métodos de predicción basados en redes neuronales artificiales están basados en modelos matemáticos simples del cerebro. Una red neuronal puede ser vista como una red de neuronas organizadas en capas, en la que los predictores (o entradas) forman la capa más baja y las predicciones (salidas) forman la capa más alta. Entre ambas capas pueden existir capas intermedias con neuronas ocultas. Esta capa intermedia oculta es la que permite una relación no linear entre las entradas y las salidas permitiendo al modelo más grados de libertad (ya que se emplean funciones de activación no lineales, como la función sigmoide)(si solo se tuvieran la capa de entrada y salida sería una regresión lineal (modelo más simple)). Una neurona artificial consta de los siguientes elementos:
+
+- Un conjunto de entradas.
+- Un conjunto de pesos sinápticos, correspondientes a cada entrada.
+- Una función de agregación, Σ.
+- Una función de activación, f.
+- Un conjunto de salidas.
+
+![STexample](./images/ann.png)
+
+¿qué es función de activación y tipos?
+
+Para aquellas redes que usen funciones de activación como por ejemplo la sigmoide, una **normalización** de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas. Entre los tipos de normalización más comunes se pueden encontrar:
 - min-max: reescala los valores de los datos entre el rango 0 y 1 (-1 y 1), correspondiéndose el valor mayor de los datos a 1, y el menor a 0.
 - z-score: los datos son escalados para tener una media de 0 y una desviación estándar de 1 (μ = 0 y σ = 1), se obtiene restando a cada elemento la media de la población y dividiendolo entre la desviación estándar de la población, y cada valor representa el número de desviaciones estándar que está por encima o por debajo de la media.
 - decimal scaling: normaliza los datos moviendo el punto decimal. El número de movimientos del punto decimal para los datos viene dado por valor máximo absoluto de los datos.
 
-Los nodos de cada capa están conectados con otros nodos o incluso consigo mismos, cada conexión es diferente ya que tiene un peso asociado que se actualiza mediante algoritmos de entrenamiento sobre los datos observados que minimizan una función de coste, por lo que van a representar el conocimiento de la red. En un principio los pesos son inicializados aleatoriamente, luego hay una componente aleatoria asociada a cada red neuronal. Dependiendo de la arquitectura e interconexión de todas las neuronas de una red, pueden clasificárse en distintas categorías:  
+En las redes neuronales, los nodos de cada capa están conectados con otros nodos o incluso consigo mismos, cada conexión es diferente ya que tiene un peso asociado que se actualiza mediante algoritmos de entrenamiento sobre los datos observados que minimizan una función de coste, por lo que van a representar el conocimiento de la red. 
+
+¿algoritmos entrenamiento?
+
+En un principio los pesos son inicializados aleatoriamente, luego hay una componente aleatoria asociada a cada red neuronal. Dependiendo de la arquitectura e interconexión de todas las neuronas de una red, pueden clasificárse en distintas categorías:  
 
 - Redes neuronales Feed-Forward: es la red neuronal más sencilla, en estos modelos multicapa las salidas de cada capa son las entradas de la capa siguiente, luego la información se mueve solo en una dirección, hacia delante desde las entradas hasta las salidas pasando por las capas ocultas, y por lo tanto no hay ciclos. Su desempeño es bueno para aplicaciones en las que no se requiera que la red retenga información de eventos pasados como ayuda para evaluar eventos futuros. 
 - Redes neuronales parcialmente recurrentes: son redes multicapa con algunas conexiones recurrentes, de forma que son una mejora de las redes neuronales Feed-Forward al incluir retroalimentación, pero no llegan a ser completamente recurrentes. En estas redes generalmente existen en la capa de entrada ciertas neuronas especiales (neuronas de contexto) receptoras de las conexiones recurrentes, mientras que el resto de las neuronas actúan como receptores de los datos de entrada. Las redes neuronales parcialmente recurrentes más conocidas son:

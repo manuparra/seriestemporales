@@ -360,12 +360,53 @@ Así pues una red neuronal profunda es una red neuronal artificial con una arqui
 	![STexample](https://rubenlopezg.files.wordpress.com/2014/04/stacked-autoencoder1.png)	
 
 - Redes de creencia profunda (Deep Belief Networks): una red de creencia profunda está formada por un conjunto de máquinas de Bolztmann restringuidas.
-	- Máquina de Boltzmann restringuida (Restricted Boltzmann Machine): es una red neuronal que puede aprender una distribución de probabilidad sobre su propio conjunto de entradas. Están compuestas de una capa oculta y otra visible con conexiones completamente conectadas y no dirigidas entre ellas. El principal interés en ellas ha venido por la reciente introducción del algoritmo de entrenamiento no supervisado de la divergencia contrastiva, método por el cuál se entrenan.
+	- Máquina de Boltzmann restringuida (Restricted Boltzmann Machine): es una red neuronal shallow que puede aprender una distribución de probabilidad sobre su propio conjunto de entradas. Están compuestas de una capa oculta y otra visible con conexiones completamente conectadas y no dirigidas entre ellas. El principal interés en ellas ha venido por la reciente introducción del algoritmo de entrenamiento no supervisado de la divergencia contrastiva, método por el cuál se entrenan.
 
 	Este procedimiento puede volver a ser visto como un procedimiento de dos pasos, un primero que lleva a cabo un aprendizaje de características de los datos de entrada, y un segundo paso añadido para la predicción. Es muy similar a los autoencoders apilados, pero en este caso los autoencoders han sido reemplazados por MBR, luego en una red de creencia profunda la capa de entrada de la primera MBR es la capa de entrada para toda la red, la capa oculta de la primera MBR es la capa de entrada de la segunda MBR, y así sucesivamente. Cada MBR se pre-entrena de manera greedy layer-wise una a una pero esta vez en vez de con back-propagation, se realiza con el algoritmo de divergencia contrastiva. Después del pre-entrenamiento, y al igual que en los autoencoders apilados, los pesos están inicializados y la red se puede ampliar mediante la conexión de una o más capas completamente conectadas a la capa oculta final MBR, formando un perceptrón de múltiples capas que puede ser afinado mediante backpropagation.
 	
 - LSTM (Recurrent neural networks):
 
+
+
+
+**Última capa**
+
+On a deep neural network of many layers, the final layer has a particular role. When dealing with labeled input, the output layer classifies each example, applying the most likely label. Each node on the output layer represents one label, and that node turns on or off according to the strength of the signal it receives from the previous layer’s input and parameters.
+
+Deep-learning networks end in an output layer: a logistic, or softmax, classifier that assigns a likelihood to a particular outcome or label. 
+
+Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
+
+Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
+
+***
+
+Loss Functions in DeepLearning
+
+MSE: Mean Squared Error: Linear Regression
+EXPLL: Exponential log likelihood: Poisson Regression
+XENT: Cross Entropy: Binary Classification
+MCXENT: Multiclass Cross Entropy
+RMSE_XENT: RMSE Cross Entropy
+SQUARED_LOSS: Squared Loss
+NEGATIVELOGLIKELIHOOD: Negative Log Likelihood
+
+
+***
+
+FUNCIONES DE ACTIVACION
+
+Sigmoid and tanh should not be used as activation function for the hidden layer. This is because of the vanishing gradient problem, i.e., if your input is on a higher side (where sigmoid goes flat) then the gradient will be near zero.
+The best function for hidden layers is thus ReLu.
+
+outputo layer -> Regression: linear (because values are unbounded)
+Classification: softmax (simple sigmoid works too but softmax works better)
+
+¿activation funtion in hidden and output layer?
+
+
+
+***
 
 **Librerias que permiten aplicar deep learning sobre series temporales**
 
@@ -375,12 +416,9 @@ Así pues una red neuronal profunda es una red neuronal artificial con una arqui
 
 ************
 
-Deep-learning networks end in an output layer: a logistic, or softmax, classifier that assigns a likelihood to a particular outcome or label. 
+Activation function te marca la salida de la red, por ejemplo, sofmax clasificación en eqtiquetas, sigmoide regresión logística...
 
-Softmax is a function used as the output layer of a neural network that classifies input. It converts vectors into class probabilities. Softmax normalizes the vector of scores by first exponentiating and then dividing by a constant.
-
-Then a supervised learner such as softmax or SVM/SVR can be added on top of DBN.
-
+The sigmoid function can be applied easily, the ReLUs will not vanish the effect during your training process. However, when you want to deal with classification problems, they cannot help much. 
 
 ***
 

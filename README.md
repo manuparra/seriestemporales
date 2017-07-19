@@ -320,11 +320,17 @@ Los métodos de predicción basados en redes neuronales artificiales están basa
 ![STexample](./images/ann.png)
 
 Luego cada neurona va a recibir un conjunto de entradas ponderadas por un peso específico, a las que le aplica una función de activación una vez realizado el sumatorio del valor de las mismas, para obtener así una salida. Los pesos son valores reales que multiplican a las entradas. En un principio los pesos son inicializados aleatoriamente (luego hay una componente aleatoria asociada a cada red neuronal), pero estos pesos se actualizan mediante algoritmos de entrenamiento sobre los datos observados que minimizan una función de coste, por lo que van a representar el conocimiento de la red. 
-La función de activación...
+La función de activación define la salida de la neurona, se puede decir que representa el potencial de activación de la neurona...
+
+En su forma simplificada, esta función es binaria, esto es, se activa la neurona o no. Una función rampa también puede ser usada para reflejar el incremento del potencial de activación que ocurre cuando la entrada se incrementa.  Esta función de activación es lineal, y por consiguiente tiene los mismos problemas que la función binaria. Los problemas mencionados anteriormente, pueden ser manejados usando una función de activación sigmoidal. La función de tangente hiperbólica puede también ser cualquier función sigmoidal.
+
+
 
 ¿qué es función de activación y tipos?
 
 ¿algoritmos entrenamiento?
+¿umbral?¿bias?
+¿función de coste?
 
 Para aquellas redes que usen funciones de activación como por ejemplo la sigmoide, una **normalización** de los datos es frecuentemente de ayuda, ya que si no se realiza la normalización los datos de entrada tendrán un efecto adicional sobre la neurona, dando lugar a decisiones incorrectas. Entre los tipos de normalización más comunes se pueden encontrar:
 - min-max: reescala los valores de los datos entre el rango 0 y 1 (-1 y 1), correspondiéndose el valor mayor de los datos a 1, y el menor a 0.

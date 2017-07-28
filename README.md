@@ -872,6 +872,12 @@ Estimación de un modelo VAR empleando mínimos cuadrados ordinarios por ecuaci�
 	
 		- p: orden, nº de rezagos empleados
 
+Ploteo de un modelo VAR ajustado:
+
+	plot(modeloVAR)
+	
+		- modeloVAR: resultado del ajuste de un modelo VAR
+
 Pruebas de cointegración de Johansen:
 
 	ca.jo(serie tempotal, type, K)
